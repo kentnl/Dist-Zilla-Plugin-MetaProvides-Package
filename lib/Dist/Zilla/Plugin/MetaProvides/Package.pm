@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Dist::Zilla::Plugin::MetaProvides::Package;
 BEGIN {
-  $Dist::Zilla::Plugin::MetaProvides::Package::VERSION = '1.10034117';
+  $Dist::Zilla::Plugin::MetaProvides::Package::VERSION = '1.11034201';
 }
 
 # ABSTRACT: Extract namespaces/version from traditional packages for provides
@@ -10,9 +10,6 @@ BEGIN {
 # $Id:$
 use Moose;
 use Moose::Autobox;
-use MooseX::Has::Sugar;
-use MooseX::Types::Moose             (':all');
-use Dist::Zilla::MetaProvides::Types (':all');
 
 use aliased 'Module::Extract::VERSION'                 => 'Version',    ();
 use aliased 'Module::Extract::Namespaces'              => 'Namespaces', ();
@@ -62,7 +59,7 @@ Dist::Zilla::Plugin::MetaProvides::Package - Extract namespaces/version from tra
 
 =head1 VERSION
 
-version 1.10034117
+version 1.11034201
 
 =head1 ROLES
 

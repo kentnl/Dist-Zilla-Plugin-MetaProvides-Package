@@ -1,130 +1,25 @@
 NAME
-    Dist::Zilla::Plugin::MetaProvides - Generating and Populating 'provides'
-    in your META.yml
+    Dist::Zilla::Plugin::MetaProvides::Package - Extract namespaces/version
+    from traditional packages for provides
 
 VERSION
-    version 1.10034117
+    version 1.11034201
 
-SYNOPSIS
-    In your projects dist.ini
+ROLES
+  Dist::Zilla::Role::MetaProvider::Provider
+ROLE SATISFYING METHODS
+  provides
+    A conformant function to the Dist::Zila::Role::MetaProvider::Provider
+    Role.
 
-        [MetaProvides::Class]
-        inherit_version = 0    ;optional flag
-        inherit_missing = 0    ;optional flag
-
-        [MetaProvides::Package]
-        inherit_version = 0    ;optional flag
-        inherit_missing = 0    ;optional flag
-
-        [MetaProvides::FromFile]
-        inherit_version = 0     ;optional flag
-        inherit_missing = 0     ;optional flag
-        file = some_file.ini    ;mandatory flag
-        reader_name = Config::INI::Reader ;optional flag
-
-    And then in some_file.ini
-
-        [Imaginary::Package]
-        file = lib/Imaginary/Package.pm ;mandatory flag
-        version = 3.1415                ;optional flag, subject to rules in dist.ini
-
-DESCRIPTION
-    This Distribution Contains a small bundle of plugins for various ways of
-    populating the "META.yml" that is built with your distribution.
-
-    The initial reason for this is due to stuff that uses MooseX::Declare
-    style class definitions not being parseable by many tools upstream, so
-    this is here to cover this problem by defining it in the metadata.
-
-COMPONENT SUMMARY
-  ::Class
-    Scans Dist::Zilla's ".pm" files and tries to identify classes using
-    Class::Discover.
-
-    Dist::Zilla::Plugin::MetaProvides::Class
-
-  ::Package
-    Scans Dist::Zilla's ".pm" files and tries to identify more traditional
-    packages using a combination of Module::Extract::VERSION and
-    Module::Extact::Namespaces.
-
-    Dist::Zilla::Plugin::MetaProvides::Package
-
-  ::FromFile
-    In the event both of the above don't work for your needs, pull in
-    hand-crafted metadata from a specified file.
-
-    Dist::Zilla::Plugin::MetaProvides::FromFile
-
-OPTION SUMMARY
-  inherit_version
-    At the time this plugin runs to collect metadata from files, the mungers
-    won't have run yet to inject custom versions into files in the various
-    locations.
-
-    If you want the versions reported in the "provides" list to be
-    consistent with the ones actually in the files, you will need to use
-    this option in its enabled state.
-
-    IE: Generally, if you are using version munging, you WILL want this flag
-    set to 1.
-
-   values
-    *   '0'
-
-        Do not inherit version from "Dist::Zilla"
-
-    *   '1' [default]
-
-        Inherit version from Dist::Zilla
-
-    "inherit_version" in Dist::Zilla::Role::MetaProvider::Provider
-
-  inherit_missing
-    If for whatever reason you want to actually use the versions found in
-    the modules where present, and fall back to the value from Dist::Zilla.
-
-    "inherit_version" will need to be turned off (0) for this to be
-    effective.
-
-   values
-    *   '0'
-
-        Do not inherit version from "Dist::Zilla" when one is missing.
-
-    *   '1' [default]
-
-        Inherit version from Dist::Zilla when one is missing.
-
-    "inhert_missing" in Dist::Zilla::Role::MetaProvider::Provider
-
-  file
-    ( Dist::Zilla::Plugin::MetaProvides::FromFile )
-
-    This is a mandatory parameter that points to the file that contains
-    manually ( or otherwise ) crafted metadata to be integrated into your
-    final META.yml
-
-    File Must exist.
-
-  reader_name
-    ( Dist::Zilla::Plugin::MetaProvides::FromFile )
-
-    This parameter is by default Config::INI::Reader, but it can be infact
-    anything that meets the following criteria.
-
-    *   Can be initalized an instance of
-
-    *   has a read_file method on the instance
-
-    *   read_file can take the parameter 'file'
-
-    *   read_file can return a hashref matching the following structure
-
-            { 'Package::Name' => {
-                'file' => '/path/to/file',
-                'version' => 0.1,
-            }}
+   signature: $plugin->provides()
+   returns: Array of Dist::Zilla::MetaProvides::ProvideRecord
+PRIVATE METHODS
+  _packages_for
+   signature: $plugin->_packages_for( $filename, $file_content )
+   returns: Array of Dist::Zilla::MetaProvides::ProvideRecord
+SEE ALSO
+    *   Dist::Zilla::Plugin::MetaProvides
 
 AUTHOR
     Kent Fredric <kentnl@cpan.org>
