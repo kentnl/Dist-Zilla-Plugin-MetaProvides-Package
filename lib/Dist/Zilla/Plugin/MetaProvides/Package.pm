@@ -7,9 +7,6 @@ package Dist::Zilla::Plugin::MetaProvides::Package;
 # $Id:$
 use Moose;
 use Moose::Autobox;
-use MooseX::Has::Sugar;
-use MooseX::Types::Moose             (':all');
-use Dist::Zilla::MetaProvides::Types (':all');
 
 use aliased 'Module::Extract::VERSION'                 => 'Version',    ();
 use aliased 'Module::Extract::Namespaces'              => 'Namespaces', ();
