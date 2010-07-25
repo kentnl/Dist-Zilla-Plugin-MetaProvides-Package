@@ -1,8 +1,9 @@
 use strict;
 use warnings;
+
 package Dist::Zilla::Plugin::MetaProvides::Package;
 BEGIN {
-  $Dist::Zilla::Plugin::MetaProvides::Package::VERSION = '1.11034201';
+  $Dist::Zilla::Plugin::MetaProvides::Package::VERSION = '1.11034304';
 }
 
 # ABSTRACT: Extract namespaces/version from traditional packages for provides
@@ -11,13 +12,15 @@ BEGIN {
 use Moose;
 use Moose::Autobox;
 
-use aliased 'Module::Extract::VERSION'                 => 'Version',    ();
-use aliased 'Module::Extract::Namespaces'              => 'Namespaces', ();
-use aliased 'Dist::Zilla::MetaProvides::ProvideRecord' => 'Record',     ();
+use Module::Extract::VERSION;
+use Module::Extract::Namespaces;
+use Dist::Zilla::MetaProvides::ProvideRecord;
+
 
 
 use namespace::autoclean;
 with 'Dist::Zilla::Role::MetaProvider::Provider';
+
 
 
 sub provides {
@@ -33,16 +36,16 @@ sub provides {
 
 sub _packages_for {
   my ( $self, $filename, $content ) = @_;
-  my $version   = Version->parse_version_safely($filename);
+  my $version   = Module::Extract::VERSION->parse_version_safely($filename);
   my $to_record = sub {
-    Record->new(
+    Dist::Zilla::MetaProvides::ProvideRecord->new(
       module  => $_,
       file    => $filename,
       version => $version,
       parent  => $self,
     );
   };
-  return [ Namespaces->from_file($filename) ]->map($to_record)->flatten;
+  return [ Module::Extract::Namespaces->from_file($filename) ]->map($to_record)->flatten;
 }
 
 
@@ -59,11 +62,55 @@ Dist::Zilla::Plugin::MetaProvides::Package - Extract namespaces/version from tra
 
 =head1 VERSION
 
-version 1.11034201
+version 1.11034304
+
+=head1 SYNOPSIS
+
+In your C<dist.ini>:
+
+    [MetaProvides::Package]
+    inherit_version = 0    ; optional
+    inherit_missing = 0    ; optional
 
 =head1 ROLES
 
 =head2 L<Dist::Zilla::Role::MetaProvider::Provider>
+
+=head1 OPTIONS INHERITED FROM L<Dist::Zilla::Role::MetaProvider::Provider>
+
+=head2 L<< C<inherit_version>|Dist::Zilla::Role::MetaProvider::Provider/inherit_version >>
+
+How do you want existing versions ( Versions hardcoded into files before running this plug-in )to be processed?
+
+=over 4
+
+=item * DEFAULT: inherit_version = 1
+
+Ignore anything you find in a file, and just probe C<< DZIL->version() >> for a value. This is a sane default and most will want this.
+
+=item * inherit_version = 0
+
+Use this option if you actually want to use hard-coded values in your files and use the versions parsed out of them.
+
+=back
+
+=head2 L<< C<inherit_missing>|Dist::Zilla::Role::MetaProvider::Provider/inherit_missing >>
+
+In the event you are using the aforementioned C<< L</inherit_version> = 0 >>, this determines how to behave when encountering a
+module with no version defined.
+
+=over 4
+
+=item * DEFAULT: inherit_missing = 1
+
+When a module has no version, probe C<< DZIL->version() >> for an answer. This is what you want if you want to have some
+files with fixed versions, and others to just automatically be maintained by Dist::Zilla.
+
+=item * inherit_missing = 0
+
+When a module has no version, emit a versionless record in the final metadata.
+
+=back
 
 =head1 ROLE SATISFYING METHODS
 

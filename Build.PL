@@ -21,7 +21,7 @@ my %module_build_args = (
     'Kent Fredric <kentnl@cpan.org>'
   ],
   'dist_name' => 'Dist-Zilla-Plugin-MetaProvides-Package',
-  'dist_version' => '1.11034201',
+  'dist_version' => '1.11034304',
   'license' => 'perl',
   'module_name' => 'Dist::Zilla::Plugin::MetaProvides::Package',
   'recommends' => {},
@@ -34,7 +34,6 @@ my %module_build_args = (
     'Module::Extract::VERSION' => '0.13',
     'Moose' => '0',
     'Moose::Autobox' => '0',
-    'aliased' => '0',
     'namespace::autoclean' => '0'
   },
   'script_files' => []

@@ -1,5 +1,12 @@
 Revision history for Dist-Zilla-Plugin-MetaProvides-Package
 
+1.11034304 2010-07-26 04:18:01 Pacific/Auckland
+          Improved documentation so people don't need to do so much link checking.
+            ( This is pretty much an acknowledgement that this side package, which was largely 
+              just a side-effect of the one designated for MX::D, has attained so much unexpected 
+              use that it warrants being the primary reason to install this plugin =) )
+          Cleaned further deps on 'aliased'.
+
 1.11034201 2010-07-25 01:38:32 Pacific/Auckland
 
           History forks here from Dist::Zilla::Plugin::MetaProvides

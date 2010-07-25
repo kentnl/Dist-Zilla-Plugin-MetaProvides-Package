@@ -60,7 +60,6 @@ eval { $v .= pmver('Module::Extract::VERSION','0.13') };
 eval { $v .= pmver('Moose','any version') };
 eval { $v .= pmver('Moose::Autobox','any version') };
 eval { $v .= pmver('Test::More','0.88') };
-eval { $v .= pmver('aliased','any version') };
 eval { $v .= pmver('namespace::autoclean','any version') };
 
 

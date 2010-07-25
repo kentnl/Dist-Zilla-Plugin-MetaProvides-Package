@@ -33,7 +33,6 @@
             "Module::Extract::VERSION" : "0.13",
             "Moose" : 0,
             "Moose::Autobox" : 0,
-            "aliased" : 0,
             "namespace::autoclean" : 0
          }
       },
@@ -49,7 +48,7 @@
    "provides" : {
       "Dist::Zilla::Plugin::MetaProvides::Package" : {
          "file" : "lib/Dist/Zilla/Plugin/MetaProvides/Package.pm",
-         "version" : "1.11034201"
+         "version" : "1.11034304"
       }
    },
    "release_status" : "stable",
@@ -61,13 +60,13 @@
          "web" : "http://github.com/kentfredric/Dist-Zilla-Plugin-MetaProvides-Package/tree"
       }
    },
-   "version" : "1.11034201",
+   "version" : "1.11034304",
    "x_BuiltWith" : {
       "modules" : {
          "Dist::Zilla::App::Tester" : "4.101900",
-         "Dist::Zilla::MetaProvides::ProvideRecord" : "1.10027802",
-         "Dist::Zilla::Plugin::MetaProvides" : "1.10027802",
-         "Dist::Zilla::Role::MetaProvider::Provider" : "1.10027802",
+         "Dist::Zilla::MetaProvides::ProvideRecord" : "1.11034201",
+         "Dist::Zilla::Plugin::MetaProvides" : "1.11034201",
+         "Dist::Zilla::Role::MetaProvider::Provider" : "1.11034201",
          "File::Find" : "1.15",
          "File::Temp" : "0.22",
          "Module::Build" : "0.3607",
@@ -76,7 +75,6 @@
          "Moose" : "1.08",
          "Moose::Autobox" : "0.11",
          "Test::More" : "0.94",
-         "aliased" : "0.30",
          "namespace::autoclean" : "0.11"
       },
       "perl" : "5.012001",
@@ -87,7 +85,7 @@
          {
             "class" : "Dist::Zilla::Plugin::AutoVersion::Relative",
             "name" : "@KENTNL/AutoVersion::Relative",
-            "version" : "0.01027903"
+            "version" : "0.01034313"
          },
          {
             "class" : "Dist::Zilla::Plugin::GatherDir",
