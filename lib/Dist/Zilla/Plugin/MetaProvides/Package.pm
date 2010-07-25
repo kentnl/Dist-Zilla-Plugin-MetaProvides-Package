@@ -8,9 +8,9 @@ package Dist::Zilla::Plugin::MetaProvides::Package;
 use Moose;
 use Moose::Autobox;
 
-use aliased 'Module::Extract::VERSION'                 => 'Version',    ();
-use aliased 'Module::Extract::Namespaces'              => 'Namespaces', ();
-use aliased 'Dist::Zilla::MetaProvides::ProvideRecord' => 'Record',     ();
+use Module::Extract::VERSION;
+use Module::Extract::Namespaces;
+use Dist::Zilla::MetaProvides::ProvideRecord;
 
 =head1 ROLES
 
@@ -55,16 +55,16 @@ sub provides {
 
 sub _packages_for {
   my ( $self, $filename, $content ) = @_;
-  my $version   = Version->parse_version_safely($filename);
+  my $version   = Module::Extract::VERSION->parse_version_safely($filename);
   my $to_record = sub {
-    Record->new(
+      Dist::Zilla::MetaProvides::ProvideRecord->new(
       module  => $_,
       file    => $filename,
       version => $version,
       parent  => $self,
     );
   };
-  return [ Namespaces->from_file($filename) ]->map($to_record)->flatten;
+  return [ Module::Extract::Namespaces->from_file($filename) ]->map($to_record)->flatten;
 }
 
 =head1 SEE ALSO

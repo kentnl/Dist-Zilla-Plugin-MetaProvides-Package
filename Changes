@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+          Cleaned further deps on 'aliased'.
 
 1.11034201 2010-07-25 01:38:32 Pacific/Auckland
 
