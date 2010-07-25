@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+1.11034304 2010-07-26 04:18:01 Pacific/Auckland
           Improved documentation so people don't need to do so much link checking.
             ( This is pretty much an acknowledgement that this side package, which was largely 
               just a side-effect of the one designated for MX::D, has attained so much unexpected 
