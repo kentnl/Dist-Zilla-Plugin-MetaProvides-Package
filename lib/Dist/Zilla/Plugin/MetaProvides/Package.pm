@@ -1,5 +1,6 @@
 use strict;
 use warnings;
+
 package Dist::Zilla::Plugin::MetaProvides::Package;
 
 # ABSTRACT: Extract namespaces/version from traditional packages for provides
@@ -57,7 +58,7 @@ sub _packages_for {
   my ( $self, $filename, $content ) = @_;
   my $version   = Module::Extract::VERSION->parse_version_safely($filename);
   my $to_record = sub {
-      Dist::Zilla::MetaProvides::ProvideRecord->new(
+    Dist::Zilla::MetaProvides::ProvideRecord->new(
       module  => $_,
       file    => $filename,
       version => $version,
