@@ -55,6 +55,8 @@ Use this option if you actually want to use hard-coded values in your files and 
 In the event you are using the aforementioned C<< L</inherit_version> = 0 >>, this determines how to behave when encountering a
 module with no version defined.
 
+=over 4
+
 =item * DEFAULT: inherit_missing = 1
 
 When a module has no version, probe C<< DZIL->version() >> for an answer. This is what you want if you want to have some
