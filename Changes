@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+          Update dist info.
 
 1.11034304 2010-07-26 04:18:01 Pacific/Auckland
           Improved documentation so people don't need to do so much link checking.
