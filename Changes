@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+1.11044404 2010-11-03 05:58:53 Pacific/Auckland
           Update dist info.
           Integrated the new meta_noindex / _apply_meta_noindex behaviour added to the role.
 
