@@ -3,7 +3,7 @@ use warnings;
 
 package Dist::Zilla::Plugin::MetaProvides::Package;
 BEGIN {
-  $Dist::Zilla::Plugin::MetaProvides::Package::VERSION = '1.11034304';
+  $Dist::Zilla::Plugin::MetaProvides::Package::VERSION = '1.11044404';
 }
 
 # ABSTRACT: Extract namespaces/version from traditional packages for provides
@@ -30,7 +30,9 @@ sub provides {
     $self->_packages_for( $_->name, $_->content );
   };
 
-  return $self->zilla->files->grep($perl_module)->map($get_records)->flatten;
+  return $self->_apply_meta_noindex(
+    $self->zilla->files->grep($perl_module)->map($get_records)->flatten
+  );
 }
 
 
@@ -62,7 +64,7 @@ Dist::Zilla::Plugin::MetaProvides::Package - Extract namespaces/version from tra
 
 =head1 VERSION
 
-version 1.11034304
+version 1.11044404
 
 =head1 SYNOPSIS
 
@@ -109,6 +111,24 @@ files with fixed versions, and others to just automatically be maintained by Dis
 =item * inherit_missing = 0
 
 When a module has no version, emit a versionless record in the final metadata.
+
+=back
+
+=head2 L<< C<meta_noindex>|Dist::Zilla::Role::MetaProvider::Provider/meta_noindex >>
+
+This is a utility for people who are also using L<< C<MetaNoIndex>|Dist::Zilla::Plugin::MetaNoIndex >>,
+so that its settings can be used to eliminate items from the 'provides' list.
+
+=over 4
+
+=item * DEFAULT: meta_noindex = 0
+
+By default, do nothing unusual.
+
+=item * meta_noindex = 1
+
+When a module meets the criteria provided to L<< C<MetaNoIndex>|Dist::Zilla::Plugin::MetaNoIndex >>,
+eliminate it from the metadata shipped to L<Dist::Zilla>
 
 =back
 

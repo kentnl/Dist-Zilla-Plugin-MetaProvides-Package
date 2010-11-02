@@ -3,7 +3,7 @@ NAME
     from traditional packages for provides
 
 VERSION
-    version 1.11034304
+    version 1.11044404
 
 SYNOPSIS
     In your "dist.ini":
@@ -45,6 +45,19 @@ OPTIONS INHERITED FROM Dist::Zilla::Role::MetaProvider::Provider
 
         When a module has no version, emit a versionless record in the final
         metadata.
+
+  "meta_noindex"
+    This is a utility for people who are also using "MetaNoIndex", so that
+    its settings can be used to eliminate items from the 'provides' list.
+
+    *   DEFAULT: meta_noindex = 0
+
+        By default, do nothing unusual.
+
+    *   meta_noindex = 1
+
+        When a module meets the criteria provided to "MetaNoIndex",
+        eliminate it from the metadata shipped to Dist::Zilla
 
 ROLE SATISFYING METHODS
   provides
