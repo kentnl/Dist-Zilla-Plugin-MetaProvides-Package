@@ -108,9 +108,7 @@ sub provides {
     $self->_packages_for( $_->name, $_->content );
   };
 
-  return $self->_apply_meta_noindex(
-    $self->zilla->files->grep($perl_module)->map($get_records)->flatten
-  );
+  return $self->_apply_meta_noindex( $self->zilla->files->grep($perl_module)->map($get_records)->flatten );
 }
 
 =head1 PRIVATE METHODS
