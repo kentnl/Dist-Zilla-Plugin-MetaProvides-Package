@@ -8,7 +8,7 @@ package Dist::Zilla::Plugin::MetaProvides::Package;
 # $Id:$
 use Moose;
 use Moose::Autobox;
-
+use File::Temp qw();
 use Module::Extract::VERSION;
 use Module::Extract::Namespaces;
 use Dist::Zilla::MetaProvides::ProvideRecord;
@@ -20,6 +20,7 @@ In your C<dist.ini>:
     [MetaProvides::Package]
     inherit_version = 0    ; optional
     inherit_missing = 0    ; optional
+    meta_noindex    = 1    ; optional
 
 =cut
 
@@ -75,11 +76,11 @@ so that its settings can be used to eliminate items from the 'provides' list.
 
 =over 4
 
-=item * DEFAULT: meta_noindex = 1
+=item * meta_noindex = 0
 
 By default, do nothing unusual.
 
-=item * meta_noindex = 1
+=item * DEFAULT: meta_noindex = 1
 
 When a module meets the criteria provided to L<< C<MetaNoIndex>|Dist::Zilla::Plugin::MetaNoIndex >>,
 eliminate it from the metadata shipped to L<Dist::Zilla>
@@ -123,8 +124,25 @@ sub provides {
 =cut
 
 sub _packages_for {
-  my ( $self, $filename, $content ) = @_;
-  my $version   = Module::Extract::VERSION->parse_version_safely($filename);
+  my ( $self, $filename, $content, ) = @_;
+
+  my ( $fh, $fn );
+
+tempextract: {
+
+    $self->log_debug( "Get packages for " . $filename );
+    $fh = File::Temp->new( UNLINK => 0, OPEN => 1, SUFFIX => '.pm' );
+    $fh->unlink_on_destroy(1);
+    binmode( $fh, ':raw' );
+    print {$fh} $content;
+    close $fh;
+    $fn = $fh->filename;
+  }
+
+  # Assumptions: 1 version max per file
+  # all packags in that file have that version
+
+  my $version   = Module::Extract::VERSION->parse_version_safely($fn);
   my $to_record = sub {
     Dist::Zilla::MetaProvides::ProvideRecord->new(
       module  => $_,
@@ -133,7 +151,12 @@ sub _packages_for {
       parent  => $self,
     );
   };
-  return [ Module::Extract::Namespaces->from_file($filename) ]->map($to_record)->flatten;
+  my @namespaces = Module::Extract::Namespaces->from_file($fn);
+  if ( Module::Extract::Namespaces->error ) {
+    $self->log( Module::Extract::Namespaces->error );
+  }
+  return @namespaces->map($to_record)->flatten;
+
 }
 
 =head1 SEE ALSO
