@@ -1,13 +1,23 @@
 Revision history for Dist-Zilla-Plugin-MetaProvides-Package
 
+1.12044908 2010-11-08 09:08:27 Pacific/Auckland
+          Stronger deps on MetaNoIndex
+          Moved t/ to corpus
+          Note: upstream deps moved meta_no_index to default to ON.
+          Minor bumped to match MetaProvides.
+          Contents is stashed in a File::Temp before handing it to Module::Extract::*
+            for portability reasons ( I can't guarantee a passed file exists on disk,
+                and ME needs them on disk to work )
+          Added some tests that mean something.
+
 1.11044404 2010-11-03 05:58:53 Pacific/Auckland
           Update dist info.
           Integrated the new meta_noindex / _apply_meta_noindex behaviour added to the role.
 
 1.11034304 2010-07-26 04:18:01 Pacific/Auckland
           Improved documentation so people don't need to do so much link checking.
-            ( This is pretty much an acknowledgement that this side package, which was largely 
-              just a side-effect of the one designated for MX::D, has attained so much unexpected 
+            ( This is pretty much an acknowledgement that this side package, which was largely
+              just a side-effect of the one designated for MX::D, has attained so much unexpected
               use that it warrants being the primary reason to install this plugin =) )
           Cleaned further deps on 'aliased'.
 
@@ -34,9 +44,9 @@ Revision history for Dist-Zilla-Plugin-MetaProvides-Package
 
 1.10001919 2009-09-12 06:17:57 UTC
           Dropped the version dep on FindBin because it causes
-           problems for some. Apparently deping on something that 
+           problems for some. Apparently deping on something that
            may or may not be in core which may or may not be in core
-           later is a bad thing. 
+           later is a bad thing.
           Added CompileTests
           Add dist.ini to release for diagnostic reasons.
 

@@ -3,7 +3,7 @@ use warnings;
 
 package Dist::Zilla::Plugin::MetaProvides::Package;
 BEGIN {
-  $Dist::Zilla::Plugin::MetaProvides::Package::VERSION = '1.11044404';
+  $Dist::Zilla::Plugin::MetaProvides::Package::VERSION = '1.12044908';
 }
 
 # ABSTRACT: Extract namespaces/version from traditional packages for provides
@@ -11,7 +11,7 @@ BEGIN {
 # $Id:$
 use Moose;
 use Moose::Autobox;
-
+use File::Temp qw();
 use Module::Extract::VERSION;
 use Module::Extract::Namespaces;
 use Dist::Zilla::MetaProvides::ProvideRecord;
@@ -22,6 +22,8 @@ use namespace::autoclean;
 with 'Dist::Zilla::Role::MetaProvider::Provider';
 
 
+has '+meta_noindex' => ( default => sub { 1 } );
+
 
 sub provides {
   my $self        = shift;
@@ -30,15 +32,30 @@ sub provides {
     $self->_packages_for( $_->name, $_->content );
   };
 
-  return $self->_apply_meta_noindex(
-    $self->zilla->files->grep($perl_module)->map($get_records)->flatten
-  );
+  return $self->_apply_meta_noindex( $self->zilla->files->grep($perl_module)->map($get_records)->flatten );
 }
 
 
 sub _packages_for {
-  my ( $self, $filename, $content ) = @_;
-  my $version   = Module::Extract::VERSION->parse_version_safely($filename);
+  my ( $self, $filename, $content, ) = @_;
+
+  my ( $fh, $fn );
+
+tempextract: {
+
+    $self->log_debug( "Get packages for " . $filename );
+    $fh = File::Temp->new( UNLINK => 0, OPEN => 1, SUFFIX => '.pm' );
+    $fh->unlink_on_destroy(1);
+    binmode( $fh, ':raw' );
+    print {$fh} $content;
+    close $fh;
+    $fn = $fh->filename;
+  }
+
+  # Assumptions: 1 version max per file
+  # all packags in that file have that version
+
+  my $version   = Module::Extract::VERSION->parse_version_safely($fn);
   my $to_record = sub {
     Dist::Zilla::MetaProvides::ProvideRecord->new(
       module  => $_,
@@ -47,7 +64,12 @@ sub _packages_for {
       parent  => $self,
     );
   };
-  return [ Module::Extract::Namespaces->from_file($filename) ]->map($to_record)->flatten;
+  my @namespaces = Module::Extract::Namespaces->from_file($fn);
+  if ( Module::Extract::Namespaces->error ) {
+    $self->log( Module::Extract::Namespaces->error );
+  }
+  return @namespaces->map($to_record)->flatten;
+
 }
 
 
@@ -64,7 +86,7 @@ Dist::Zilla::Plugin::MetaProvides::Package - Extract namespaces/version from tra
 
 =head1 VERSION
 
-version 1.11044404
+version 1.12044908
 
 =head1 SYNOPSIS
 
@@ -73,6 +95,7 @@ In your C<dist.ini>:
     [MetaProvides::Package]
     inherit_version = 0    ; optional
     inherit_missing = 0    ; optional
+    meta_noindex    = 1    ; optional
 
 =head1 ROLES
 
@@ -121,11 +144,11 @@ so that its settings can be used to eliminate items from the 'provides' list.
 
 =over 4
 
-=item * DEFAULT: meta_noindex = 0
+=item * meta_noindex = 0
 
 By default, do nothing unusual.
 
-=item * meta_noindex = 1
+=item * DEFAULT: meta_noindex = 1
 
 When a module meets the criteria provided to L<< C<MetaNoIndex>|Dist::Zilla::Plugin::MetaNoIndex >>,
 eliminate it from the metadata shipped to L<Dist::Zilla>

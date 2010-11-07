@@ -5,6 +5,8 @@ MANIFEST
 META.json
 META.yml
 README
+corpus/dist/DZ2/dist.ini
+corpus/dist/DZ2/lib/DZ2.pm
 dist.ini
 lib/Dist/Zilla/Plugin/MetaProvides/Package.pm
 perlcritic.rc
@@ -12,8 +14,6 @@ t/00-compile.t
 t/000-report-versions-tiny.t
 t/author-critic.t
 t/dz2-provides.t
-t/eg/DZ2/dist.ini
-t/eg/DZ2/lib/DZ2.pm
 t/release-distmeta.t
 t/release-eol.t
 t/release-kwalitee.t

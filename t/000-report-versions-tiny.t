@@ -48,12 +48,14 @@ sub pmver {
     return sprintf('%-40s => %-10s%-15s%s', $module, $pmver, $wanted, "\n");
 }
 
-eval { $v .= pmver('Dist::Zilla::App::Tester','any version') };
 eval { $v .= pmver('Dist::Zilla::MetaProvides::ProvideRecord','any version') };
-eval { $v .= pmver('Dist::Zilla::Plugin::MetaProvides','1.11044404') };
+eval { $v .= pmver('Dist::Zilla::Plugin::Bootstrap::lib','any version') };
+eval { $v .= pmver('Dist::Zilla::Plugin::MetaNoIndex','any version') };
+eval { $v .= pmver('Dist::Zilla::Plugin::MetaProvides','1.12044806') };
 eval { $v .= pmver('Dist::Zilla::PluginBundle::KENTNL','0.01017119') };
 eval { $v .= pmver('Dist::Zilla::PluginBundle::KENTNL::Lite','0.01009803') };
 eval { $v .= pmver('Dist::Zilla::Role::MetaProvider::Provider','any version') };
+eval { $v .= pmver('Dist::Zilla::Util::Test::KENTNL','0.01000011') };
 eval { $v .= pmver('English','any version') };
 eval { $v .= pmver('File::Find','any version') };
 eval { $v .= pmver('File::Temp','any version') };
@@ -62,6 +64,8 @@ eval { $v .= pmver('Module::Extract::Namespaces','0.14') };
 eval { $v .= pmver('Module::Extract::VERSION','0.13') };
 eval { $v .= pmver('Moose','any version') };
 eval { $v .= pmver('Moose::Autobox','any version') };
+eval { $v .= pmver('Test::Fatal','any version') };
+eval { $v .= pmver('Test::Moose','any version') };
 eval { $v .= pmver('Test::More','0.88') };
 eval { $v .= pmver('namespace::autoclean','any version') };
 

@@ -3,11 +3,12 @@ abstract: 'Extract namespaces/version from traditional packages for provides'
 author:
   - 'Kent Fredric <kentnl@cpan.org>'
 build_requires:
-  Dist::Zilla::App::Tester: 0
+  Dist::Zilla::Util::Test::KENTNL: 0.01000011
   English: 0
   File::Find: 0
-  File::Temp: 0
   Module::Build: 0.3601
+  Test::Fatal: 0
+  Test::Moose: 0
   Test::More: 0.88
 configure_requires:
   Module::Build: 0.3601
@@ -18,14 +19,19 @@ meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
   version: 1.4
 name: Dist-Zilla-Plugin-MetaProvides-Package
+no_index:
+  directory:
+    - corpus
+    - t/lib
 provides:
   Dist::Zilla::Plugin::MetaProvides::Package:
     file: lib/Dist/Zilla/Plugin/MetaProvides/Package.pm
-    version: 1.11044404
+    version: 1.12044908
 requires:
   Dist::Zilla::MetaProvides::ProvideRecord: 0
-  Dist::Zilla::Plugin::MetaProvides: 1.11044404
+  Dist::Zilla::Plugin::MetaProvides: 1.12044806
   Dist::Zilla::Role::MetaProvider::Provider: 0
+  File::Temp: 0
   Module::Extract::Namespaces: 0.14
   Module::Extract::VERSION: 0.13
   Moose: 0
@@ -34,9 +40,27 @@ requires:
 resources:
   homepage: http://github.com/kentfredric/Dist-Zilla-Plugin-MetaProvides-Package/tree
   repository: git://github.com/kentfredric/Dist-Zilla-Plugin-MetaProvides-Package.git
-version: 1.11044404
+version: 1.12044908
 x_BuiltWith:
-  modules: {}
+  modules:
+    Dist::Zilla::MetaProvides::ProvideRecord: 1.12044806
+    Dist::Zilla::Plugin::Bootstrap::lib: 0.01000003
+    Dist::Zilla::Plugin::MetaNoIndex: 1.101550
+    Dist::Zilla::Plugin::MetaProvides: 1.12044806
+    Dist::Zilla::PluginBundle::KENTNL: 0.01017322
+    Dist::Zilla::PluginBundle::KENTNL::Lite: 0.01000002
+    Dist::Zilla::Role::MetaProvider::Provider: 1.12044806
+    Dist::Zilla::Util::Test::KENTNL: 0.01000011
+    File::Temp: 0.22
+    Module::Build: 0.3607
+    Module::Extract::Namespaces: 0.14
+    Module::Extract::VERSION: 0.13
+    Moose: 1.17
+    Moose::Autobox: 0.11
+    Test::Fatal: 0.003
+    Test::Moose: 1.17
+    Test::More: 0.96
+    namespace::autoclean: 0.11
   perl: 5.012002
   platform: linux
   uname: "Linux 2.6.36-gentoo x86_64 GenuineIntel GNU/Linux\n"
@@ -48,7 +72,7 @@ x_Dist_Zilla:
         Dist::Zilla::Plugin::AutoVersion::Relative:
           format: "{{ sprintf('%d.%02d%04d%02d', $major, $minor, days, hours) }}"
           major: 1
-          minor: 11
+          minor: 12
           relative_to:
             day: 24
             hour: 0
@@ -158,11 +182,11 @@ x_Dist_Zilla:
               - '-i'
             uname_call: uname
       name: '@KENTNL/MetaData::BuiltWith'
-      version: 0.01005122
+      version: 0.01014716
     -
       class: Dist::Zilla::Plugin::CompileTests
       name: '@KENTNL/CompileTests'
-      version: 1.101800
+      version: 1.103030
     -
       class: Dist::Zilla::Plugin::CriticTests
       name: '@KENTNL/CriticTests'
@@ -255,6 +279,34 @@ x_Dist_Zilla:
           type: requires
       name: TestRequires
       version: 4.102342
+    -
+      class: Dist::Zilla::Plugin::Prereqs
+      config:
+        Dist::Zilla::Plugin::Prereqs:
+          phase: runtime
+          type: suggests
+      name: RuntimeSuggests
+      version: 4.102342
+    -
+      class: Dist::Zilla::Plugin::Prereqs
+      config:
+        Dist::Zilla::Plugin::Prereqs:
+          phase: develop
+          type: requires
+      name: DevelopRequires
+      version: 4.102342
+    -
+      class: Dist::Zilla::Plugin::Prereqs
+      config:
+        Dist::Zilla::Plugin::Prereqs:
+          phase: test
+          type: suggests
+      name: TestSuggests
+      version: 4.102342
+    -
+      class: Dist::Zilla::Plugin::MetaNoIndex
+      name: MetaNoIndex
+      version: 1.101550
     -
       class: Dist::Zilla::Plugin::FinderCode
       name: ':InstallModules'
