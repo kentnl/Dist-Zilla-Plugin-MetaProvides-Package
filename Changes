@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+          Stronger deps on MetaNoIndex
 
 1.11044404 2010-11-03 05:58:53 Pacific/Auckland
           Update dist info.
