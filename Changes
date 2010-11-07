@@ -2,6 +2,9 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
           Stronger deps on MetaNoIndex
+          Moved t/ to corpus
+          Note: upstream deps moved meta_no_index to default to ON.
+          Minor bumped to match MetaProvides
 
 1.11044404 2010-11-03 05:58:53 Pacific/Auckland
           Update dist info.
