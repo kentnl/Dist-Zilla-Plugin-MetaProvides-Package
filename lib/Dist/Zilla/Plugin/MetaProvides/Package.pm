@@ -75,7 +75,7 @@ so that its settings can be used to eliminate items from the 'provides' list.
 
 =over 4
 
-=item * DEFAULT: meta_noindex = 0
+=item * DEFAULT: meta_noindex = 1
 
 By default, do nothing unusual.
 
@@ -86,8 +86,9 @@ eliminate it from the metadata shipped to L<Dist::Zilla>
 
 =back
 
-
 =cut
+
+has '+meta_noindex' => ( default => sub { 1 } );
 
 =head1 ROLE SATISFYING METHODS
 
