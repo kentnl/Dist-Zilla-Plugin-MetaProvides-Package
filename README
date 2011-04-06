@@ -3,7 +3,7 @@ NAME
     from traditional packages for provides
 
 VERSION
-    version 1.12044908
+    version 1.12060213
 
 SYNOPSIS
     In your "dist.ini":
@@ -17,8 +17,8 @@ ROLES
   Dist::Zilla::Role::MetaProvider::Provider
 OPTIONS INHERITED FROM Dist::Zilla::Role::MetaProvider::Provider
   "inherit_version"
-    How do you want existing versions ( Versions hardcoded into files before
-    running this plug-in )to be processed?
+    How do you want existing versions ( Versions hard-coded into files
+    before running this plug-in )to be processed?
 
     *   DEFAULT: inherit_version = 1
 
@@ -62,7 +62,7 @@ OPTIONS INHERITED FROM Dist::Zilla::Role::MetaProvider::Provider
 
 ROLE SATISFYING METHODS
   provides
-    A conformant function to the Dist::Zila::Role::MetaProvider::Provider
+    A conformant function to the Dist::Zilla::Role::MetaProvider::Provider
     Role.
 
    signature: $plugin->provides()
@@ -78,7 +78,7 @@ AUTHOR
     Kent Fredric <kentnl@cpan.org>
 
 COPYRIGHT AND LICENSE
-    This software is copyright (c) 2010 by Kent Fredric.
+    This software is copyright (c) 2011 by Kent Fredric.
 
     This is free software; you can redistribute it and/or modify it under
     the same terms as the Perl 5 programming language system itself.

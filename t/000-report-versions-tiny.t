@@ -45,15 +45,15 @@ sub pmver {
     }
 
     # So, we should be good, right?
-    return sprintf('%-40s => %-10s%-15s%s', $module, $pmver, $wanted, "\n");
+    return sprintf('%-45s => %-10s%-15s%s', $module, $pmver, $wanted, "\n");
 }
 
 eval { $v .= pmver('Dist::Zilla::MetaProvides::ProvideRecord','any version') };
 eval { $v .= pmver('Dist::Zilla::Plugin::Bootstrap::lib','any version') };
 eval { $v .= pmver('Dist::Zilla::Plugin::MetaNoIndex','any version') };
 eval { $v .= pmver('Dist::Zilla::Plugin::MetaProvides','1.12044806') };
-eval { $v .= pmver('Dist::Zilla::PluginBundle::KENTNL','0.01017119') };
-eval { $v .= pmver('Dist::Zilla::PluginBundle::KENTNL::Lite','0.01009803') };
+eval { $v .= pmver('Dist::Zilla::PluginBundle::Author::KENTNL','1.0.0') };
+eval { $v .= pmver('Dist::Zilla::PluginBundle::Author::KENTNL::Lite','0.01009803') };
 eval { $v .= pmver('Dist::Zilla::Role::MetaProvider::Provider','any version') };
 eval { $v .= pmver('Dist::Zilla::Util::Test::KENTNL','0.01000011') };
 eval { $v .= pmver('English','any version') };

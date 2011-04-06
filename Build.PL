@@ -23,7 +23,7 @@ my %module_build_args = (
     'Kent Fredric <kentnl@cpan.org>'
   ],
   'dist_name' => 'Dist-Zilla-Plugin-MetaProvides-Package',
-  'dist_version' => '1.12044908',
+  'dist_version' => '1.12060213',
   'license' => 'perl',
   'module_name' => 'Dist::Zilla::Plugin::MetaProvides::Package',
   'recommends' => {},
