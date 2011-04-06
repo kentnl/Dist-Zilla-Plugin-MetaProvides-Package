@@ -37,7 +37,7 @@ with 'Dist::Zilla::Role::MetaProvider::Provider';
 
 =head2 L<< C<inherit_version>|Dist::Zilla::Role::MetaProvider::Provider/inherit_version >>
 
-How do you want existing versions ( Versions hardcoded into files before running this plug-in )to be processed?
+How do you want existing versions ( Versions hard-coded into files before running this plug-in )to be processed?
 
 =over 4
 
@@ -95,7 +95,7 @@ has '+meta_noindex' => ( default => sub { 1 } );
 
 =head2 provides
 
-A conformant function to the L<Dist::Zila::Role::MetaProvider::Provider> Role.
+A conformant function to the L<Dist::Zilla::Role::MetaProvider::Provider> Role.
 
 =head3 signature: $plugin->provides()
 
@@ -105,12 +105,16 @@ A conformant function to the L<Dist::Zila::Role::MetaProvider::Provider> Role.
 
 sub provides {
   my $self        = shift;
-  my $perl_module = sub { $_->name =~ m{^lib\/.*\.(pm|pod)$} };
+  my $perl_module = sub {
+    ## no critic (RegularExpressions)
+    $_->name =~ m{^lib[/].*[.](pm|pod)$}
+  };
   my $get_records = sub {
     $self->_packages_for( $_->name, $_->content );
   };
-
-  return $self->_apply_meta_noindex( $self->zilla->files->grep($perl_module)->map($get_records)->flatten );
+  my ( @files ) = $self->zilla->files()->flatten;
+  my ( @records ) =  @files->grep($perl_module)->map($get_records)->flatten;
+  return $self->_apply_meta_noindex( @records );
 }
 
 =head1 PRIVATE METHODS
@@ -128,14 +132,14 @@ sub _packages_for {
 
   my ( $fh, $fn );
 
-tempextract: {
+TEMPEXTRACT: {
 
-    $self->log_debug( "Get packages for " . $filename );
+    $self->log_debug( q{Get packages for } . $filename );
     $fh = File::Temp->new( UNLINK => 0, OPEN => 1, SUFFIX => '.pm' );
     $fh->unlink_on_destroy(1);
-    binmode( $fh, ':raw' );
-    print {$fh} $content;
-    close $fh;
+    binmode $fh, ':raw';
+    print {$fh} $content or $self->log_debug(q{print to filehandle failed});
+    close $fh or $self->log_debug(q{closing filehandle failed});
     $fn = $fh->filename;
   }
 
@@ -170,5 +174,6 @@ tempextract: {
 =cut
 
 __PACKAGE__->meta->make_immutable;
+no Moose;
 1;
 

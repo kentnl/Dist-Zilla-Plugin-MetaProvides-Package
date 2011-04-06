@@ -5,6 +5,9 @@ Revision history for {{$dist->name}}
   - Move to @Author::KENTNL
   - Tighten Critic.
 
+  [Internals]
+  - Minor refactors to make Critic happy about the complexity.
+
   [Tests]
   - added CPAN::Changes
   - removed Portabilty
