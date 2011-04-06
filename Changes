@@ -3,6 +3,7 @@ Revision history for {{$dist->name}}
 {{$NEXT}}
   [Packaging]
   - Move to @Author::KENTNL
+  - Tighten Critic.
 
   [Tests]
   - added CPAN::Changes
