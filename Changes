@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+1.12060213 2011-04-06T01:20:11Z
  [Internals]
  - Minor refactors to make Critic happy about the complexity.
 
