@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 
-use Test::More;
+use Test::More 0.96;
 use Test::Fatal;
 use Test::Moose;
 use Dist::Zilla::Util::Test::KENTNL 0.01000011 qw( test_config );
