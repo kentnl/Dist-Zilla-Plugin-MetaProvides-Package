@@ -3,7 +3,10 @@ use warnings;
 
 package Dist::Zilla::Plugin::MetaProvides::Package;
 BEGIN {
-  $Dist::Zilla::Plugin::MetaProvides::Package::VERSION = '1.12060501';
+  $Dist::Zilla::Plugin::MetaProvides::Package::AUTHORITY = 'cpan:KENTNL';
+}
+{
+  $Dist::Zilla::Plugin::MetaProvides::Package::VERSION = '1.12060502';
 }
 
 # ABSTRACT: Extract namespaces/version from traditional packages for provides
@@ -16,6 +19,8 @@ use Module::Extract::VERSION;
 use Module::Extract::Namespaces;
 use Dist::Zilla::MetaProvides::ProvideRecord;
 
+require Data::Dump;
+
 
 
 use namespace::autoclean;
@@ -26,53 +31,89 @@ has '+meta_noindex' => ( default => sub { 1 } );
 
 
 sub provides {
-  my $self        = shift;
-  my $perl_module = sub {
-    ## no critic (RegularExpressions)
-    $_->name =~ m{^lib[/].*[.](pm|pod)$};
-  };
-  my $get_records = sub {
-    $self->_packages_for( $_->name, $_->content );
-  };
-  my (@files)   = $self->zilla->files()->flatten;
-  my (@records) = @files->grep($perl_module)->map($get_records)->flatten;
-  return $self->_apply_meta_noindex(@records);
+    my $self        = shift;
+    my $perl_module = sub {
+        ## no critic (RegularExpressions)
+        $_->name =~ m{^lib[/].*[.](pm|pod)$};
+    };
+    my $get_records = sub {
+        $self->_packages_for( $_->name, $_->content );
+    };
+    my (@files)   = $self->zilla->files()->flatten;
+    my (@records) = @files->grep($perl_module)->map($get_records)->flatten;
+    return $self->_apply_meta_noindex(@records);
 }
 
 
 sub _packages_for {
-  my ( $self, $filename, $content, ) = @_;
+    my ( $self, $filename, $content, ) = @_;
 
-  my ( $fh, $fn );
+    my ( $fh, $fn );
 
-TEMPEXTRACT: {
+  TEMPEXTRACT: {
 
-    $self->log_debug( q{Get packages for } . $filename );
-    $fh = File::Temp->new( UNLINK => 0, OPEN => 1, SUFFIX => '.pm' );
-    $fh->unlink_on_destroy(1);
-    binmode $fh, ':raw';
-    print {$fh} $content or $self->log_debug(q{print to filehandle failed});
-    close $fh or $self->log_debug(q{closing filehandle failed});
-    $fn = $fh->filename;
-  }
+        $self->log_debug( q{Get packages for } . $filename );
+        $fh = File::Temp->new( UNLINK => 0, OPEN => 1, SUFFIX => '.pm' );
+        $fh->unlink_on_destroy(1);
+        binmode $fh, ':raw';
+        print {$fh} $content or $self->log_debug(q{print to filehandle failed});
+        close $fh or $self->log_debug(q{closing filehandle failed});
+        $fn = $fh->filename;
+    }
 
-  # Assumptions: 1 version max per file
-  # all packags in that file have that version
+    # Assumptions: 1 version max per file
+    # all packags in that file have that version
 
-  my $version   = Module::Extract::VERSION->parse_version_safely($fn);
-  my $to_record = sub {
-    Dist::Zilla::MetaProvides::ProvideRecord->new(
-      module  => $_,
-      file    => $filename,
-      version => $version,
-      parent  => $self,
-    );
-  };
-  my @namespaces = Module::Extract::Namespaces->from_file($fn);
-  if ( Module::Extract::Namespaces->error ) {
-    $self->log( Module::Extract::Namespaces->error );
-  }
-  return @namespaces->map($to_record)->flatten;
+    my $version   = Module::Extract::VERSION->parse_version_safely($fn);
+    my $to_record = sub {
+        my (%struct) = (
+            module  => $_,
+            file    => $filename,
+            version => $version,
+            parent  => $self,
+        );
+        $self->log_debug(
+            'Constructing provides record from: ' . Data::Dump::dumpf(
+                \%struct,
+                sub {
+                    my ( $ctx, $objref ) = @_;
+
+                    if ( $ctx->is_hash and $ctx->depth < 1 ) {
+                        return;
+                    }
+                    if ( not defined $objref ) {
+                        return { dump => 'undef' };
+                    }
+                    if ( $ctx->is_scalar and not defined ${$objref} ) {
+                        return { dump => 'undef' };
+                    }
+                    if ( $ctx->is_blessed ) {
+                        return { dump => "$objref : " . $ctx->class };
+                    }
+                    if ( $ctx->is_hash and $ctx->depth >= 1 ) {
+                        return { dump => '~Hash' };
+                    }
+                    if ( $ctx->is_scalar ) {
+                        return { dump => "$objref : " . ${$objref} };
+                    }
+                    return { dump => $ctx->reftype };
+                }
+            )
+        );
+        Dist::Zilla::MetaProvides::ProvideRecord->new(%struct);
+    };
+    my @namespaces = Module::Extract::Namespaces->from_file($fn);
+    $self->log_debug( 'Module::Extract::Namespaces discovered namespaces: '
+          . Data::Dump::pp( \@namespaces ) . ' in '
+          . $fn );
+    if ( Module::Extract::Namespaces->error ) {
+        $self->log( Module::Extract::Namespaces->error );
+    }
+    if ( not @namespaces ) {
+        $self->log( 'No namespaces detected in file ' . $filename );
+        return ();
+    }
+    return @namespaces->map($to_record)->flatten;
 
 }
 
@@ -91,7 +132,7 @@ Dist::Zilla::Plugin::MetaProvides::Package - Extract namespaces/version from tra
 
 =head1 VERSION
 
-version 1.12060501
+version 1.12060502
 
 =head1 SYNOPSIS
 
@@ -192,7 +233,7 @@ Kent Fredric <kentnl@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2011 by Kent Fredric.
+This software is copyright (c) 2012 by Kent Fredric.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

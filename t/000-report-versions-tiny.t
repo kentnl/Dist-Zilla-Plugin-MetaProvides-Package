@@ -12,7 +12,7 @@ my $v = "\n";
 
 eval {                     # no excuses!
     # report our Perl details
-    my $want = "any version";
+    my $want = '5.006';
     my $pv = ($^V || $]);
     $v .= "perl: $pv (wanted $want) on $^O from $^X\n\n";
 };
@@ -48,19 +48,19 @@ sub pmver {
     return sprintf('%-45s => %-10s%-15s%s', $module, $pmver, $wanted, "\n");
 }
 
+eval { $v .= pmver('Data::Dump','any version') };
 eval { $v .= pmver('Dist::Zilla::MetaProvides::ProvideRecord','any version') };
 eval { $v .= pmver('Dist::Zilla::Plugin::Bootstrap::lib','any version') };
 eval { $v .= pmver('Dist::Zilla::Plugin::MetaNoIndex','any version') };
 eval { $v .= pmver('Dist::Zilla::Plugin::MetaProvides','1.12044806') };
-eval { $v .= pmver('Dist::Zilla::PluginBundle::Author::KENTNL','1.0.0') };
+eval { $v .= pmver('Dist::Zilla::PluginBundle::Author::KENTNL','1.2.0') };
 eval { $v .= pmver('Dist::Zilla::PluginBundle::Author::KENTNL::Lite','0.01009803') };
 eval { $v .= pmver('Dist::Zilla::Role::MetaProvider::Provider','any version') };
 eval { $v .= pmver('Dist::Zilla::Util::Test::KENTNL','0.01000011') };
-eval { $v .= pmver('English','any version') };
 eval { $v .= pmver('File::Find','any version') };
 eval { $v .= pmver('File::Temp','any version') };
 eval { $v .= pmver('Module::Build','0.3601') };
-eval { $v .= pmver('Module::Extract::Namespaces','0.14') };
+eval { $v .= pmver('Module::Extract::Namespaces','0.1402') };
 eval { $v .= pmver('Module::Extract::VERSION','0.13') };
 eval { $v .= pmver('Moose','any version') };
 eval { $v .= pmver('Moose::Autobox','any version') };
@@ -68,6 +68,8 @@ eval { $v .= pmver('Test::Fatal','any version') };
 eval { $v .= pmver('Test::Moose','any version') };
 eval { $v .= pmver('Test::More','0.96') };
 eval { $v .= pmver('namespace::autoclean','any version') };
+eval { $v .= pmver('strict','any version') };
+eval { $v .= pmver('warnings','any version') };
 
 
 

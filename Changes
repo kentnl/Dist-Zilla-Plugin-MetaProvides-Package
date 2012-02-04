@@ -1,5 +1,7 @@
 Revision history for Dist-Zilla-Plugin-MetaProvides-Package
 
+1.12060502 2012-02-04T03:50:41Z
+
 1.12060501 2011-04-08T13:49:06Z
  [BugFix]
  - rt#67325 : Should now depend on Test::More 0.96 to solve tests failing
