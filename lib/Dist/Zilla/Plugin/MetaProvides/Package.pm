@@ -12,6 +12,7 @@ use File::Temp qw();
 use Module::Extract::VERSION;
 use Module::Extract::Namespaces;
 use Dist::Zilla::MetaProvides::ProvideRecord;
+use Data::Dump qw( pp );
 
 =head1 SYNOPSIS
 
@@ -148,16 +149,46 @@ TEMPEXTRACT: {
 
   my $version   = Module::Extract::VERSION->parse_version_safely($fn);
   my $to_record = sub {
-    Dist::Zilla::MetaProvides::ProvideRecord->new(
+    my (%struct) = (
       module  => $_,
       file    => $filename,
       version => $version,
       parent  => $self,
     );
+    $self->log_debug('Constructing provides record from: ' . Data::Dump::dumpf( \%struct , sub {
+        my ( $ctx, $objref ) = @_;
+
+        if ( $ctx->is_hash and $ctx->depth < 1 ) {
+            return;
+        }
+        if ( not defined $objref ) {
+            return { dump => 'undef' };
+        }
+        if ( $ctx->is_scalar and not defined ${$objref} ){
+            return { dump => 'undef' };
+        }
+        if ( $ctx->is_blessed ) {
+            return { dump => "$objref : " . $ctx->class };
+        }
+        if ( $ctx->is_hash and $ctx->depth >= 1 ) {
+            return { dump => "~Hash" };
+        }
+        if ( $ctx->is_scalar ) {
+            return { dump => "$objref : " . ${$objref} };
+        }
+        return { dump => $ctx->reftype };
+    }));
+    Dist::Zilla::MetaProvides::ProvideRecord->new(%struct);
   };
   my @namespaces = Module::Extract::Namespaces->from_file($fn);
+  $self->log_debug("Module::Extract::Namespaces discovered namespaces: "  . pp( \@namespaces ) . " in " . $fn );
   if ( Module::Extract::Namespaces->error ) {
+    warn Module::Extract::Namespaces->error;
     $self->log( Module::Extract::Namespaces->error );
+  }
+  if( not @namespaces ) {
+    $self->log( 'No namespaces detected in file ' . $filename );
+    return ();
   }
   return @namespaces->map($to_record)->flatten;
 
