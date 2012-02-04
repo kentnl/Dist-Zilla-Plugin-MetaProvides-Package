@@ -175,7 +175,7 @@ sub _packages_for {
                         return { dump => "$objref : " . $ctx->class };
                     }
                     if ( $ctx->is_hash and $ctx->depth >= 1 ) {
-                        return { dump => "~Hash" };
+                        return { dump => '~Hash' };
                     }
                     if ( $ctx->is_scalar ) {
                         return { dump => "$objref : " . ${$objref} };
@@ -187,8 +187,8 @@ sub _packages_for {
         Dist::Zilla::MetaProvides::ProvideRecord->new(%struct);
     };
     my @namespaces = Module::Extract::Namespaces->from_file($fn);
-    $self->log_debug( "Module::Extract::Namespaces discovered namespaces: "
-          . Data::Dump::pp( \@namespaces ) . " in "
+    $self->log_debug( 'Module::Extract::Namespaces discovered namespaces: '
+          . Data::Dump::pp( \@namespaces ) . ' in '
           . $fn );
     if ( Module::Extract::Namespaces->error ) {
         $self->log( Module::Extract::Namespaces->error );
