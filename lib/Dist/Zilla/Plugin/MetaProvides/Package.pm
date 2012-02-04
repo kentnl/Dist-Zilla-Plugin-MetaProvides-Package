@@ -184,7 +184,6 @@ TEMPEXTRACT: {
   my @namespaces = Module::Extract::Namespaces->from_file($fn);
   $self->log_debug("Module::Extract::Namespaces discovered namespaces: "  . Data::Dump::pp( \@namespaces ) . " in " . $fn );
   if ( Module::Extract::Namespaces->error ) {
-    warn Module::Extract::Namespaces->error;
     $self->log( Module::Extract::Namespaces->error );
   }
   if( not @namespaces ) {
