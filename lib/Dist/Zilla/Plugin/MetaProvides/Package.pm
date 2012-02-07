@@ -11,7 +11,7 @@ use Moose::Autobox;
 use File::Temp qw();
 use Module::Extract::VERSION;
 use Module::Extract::Namespaces;
-use Dist::Zilla::MetaProvides::ProvideRecord;
+use Dist::Zilla::MetaProvides::ProvideRecord 1.13000000;
 
 require Data::Dump;
 
@@ -23,6 +23,7 @@ In your C<dist.ini>:
     inherit_version = 0    ; optional
     inherit_missing = 0    ; optional
     meta_noindex    = 1    ; optional
+    skip_underscore = 1    ; optional
 
 =cut
 
@@ -92,6 +93,29 @@ eliminate it from the metadata shipped to L<Dist::Zilla>
 =cut
 
 has '+meta_noindex' => ( default => sub { 1 } );
+
+
+=head2 L<< C<skip_underscore>|Dist::Zilla::Role::MetaProvider::Provider/skip_underscore >>
+
+Filter out detected namespaces with a token with a leading C<_>, ie:
+
+    Foo::Bar::_internal::Baz;
+
+This is a convenience to provide sane defaults. For more controlled exclusion of namespaces, see L<Dist::Zilla::Plugin::MetaNoIndex>
+
+=over 4
+
+=item * skip_underscore = 0
+
+I<underscore>'d namespaces will be included.
+
+=item * DEFAULT: skip_underscore = 1
+
+I<underscore>'d namespaces will not be included.
+
+=back
+
+=cut
 
 =head1 ROLE SATISFYING METHODS
 
