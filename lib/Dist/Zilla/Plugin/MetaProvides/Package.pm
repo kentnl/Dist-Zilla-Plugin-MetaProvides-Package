@@ -7,6 +7,7 @@ package Dist::Zilla::Plugin::MetaProvides::Package;
 #
 # $Id:$
 use Moose;
+use MooseX::Types::Moose qw( HashRef Str );
 use Moose::Autobox;
 use Module::Metadata;
 use IO::String;
@@ -128,6 +129,10 @@ sub provides {
 
 =cut
 
+has '_package_blacklist' => ( isa => HashRef[Str], traits => ['Hash'], is => 'rw', default => sub {
+        return { map { $_ => 1 } qw( main DB )};
+}, handles => { _blacklist_contains => 'exists' } );
+
 sub _packages_for {
     my ( $self, $filename , $content ) = @_;
 
@@ -139,24 +144,34 @@ sub _packages_for {
         $self->log_fatal("Can't extract metadata from $filename $@");
     }
 
+    $self->log_debug("Version metadata from $filename : " . Data::Dump::dumpf( $meta , sub {
+        if ( ref $_[1] and $_[1]->isa('version') ) {
+                return { dump => $_[1]->stringify };
+        }
+        return { hide_keys => ['pod_headings'] };
+    }));
+    my $remove_bad = sub {
+        my $item = shift;
+        return if $item =~ qr/\A_/msx;
+        return if $item =~ qr/::_/msx;
+        return not $self->_blacklist_contains($item);
+    };
     my $to_record = sub {
 
         my $v = $meta->version($_);
-
-
         my (%struct) = (
             module  => $_,
             file    => $filename,
             ( ref $v ? ( version => $v->stringify ) : ( version => undef ) ),
             parent  => $self,
         );
-        Data::Dump::dumpf( \%struct , sub { 
+        $self->log_debug("Version metadata: " . Data::Dump::dumpf( \%struct , sub {
             return { hide_keys => ['parent'] };
-        });
+        }));
         Dist::Zilla::MetaProvides::ProvideRecord->new(%struct);
     };
 
-    my @namespaces = $meta->packages_inside();
+    my @namespaces = [ $meta->packages_inside() ]->grep($remove_bad)->flatten;
 
     $self->log_debug( 'Discovered namespaces: '
           . Data::Dump::pp( \@namespaces ) . ' in '
