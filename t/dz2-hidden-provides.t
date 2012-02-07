@@ -46,19 +46,15 @@ subtest basic_implementation_tests => sub {
     has_attribute_ok( $plugin, 'meta_noindex' );
     is( $plugin->meta_noindex, '1', "meta_noindex default is 1" );
 
-  TODO: {
-        local $TODO = "Need to solve the quirks with this";
+    # This crap is needed because 'ok' is mysteriously not working.
+    ( not exists $plugin->metadata->{provides}->{'A::_Local::Package'} )
+      ? pass('Packages leading with _ are hidden')
+      : fail('Packages leading with _ are hidden');
 
-        # This crap is needed because 'ok' is mysteriously not working.
-        ( not exists $plugin->metadata->{provides}->{'A::_Local::Package'} )
-          ? pass('Packages leading with _ are hidden')
-          : fail('Packages leading with _ are hidden');
+    ( not exists $plugin->metadata->{provides}->{'A::Hidden::Package'} )
+      ? pass('Packages with \n are hidden')
+      : fail('Packages with \n are hidden');
 
-        ( not exists $plugin->metadata->{provides}->{'A::Hidden::Package'} )
-          ? pass('Packages with \n are hidden')
-          : fail('Packages with \n are hidden');
-
-    }
     isa_ok( [ $plugin->provides ]->[0], 'Dist::Zilla::MetaProvides::ProvideRecord' );
 };
 done_testing;
