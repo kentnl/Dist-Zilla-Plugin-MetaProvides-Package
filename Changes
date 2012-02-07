@@ -1,6 +1,97 @@
 Revision history for Dist-Zilla-Plugin-MetaProvides-Package
 
+1.14000000 2012-02-07T14:46:46Z
+ [00 IMPORTANT CHANGES]
+ - previous versions had no support for standardised ways of hiding various
+   types of internal packages as identified in rt#74675.
+ - this release attempts to remedy that problem but incurs significant
+   changes to facilitate this, which may cause potential problems for
+   existing code.
+ - however, its deemed incredibly unlikely that you have a legitimate use
+   for any of the problems that this release might raise.
+ - If you use the "package # comment \n packagename" formatting, that
+   package name will no longer be indexed ( was in previous versions )
+ - If you prefix a token with _, that entire namespace will be ignored,
+   e.g.: _Foo , Foo::_Bar , Foo::_Bar::Baz and Foo::Bar::_Baz are all
+   ignored.
+ - the namespaces 'main' and 'DB' will be arbitrarily ignored. Its deemed
+   unlikely you have a legitimate use for trying to 'provide' those 2
+   packages, and now, if you so happen to use them, they'll be helpfully
+   ignored. ( Previously, people had to use meta_noindex to exclude that
+   pesky DB entry )
+
+ [Bugs]
+ - rt#74675 Should hopefully be resolved by this release, thanks be to
+   XDG/David Golden for reporting this bug and providing helpful advice on
+   how to handle it, as well as his contributions to Module::Metadata which
+   this code now uses.
+
+ [Dependencies::Changed]
+ - runtime requires : Dist::Zilla::MetaProvides::ProvideRecord
+   0 -> 1.14000000
+ - runtime requires : Dist::Zilla::Plugin::MetaProvides
+   1.12044806 -> 1.14000000
+ - runtime requires -> test requires : File::Temp
+
+ [Dependencies::New]
+ - runtime requires : IO::String
+ - runtime requires : Module::Metadata
+ - runtime requires : MooseX::Types::Moose
+
+ [Dependencies::Removed]
+ - runtime requires : Module::Extract::Namespaces
+ - runtime requires : Module::Extract::VERSION
+ - runtime suggests : Module::Extract::Namespaces
+
+ [Internals]
+ - Now uses  Module::Metadata for both package and version probing.
+ - the namespaces 'main' and 'DB' will now be automatically ignored and not
+   injected into the provides map for any reason.
+ - namespaces masked with the standard 'package # comment \n packagename'
+   style are now ignored.
+ - namespaces with a leading underscore in any token ( ie: _Foo::Bar or
+   Foo::_Bar ) are ignored.
+ - Files are no longer required to be sloshed out into a tempdir in order
+   to be scanned. ( Yielding a minor performance boost )
+ - internal debugging is slightly more verbose
+
+ [Packaging]
+ - Retroactively fixing changelog because something blew it away last time.
+ - Added a .perltidyrc
+
+ [Tests]
+ - Added a test for correct behaviour of "private" and "hidden" packages of
+   various standard forms.
+
 1.12060502 2012-02-04T03:50:41Z
+ [Dependencies::Changed]
+ - develop suggests : Dist::Zilla::PluginBundle::Author::KENTNL
+   v1.0.0 -> v1.2.0
+ - runtime suggests : Module::Extract::Namespaces 0.1402
+
+ [Dependencies::New]
+ - runtime requires : Data::Dump
+ - runtime requires : perl 5.006
+ - runtime requires : strict
+ - runtime requires : warnings
+
+ [Dependencies::Removed]
+ - test requires : English
+
+ [Internals]
+ - All namespaces declare $AUTHORITY
+ - $VERSION moved out of BEGIN
+ - enhanced debug logging
+
+ [Packaging]
+ - Update License ( Year, Indent, Address )
+ - Move extra tests to xt/
+ - git resource URL's moved to https://
+ - x_authority set in metadata.
+ - versioning moved to git
+
+ [Tests]
+ - Add an early test for perl-5.14 package support
 
 1.12060501 2011-04-08T13:49:06Z
  [BugFix]

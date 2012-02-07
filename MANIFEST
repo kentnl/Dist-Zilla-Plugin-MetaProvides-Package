@@ -1,3 +1,4 @@
+.perltidyrc
 Build.PL
 Changes
 LICENSE
@@ -7,6 +8,8 @@ META.yml
 README
 corpus/dist/DZ2/dist.ini
 corpus/dist/DZ2/lib/DZ2.pm
+corpus/dist/hidden-ns/dist.ini
+corpus/dist/hidden-ns/lib/DZ2.pm
 corpus/dist/perl-5-14/dist.ini
 corpus/dist/perl-5-14/lib/DZ2.pm
 dist.ini
@@ -14,6 +17,7 @@ lib/Dist/Zilla/Plugin/MetaProvides/Package.pm
 perlcritic.rc
 t/00-compile.t
 t/000-report-versions-tiny.t
+t/dz2-hidden-provides.t
 t/dz2-provides.t
 t/perl-5-14-package.t
 xt/author/critic.t

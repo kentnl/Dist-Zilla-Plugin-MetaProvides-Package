@@ -6,18 +6,18 @@ BEGIN {
   $Dist::Zilla::Plugin::MetaProvides::Package::AUTHORITY = 'cpan:KENTNL';
 }
 {
-  $Dist::Zilla::Plugin::MetaProvides::Package::VERSION = '1.12060502';
+  $Dist::Zilla::Plugin::MetaProvides::Package::VERSION = '1.14000000';
 }
 
 # ABSTRACT: Extract namespaces/version from traditional packages for provides
 #
 # $Id:$
 use Moose;
+use MooseX::Types::Moose qw( HashRef Str );
 use Moose::Autobox;
-use File::Temp qw();
-use Module::Extract::VERSION;
-use Module::Extract::Namespaces;
-use Dist::Zilla::MetaProvides::ProvideRecord;
+use Module::Metadata;
+use IO::String;
+use Dist::Zilla::MetaProvides::ProvideRecord 1.14000000;
 
 require Data::Dump;
 
@@ -45,70 +45,68 @@ sub provides {
 }
 
 
+has '_package_blacklist' => (
+    isa => HashRef [Str],
+    traits  => [ 'Hash', ],
+    is      => 'rw',
+    default => sub {
+        return { map { $_ => 1 } qw( main DB ) };
+    },
+    handles => { _blacklist_contains => 'exists', },
+);
+
 sub _packages_for {
-    my ( $self, $filename, $content, ) = @_;
+    my ( $self, $filename, $content ) = @_;
 
-    my ( $fh, $fn );
+    my $fh = IO::String->new($content);
 
-  TEMPEXTRACT: {
+    my $meta = Module::Metadata->new_from_handle( $fh, $filename, collect_pod => 0 );
 
-        $self->log_debug( q{Get packages for } . $filename );
-        $fh = File::Temp->new( UNLINK => 0, OPEN => 1, SUFFIX => '.pm' );
-        $fh->unlink_on_destroy(1);
-        binmode $fh, ':raw';
-        print {$fh} $content or $self->log_debug(q{print to filehandle failed});
-        close $fh or $self->log_debug(q{closing filehandle failed});
-        $fn = $fh->filename;
+    if ( not $meta ) {
+        $self->log_fatal("Can't extract metadata from $filename");
     }
 
-    # Assumptions: 1 version max per file
-    # all packags in that file have that version
-
-    my $version   = Module::Extract::VERSION->parse_version_safely($fn);
+    $self->log_debug(
+        "Version metadata from $filename : " . Data::Dump::dumpf(
+            $meta,
+            sub {
+                if ( ref $_[1] and $_[1]->isa('version') ) {
+                    return { dump => $_[1]->stringify };
+                }
+                return { hide_keys => ['pod_headings'] };
+            }
+        )
+    );
+    my $remove_bad = sub {
+        my $item = shift;
+        return if $item =~ qr/\A_/msx;
+        return if $item =~ qr/::_/msx;
+        return not $self->_blacklist_contains($item);
+    };
     my $to_record = sub {
+
+        my $v = $meta->version($_);
         my (%struct) = (
-            module  => $_,
-            file    => $filename,
-            version => $version,
-            parent  => $self,
+            module => $_,
+            file   => $filename,
+            ( ref $v ? ( version => $v->stringify ) : ( version => undef ) ),
+            parent => $self,
         );
         $self->log_debug(
-            'Constructing provides record from: ' . Data::Dump::dumpf(
+            'Version metadata: ' . Data::Dump::dumpf(
                 \%struct,
                 sub {
-                    my ( $ctx, $objref ) = @_;
-
-                    if ( $ctx->is_hash and $ctx->depth < 1 ) {
-                        return;
-                    }
-                    if ( not defined $objref ) {
-                        return { dump => 'undef' };
-                    }
-                    if ( $ctx->is_scalar and not defined ${$objref} ) {
-                        return { dump => 'undef' };
-                    }
-                    if ( $ctx->is_blessed ) {
-                        return { dump => "$objref : " . $ctx->class };
-                    }
-                    if ( $ctx->is_hash and $ctx->depth >= 1 ) {
-                        return { dump => '~Hash' };
-                    }
-                    if ( $ctx->is_scalar ) {
-                        return { dump => "$objref : " . ${$objref} };
-                    }
-                    return { dump => $ctx->reftype };
+                    return { hide_keys => ['parent'] };
                 }
             )
         );
         Dist::Zilla::MetaProvides::ProvideRecord->new(%struct);
     };
-    my @namespaces = Module::Extract::Namespaces->from_file($fn);
-    $self->log_debug( 'Module::Extract::Namespaces discovered namespaces: '
-          . Data::Dump::pp( \@namespaces ) . ' in '
-          . $fn );
-    if ( Module::Extract::Namespaces->error ) {
-        $self->log( Module::Extract::Namespaces->error );
-    }
+
+    my @namespaces = [ $meta->packages_inside() ]->grep($remove_bad)->flatten;
+
+    $self->log_debug( 'Discovered namespaces: ' . Data::Dump::pp( \@namespaces ) . ' in ' . $filename );
+
     if ( not @namespaces ) {
         $self->log( 'No namespaces detected in file ' . $filename );
         return ();
@@ -132,7 +130,7 @@ Dist::Zilla::Plugin::MetaProvides::Package - Extract namespaces/version from tra
 
 =head1 VERSION
 
-version 1.12060502
+version 1.14000000
 
 =head1 SYNOPSIS
 

@@ -19,13 +19,11 @@ sub conf {
 
 sub nofail(&) {
     my $code = shift;
-    return is( exception { $code->() }, undef,
-        "Contained Code should not fail" );
+    return is( exception { $code->() }, undef, "Contained Code should not fail" );
 }
 
 TODO: {
-    local $TODO =
-"5.14 style package declarations are not yet supported by Module::Extract::[Namespaces,VERSION]";
+    local $TODO = "5.14 style package declarations are not yet supported by Module::Extract::[Namespaces,VERSION]";
 
     subtest basic_implementation_tests => sub {
         my $zilla;
@@ -53,11 +51,7 @@ TODO: {
 
         isa_ok( $plugin, 'Dist::Zilla::Plugin::MetaProvides::Package' );
         meta_ok( $plugin, 'Plugin is mooseified' );
-        does_ok(
-            $plugin,
-            'Dist::Zilla::Role::MetaProvider::Provider',
-            'does the Provider Role'
-        );
+        does_ok( $plugin, 'Dist::Zilla::Role::MetaProvider::Provider', 'does the Provider Role' );
         does_ok( $plugin, 'Dist::Zilla::Role::Plugin', 'does the Plugin Role' );
         nofail { has_attribute_ok( $plugin, 'inherit_version' ) };
         nofail { has_attribute_ok( $plugin, 'inherit_missing' ) };
@@ -68,17 +62,13 @@ TODO: {
         nofail {
             is_deeply(
                 $plugin->metadata,
-                {
-                    provides =>
-                      { DZ2 => { file => 'lib/DZ2.pm', 'version' => '5.5.7' } }
-                },
+                { provides => { DZ2 => { file => 'lib/DZ2.pm', 'version' => '5.5.7' } } },
                 'provides data is right'
             );
         };
 
         nofail {
-            isa_ok( [ $plugin->provides ]->[0],
-                'Dist::Zilla::MetaProvides::ProvideRecord' );
+            isa_ok( [ $plugin->provides ]->[0], 'Dist::Zilla::MetaProvides::ProvideRecord' );
         };
     };
 

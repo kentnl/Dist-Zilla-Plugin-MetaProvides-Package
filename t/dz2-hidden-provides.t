@@ -9,7 +9,7 @@ use Dist::Zilla::Util::Test::KENTNL 0.01000011 qw( test_config );
 sub conf {
     return test_config(
         {
-            dist_root => 'corpus/dist/DZ2',
+            dist_root => 'corpus/dist/hidden-ns',
             ini       => [ 'GatherDir', [ 'MetaProvides::Package' => {@_} ] ],
             build     => 1,
         }
@@ -21,14 +21,7 @@ subtest basic_implementation_tests => sub {
 
     is(
         exception {
-
-            $zilla = test_config(
-                {
-                    dist_root => 'corpus/dist/DZ2',
-                    ini       => [ 'GatherDir', [ 'MetaProvides::Package' => { inherit_version => 0, inherit_missing => 1 } ] ],
-                    build     => 1,
-                }
-            );
+            $zilla = conf( inherit_version => 0, inherit_missing => 1 );
         },
         undef,
         'Dist construction succeeded'
@@ -52,11 +45,16 @@ subtest basic_implementation_tests => sub {
     has_attribute_ok( $plugin, 'inherit_missing' );
     has_attribute_ok( $plugin, 'meta_noindex' );
     is( $plugin->meta_noindex, '1', "meta_noindex default is 1" );
-    is_deeply(
-        $plugin->metadata,
-        { provides => { DZ2 => { file => 'lib/DZ2.pm', 'version' => '0.001' } } },
-        'provides data is right'
-    );
+
+    # This crap is needed because 'ok' is mysteriously not working.
+    ( not exists $plugin->metadata->{provides}->{'A::_Local::Package'} )
+      ? pass('Packages leading with _ are hidden')
+      : fail('Packages leading with _ are hidden');
+
+    ( not exists $plugin->metadata->{provides}->{'A::Hidden::Package'} )
+      ? pass('Packages with \n are hidden')
+      : fail('Packages with \n are hidden');
+
     isa_ok( [ $plugin->provides ]->[0], 'Dist::Zilla::MetaProvides::ProvideRecord' );
 };
 done_testing;
