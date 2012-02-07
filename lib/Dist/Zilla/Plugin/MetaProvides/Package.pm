@@ -8,10 +8,9 @@ package Dist::Zilla::Plugin::MetaProvides::Package;
 # $Id:$
 use Moose;
 use Moose::Autobox;
-use File::Temp qw();
-use Module::Extract::VERSION;
-use Module::Extract::Namespaces;
-use Dist::Zilla::MetaProvides::ProvideRecord 1.13000000;
+use Module::Metadata;
+use IO::String;
+use Dist::Zilla::MetaProvides::ProvideRecord 1.14000000;
 
 require Data::Dump;
 
@@ -130,6 +129,50 @@ sub provides {
 =cut
 
 sub _packages_for {
+    my ( $self, $filename , $content ) = @_;
+
+    my $fh = IO::String->new( $content );
+
+    my $meta = Module::Metadata->new_from_handle( $fh, $filename , collect_pod => 0 );
+
+    if ( not $meta ) {
+        $self->log_fatal("Can't extract metadata from $filename $@");
+    }
+
+    my $to_record = sub {
+
+        my $v = $meta->version($_);
+
+
+        my (%struct) = (
+            module  => $_,
+            file    => $filename,
+            ( ref $v ? ( version => $v->stringify ) : ( version => undef ) ),
+            parent  => $self,
+        );
+        Data::Dump::dumpf( \%struct , sub { 
+            return { hide_keys => ['parent'] };
+        });
+        Dist::Zilla::MetaProvides::ProvideRecord->new(%struct);
+    };
+
+    my @namespaces = $meta->packages_inside();
+
+    $self->log_debug( 'Discovered namespaces: '
+          . Data::Dump::pp( \@namespaces ) . ' in '
+          . $filename );
+
+    if ( not @namespaces ) {
+        $self->log( 'No namespaces detected in file ' . $filename );
+        return ();
+    }
+    return @namespaces->map($to_record)->flatten;
+
+}
+
+=begin comment
+
+sub _packages_for {
     my ( $self, $filename, $content, ) = @_;
 
     my ( $fh, $fn );
@@ -200,6 +243,10 @@ sub _packages_for {
     return @namespaces->map($to_record)->flatten;
 
 }
+
+=end comment
+
+=cut
 
 =head1 SEE ALSO
 
