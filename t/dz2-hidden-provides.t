@@ -39,30 +39,26 @@ subtest basic_implementation_tests => sub {
 
     isa_ok( $plugin, 'Dist::Zilla::Plugin::MetaProvides::Package' );
     meta_ok( $plugin, 'Plugin is mooseified' );
-    does_ok(
-        $plugin,
-        'Dist::Zilla::Role::MetaProvider::Provider',
-        'does the Provider Role'
-    );
+    does_ok( $plugin, 'Dist::Zilla::Role::MetaProvider::Provider', 'does the Provider Role' );
     does_ok( $plugin, 'Dist::Zilla::Role::Plugin', 'does the Plugin Role' );
     has_attribute_ok( $plugin, 'inherit_version' );
     has_attribute_ok( $plugin, 'inherit_missing' );
     has_attribute_ok( $plugin, 'meta_noindex' );
     is( $plugin->meta_noindex, '1', "meta_noindex default is 1" );
 
-    TODO: {
+  TODO: {
         local $TODO = "Need to solve the quirks with this";
-    # This crap is needed because 'ok' is mysteriously not working.
-    ( not exists $plugin->metadata->{provides}->{'A::_Local::Package'} ) 
-        ? pass( 'Packages leading with _ are hidden' ) 
-        : fail('Packages leading with _ are hidden' );
-    
-    ( not exists $plugin->metadata->{provides}->{'A::Hidden::Package'} ) 
-        ? pass( 'Packages with \n are hidden' )
-        : fail('Packages with \n are hidden' );
+
+        # This crap is needed because 'ok' is mysteriously not working.
+        ( not exists $plugin->metadata->{provides}->{'A::_Local::Package'} )
+          ? pass('Packages leading with _ are hidden')
+          : fail('Packages leading with _ are hidden');
+
+        ( not exists $plugin->metadata->{provides}->{'A::Hidden::Package'} )
+          ? pass('Packages with \n are hidden')
+          : fail('Packages with \n are hidden');
 
     }
-    isa_ok( [ $plugin->provides ]->[0],
-        'Dist::Zilla::MetaProvides::ProvideRecord' );
+    isa_ok( [ $plugin->provides ]->[0], 'Dist::Zilla::MetaProvides::ProvideRecord' );
 };
 done_testing;

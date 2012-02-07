@@ -129,27 +129,38 @@ sub provides {
 
 =cut
 
-has '_package_blacklist' => ( isa => HashRef[Str], traits => ['Hash'], is => 'rw', default => sub {
-        return { map { $_ => 1 } qw( main DB )};
-}, handles => { _blacklist_contains => 'exists' } );
+has '_package_blacklist' => (
+    isa => HashRef [Str],
+    traits  => ['Hash'],
+    is      => 'rw',
+    default => sub {
+        return { map { $_ => 1 } qw( main DB ) };
+    },
+    handles => { _blacklist_contains => 'exists' }
+);
 
 sub _packages_for {
-    my ( $self, $filename , $content ) = @_;
+    my ( $self, $filename, $content ) = @_;
 
-    my $fh = IO::String->new( $content );
+    my $fh = IO::String->new($content);
 
-    my $meta = Module::Metadata->new_from_handle( $fh, $filename , collect_pod => 0 );
+    my $meta = Module::Metadata->new_from_handle( $fh, $filename, collect_pod => 0 );
 
     if ( not $meta ) {
         $self->log_fatal("Can't extract metadata from $filename $@");
     }
 
-    $self->log_debug("Version metadata from $filename : " . Data::Dump::dumpf( $meta , sub {
-        if ( ref $_[1] and $_[1]->isa('version') ) {
-                return { dump => $_[1]->stringify };
-        }
-        return { hide_keys => ['pod_headings'] };
-    }));
+    $self->log_debug(
+        "Version metadata from $filename : " . Data::Dump::dumpf(
+            $meta,
+            sub {
+                if ( ref $_[1] and $_[1]->isa('version') ) {
+                    return { dump => $_[1]->stringify };
+                }
+                return { hide_keys => ['pod_headings'] };
+            }
+        )
+    );
     my $remove_bad = sub {
         my $item = shift;
         return if $item =~ qr/\A_/msx;
@@ -160,22 +171,25 @@ sub _packages_for {
 
         my $v = $meta->version($_);
         my (%struct) = (
-            module  => $_,
-            file    => $filename,
+            module => $_,
+            file   => $filename,
             ( ref $v ? ( version => $v->stringify ) : ( version => undef ) ),
-            parent  => $self,
+            parent => $self,
         );
-        $self->log_debug("Version metadata: " . Data::Dump::dumpf( \%struct , sub {
-            return { hide_keys => ['parent'] };
-        }));
+        $self->log_debug(
+            "Version metadata: " . Data::Dump::dumpf(
+                \%struct,
+                sub {
+                    return { hide_keys => ['parent'] };
+                }
+            )
+        );
         Dist::Zilla::MetaProvides::ProvideRecord->new(%struct);
     };
 
     my @namespaces = [ $meta->packages_inside() ]->grep($remove_bad)->flatten;
 
-    $self->log_debug( 'Discovered namespaces: '
-          . Data::Dump::pp( \@namespaces ) . ' in '
-          . $filename );
+    $self->log_debug( 'Discovered namespaces: ' . Data::Dump::pp( \@namespaces ) . ' in ' . $filename );
 
     if ( not @namespaces ) {
         $self->log( 'No namespaces detected in file ' . $filename );

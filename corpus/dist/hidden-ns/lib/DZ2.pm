@@ -9,8 +9,8 @@ sub main {
     return 1;
 }
 
-package # Hide me from indexing
-    A::Hidden::Package;
+package    # Hide me from indexing
+  A::Hidden::Package;
 
 sub hidden {
     return 2;
