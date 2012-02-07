@@ -131,12 +131,12 @@ sub provides {
 
 has '_package_blacklist' => (
     isa => HashRef [Str],
-    traits  => ['Hash'],
+    traits  => [ 'Hash', ],
     is      => 'rw',
     default => sub {
         return { map { $_ => 1 } qw( main DB ) };
     },
-    handles => { _blacklist_contains => 'exists' }
+    handles => { _blacklist_contains => 'exists', },
 );
 
 sub _packages_for {
@@ -147,7 +147,7 @@ sub _packages_for {
     my $meta = Module::Metadata->new_from_handle( $fh, $filename, collect_pod => 0 );
 
     if ( not $meta ) {
-        $self->log_fatal("Can't extract metadata from $filename $@");
+        $self->log_fatal("Can't extract metadata from $filename");
     }
 
     $self->log_debug(
@@ -177,7 +177,7 @@ sub _packages_for {
             parent => $self,
         );
         $self->log_debug(
-            "Version metadata: " . Data::Dump::dumpf(
+            'Version metadata: ' . Data::Dump::dumpf(
                 \%struct,
                 sub {
                     return { hide_keys => ['parent'] };
