@@ -2,6 +2,8 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
 
+1.14000001 2012-02-26T20:46:35Z
+
  [Dependencies::Changed]
  - runtime requires Module::Metadata 0 -> 1.000005
 
