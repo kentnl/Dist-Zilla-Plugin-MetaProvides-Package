@@ -6,7 +6,7 @@ BEGIN {
   $Dist::Zilla::Plugin::MetaProvides::Package::AUTHORITY = 'cpan:KENTNL';
 }
 {
-  $Dist::Zilla::Plugin::MetaProvides::Package::VERSION = '1.14000000';
+  $Dist::Zilla::Plugin::MetaProvides::Package::VERSION = '1.14000001';
 }
 
 # ABSTRACT: Extract namespaces/version from traditional packages for provides
@@ -15,7 +15,7 @@ BEGIN {
 use Moose;
 use MooseX::Types::Moose qw( HashRef Str );
 use Moose::Autobox;
-use Module::Metadata;
+use Module::Metadata 1.000005;
 use IO::String;
 use Dist::Zilla::MetaProvides::ProvideRecord 1.14000000;
 
@@ -130,7 +130,7 @@ Dist::Zilla::Plugin::MetaProvides::Package - Extract namespaces/version from tra
 
 =head1 VERSION
 
-version 1.14000000
+version 1.14000001
 
 =head1 SYNOPSIS
 

@@ -1,5 +1,10 @@
 Revision history for Dist-Zilla-Plugin-MetaProvides-Package
 
+1.14000001 2012-02-26T20:46:35Z
+
+ [Dependencies::Changed]
+ - runtime requires Module::Metadata 0 -> 1.000005
+
 1.14000000 2012-02-07T14:46:46Z
  [00 IMPORTANT CHANGES]
  - previous versions had no support for standardised ways of hiding various
