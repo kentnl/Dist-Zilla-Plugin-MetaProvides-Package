@@ -1,7 +1,43 @@
 Revision history for Dist-Zilla-Plugin-MetaProvides-Package
 
-1.14000001 2012-02-26T20:46:35Z
+1.14000002 2013-04-09T03:09:31Z
+ - Minor Maintenance release.
 
+ [Dependencies::Added / develop requires]
+ - Pod::Coverage::TrustPod
+ - Test::CPAN::Meta
+ - Test::Pod 1.41
+ - Test::Pod::Coverage 1.08
+ - version 0.9901
+
+ [Dependencies::Changed / build requires]
+ - Module::Build 0.3601 → 0.4004
+
+ [Dependencies::Changed / configure requires]
+ - Module::Build 0.3601 → 0.4004
+
+ [Dependencies::Changed / develop recommends]
+ - Dist::Zilla::PluginBundle::Author::KENTNL::Lite 0.01009803 → v1.3.0
+
+ [Dependencies::Changed / develop suggests]
+ - Dist::Zilla::PluginBundle::Author::KENTNL v1.2.0 → v1.7.2
+
+ [Dependencies::Changed / test requires]
+ - Test::More 0.96 → 0.98
+
+ [Documentation]
+ - Add README.mkdn
+ - Update copyright year
+
+ [Meta]
+ - Bugs to github issues
+
+ [Packaging]
+ - now 2-stage bootstrap to eliminate 'undef' versions in released
+   metadata.
+ - utilises test_requires from Module::Build 0.4004
+
+1.14000001 2012-02-26T20:46:35Z
  [Dependencies::Changed]
  - runtime requires Module::Metadata 0 -> 1.000005
 
