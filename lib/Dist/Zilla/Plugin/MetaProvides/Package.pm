@@ -6,7 +6,7 @@ BEGIN {
   $Dist::Zilla::Plugin::MetaProvides::Package::AUTHORITY = 'cpan:KENTNL';
 }
 {
-  $Dist::Zilla::Plugin::MetaProvides::Package::VERSION = '1.14000002';
+  $Dist::Zilla::Plugin::MetaProvides::Package::VERSION = '1.14000003';
 }
 
 # ABSTRACT: Extract namespaces/version from traditional packages for provides
@@ -18,8 +18,7 @@ use Moose::Autobox;
 use Module::Metadata 1.000005;
 use IO::String;
 use Dist::Zilla::MetaProvides::ProvideRecord 1.14000000;
-
-require Data::Dump;
+use Data::Dump 1.16 ();
 
 
 
@@ -130,7 +129,7 @@ Dist::Zilla::Plugin::MetaProvides::Package - Extract namespaces/version from tra
 
 =head1 VERSION
 
-version 1.14000002
+version 1.14000003
 
 =head1 SYNOPSIS
 
@@ -144,6 +143,18 @@ In your C<dist.ini>:
 =head1 ROLES
 
 =head2 L<Dist::Zilla::Role::MetaProvider::Provider>
+
+=begin MetaPOD::JSON v1.1.0
+
+{
+    "namespace":"Dist::Zilla::Plugin::MetaProvides::Package",
+    "interface":"class",
+    "inherits":"Moose::Object",
+    "does":"Dist::Zilla::Role::MetaProvider::Provider"
+}
+
+
+=end MetaPOD::JSON
 
 =head1 OPTIONS INHERITED FROM L<Dist::Zilla::Role::MetaProvider::Provider>
 

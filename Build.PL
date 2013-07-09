@@ -7,23 +7,23 @@ use Module::Build 0.3601;
 
 my %module_build_args = (
   "build_requires" => {
-    "Module::Build" => "0.4004"
+    "Module::Build" => "0.4005"
   },
   "configure_requires" => {
-    "Module::Build" => "0.4004"
+    "Module::Build" => "0.4005"
   },
   "dist_abstract" => "Extract namespaces/version from traditional packages for provides",
   "dist_author" => [
     "Kent Fredric <kentnl\@cpan.org>"
   ],
   "dist_name" => "Dist-Zilla-Plugin-MetaProvides-Package",
-  "dist_version" => "1.14000002",
+  "dist_version" => "1.14000003",
   "license" => "perl",
   "module_name" => "Dist::Zilla::Plugin::MetaProvides::Package",
   "recommends" => {},
   "recursive_test_files" => 1,
   "requires" => {
-    "Data::Dump" => 0,
+    "Data::Dump" => "1.16",
     "Dist::Zilla::MetaProvides::ProvideRecord" => "1.14000000",
     "Dist::Zilla::Plugin::MetaProvides" => "1.14000000",
     "Dist::Zilla::Role::MetaProvider::Provider" => 0,
