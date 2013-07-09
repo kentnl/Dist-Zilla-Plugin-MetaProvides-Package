@@ -31,6 +31,18 @@ In your C<dist.ini>:
 
 =cut
 
+=begin MetaPOD::JSON v1.1.0
+
+{
+    "namespace":"Dist::Zilla::Plugin::MetaProvides::Package",
+    "interface":"class",
+    "inherits":"Moose::Object",
+    "does":"Dist::Zilla::Role::MetaProvider::Provider"
+}
+
+=end MetaPOD::JSON
+
+=cut
 use namespace::autoclean;
 with 'Dist::Zilla::Role::MetaProvider::Provider';
 

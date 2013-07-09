@@ -4,7 +4,7 @@ Dist::Zilla::Plugin::MetaProvides::Package - Extract namespaces/version from tra
 
 # VERSION
 
-version 1.14000002
+version 1.14000003
 
 # SYNOPSIS
 
@@ -18,6 +18,15 @@ In your `dist.ini`:
 # ROLES
 
 ## [Dist::Zilla::Role::MetaProvider::Provider](http://search.cpan.org/perldoc?Dist::Zilla::Role::MetaProvider::Provider)
+
+{
+    "namespace":"Dist::Zilla::Plugin::MetaProvides::Package",
+    "interface":"class",
+    "inherits":"Moose::Object",
+    "does":"Dist::Zilla::Role::MetaProvider::Provider"
+}
+
+
 
 # OPTIONS INHERITED FROM [Dist::Zilla::Role::MetaProvider::Provider](http://search.cpan.org/perldoc?Dist::Zilla::Role::MetaProvider::Provider)
 
