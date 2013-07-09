@@ -1,5 +1,27 @@
 Revision history for Dist-Zilla-Plugin-MetaProvides-Package
 
+1.14000003 2013-07-09T01:30:35Z
+ [Bugfix]
+ - Upgrade runtime deps on Data::Dump (closes gh#2), thanks xenoterracide.
+
+ [Dependencies::Added / develop requires]
+ - Test::CPAN::Changes 0.19
+
+ [Dependencies::Changed / build requires]
+ - Module::Build 0.4004 → 0.4005
+
+ [Dependencies::Changed / configure requires]
+ - Module::Build 0.4004 → 0.4005
+
+ [Dependencies::Changed / develop suggests]
+ - Dist::Zilla::PluginBundle::Author::KENTNL v1.7.2 → v1.7.4
+
+ [Dependencies::Changed / runtime requires]
+ - Data::Dump 0 → 1.16
+
+ [Documentation]
+ - MetaPOD annotations and graph data added.
+
 1.14000002 2013-04-09T03:09:31Z
  - Minor Maintenance release.
 
