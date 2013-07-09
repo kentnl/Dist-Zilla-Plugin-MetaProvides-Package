@@ -1,6 +1,6 @@
 Revision history for Dist-Zilla-Plugin-MetaProvides-Package
 
-1.14000003 2013-07-09T01:29:43Z
+1.14000003 2013-07-09T01:30:35Z
  [Bugfix]
  - Upgrade runtime deps on Data::Dump (closes gh#2), thanks xenoterracide.
 
