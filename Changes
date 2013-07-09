@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+1.14000003 2013-07-09T01:30:35Z
  [Bugfix]
  - Upgrade runtime deps on Data::Dump (closes gh#2), thanks xenoterracide.
 
