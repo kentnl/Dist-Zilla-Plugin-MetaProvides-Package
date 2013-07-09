@@ -13,6 +13,8 @@ corpus/dist/hidden-ns/lib/DZ2.pm
 corpus/dist/perl-5-14/dist.ini
 corpus/dist/perl-5-14/lib/DZ2.pm
 dist.ini
+layout/self_structure.dot
+layout/self_structure.png
 lib/Dist/Zilla/Plugin/MetaProvides/Package.pm
 perlcritic.rc
 t/00-compile.t
