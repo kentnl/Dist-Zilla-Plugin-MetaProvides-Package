@@ -43,6 +43,7 @@ In your C<dist.ini>:
 =end MetaPOD::JSON
 
 =cut
+
 use namespace::autoclean;
 with 'Dist::Zilla::Role::MetaProvider::Provider';
 
