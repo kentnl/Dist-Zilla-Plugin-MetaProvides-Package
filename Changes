@@ -1,6 +1,24 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+ [Dependencies::Added / develop requires]
+ - Test::Kwalitee 1.08
+
+ [Dependencies::Added / test requires]
+ - Carp
+ - IO::Handle
+
+ [Dependencies::Changed / build requires]
+ - Module::Build 0.4005 → 0.4007
+
+ [Dependencies::Changed / configure requires]
+ - Module::Build 0.4005 → 0.4007
+
+ [Dependencies::Changed / develop suggests]
+ - Dist::Zilla::PluginBundle::Author::KENTNL v1.7.4 → v1.8.3
+
+ [Dependencies::Removed / test requires]
+ - File::Find
 
 1.14000003 2013-07-09T01:30:35Z
  [Bugfix]
