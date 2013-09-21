@@ -123,7 +123,7 @@ sub provides {
         $self->_packages_for( $_->name, $_->content );
     };
     my (@records);
-    for my $file ( @{ $self->found_files() } ) {
+    for my $file ( @{ $self->_found_files() } ) {
         push @records, $self->_packages_for( $file->name, $file->content );
     }
     return $self->_apply_meta_noindex(@records);
@@ -293,7 +293,7 @@ sub _build_finder_objects {
     return [ $self->_vivify_installmodules_pm_finder ];
 }
 
-sub found_files {
+sub _found_files {
     my ($self) = @_;
     my %by_name;
     for my $plugin ( @{ $self->finder_objects } ) {
