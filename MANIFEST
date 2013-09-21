@@ -28,6 +28,7 @@ t/000-report-versions-tiny.t
 t/dz2-hidden-provides.t
 t/dz2-provides.t
 t/perl-5-14-package.t
+weaver.ini
 xt/author/critic.t
 xt/release/cpan-changes.t
 xt/release/distmeta.t
