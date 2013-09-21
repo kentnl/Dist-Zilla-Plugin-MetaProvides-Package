@@ -31,12 +31,14 @@ provides:
 requires:
   Data::Dump: 1.16
   Dist::Zilla::MetaProvides::ProvideRecord: 1.14000000
+  Dist::Zilla::Plugin::FinderCode: 0
   Dist::Zilla::Plugin::MetaProvides: 1.14000000
   Dist::Zilla::Role::MetaProvider::Provider: 0
   IO::String: 0
   Module::Metadata: 1.000005
   Moose: 0
   Moose::Autobox: 0
+  MooseX::LazyRequire: 0
   MooseX::Types::Moose: 0
   namespace::autoclean: 0
   perl: 5.006
@@ -53,6 +55,7 @@ x_BuiltWith:
     Data::Dump: 1.22
     Dist::Zilla::MetaProvides::ProvideRecord: 1.14000001
     Dist::Zilla::Plugin::Bootstrap::lib: 0.04000000
+    Dist::Zilla::Plugin::FinderCode: 4.300039
     Dist::Zilla::Plugin::MetaNoIndex: 4.300039
     Dist::Zilla::Plugin::MetaProvides: 1.14000001
     Dist::Zilla::PluginBundle::Author::KENTNL: 1.8.3
@@ -66,6 +69,7 @@ x_BuiltWith:
     Module::Metadata: 1.000018
     Moose: 2.1005
     Moose::Autobox: 0.13
+    MooseX::LazyRequire: 0.10
     MooseX::Types::Moose: 0.38
     Pod::Coverage::TrustPod: 0.100002
     Test::CPAN::Changes: 0.23
