@@ -25,9 +25,7 @@ In your C<dist.ini>:
 
 =cut
 
-=head1 ROLES
-
-=head2 L<Dist::Zilla::Role::MetaProvider::Provider>
+=with L<Dist::Zilla::Role::MetaProvider::Provider>
 
 =cut
 
@@ -105,9 +103,7 @@ eliminate it from the metadata shipped to L<Dist::Zilla>
 
 has '+meta_noindex' => ( default => sub { 1 } );
 
-=head1 ROLE SATISFYING METHODS
-
-=head2 provides
+=rmethod C<provides>
 
 A conformant function to the L<Dist::Zilla::Role::MetaProvider::Provider> Role.
 
@@ -129,13 +125,7 @@ sub provides {
     return $self->_apply_meta_noindex(@records);
 }
 
-=head1 PRIVATE METHODS
-
-=head2 _packages_for
-
-=head3 signature: $plugin->_packages_for( $filename, $file_content )
-
-=head3 returns: Array of L<Dist::Zilla::MetaProvides::ProvideRecord>
+=p_attr C<_package_blacklist>
 
 =cut
 
@@ -148,6 +138,14 @@ has '_package_blacklist' => (
     },
     handles => { _blacklist_contains => 'exists', },
 );
+
+=p_method C<_packages_for>
+
+=head3 signature: $plugin->_packages_for( $filename, $file_content )
+
+=head3 returns: Array of L<Dist::Zilla::MetaProvides::ProvideRecord>
+
+=cut
 
 sub _packages_for {
     my ( $self, $filename, $content ) = @_;
@@ -227,6 +225,18 @@ around dump_config => sub {
 
 =attr C<finder>
 
+This attribute, if specified will
+
+=over 4
+
+=item * Override the C<FileFinder> used to find files containing packages
+
+=item * Inhibit autovivification of the C<.pm> file finder
+
+=back
+
+This parameter may be specified multiple times to aggregate a list of finders
+
 =cut
 
 has finder => (
@@ -235,6 +245,10 @@ has finder => (
     lazy_required => 1,
     predicate     => has_finder =>,
 );
+
+=p_attr C<_finder_objects>
+
+=cut
 
 has _finder_objects => (
     isa      => 'ArrayRef',
@@ -250,6 +264,10 @@ around plugin_from_config => sub {
     $plugin->_finder_objects;
     return $plugin;
 };
+
+=p_method C<_vivify_installmodules_pm_finder>
+
+=cut
 
 sub _vivify_installmodules_pm_finder {
     my ($self) = @_;
@@ -278,6 +296,10 @@ sub _vivify_installmodules_pm_finder {
     return $plugin;
 }
 
+=p_method C<_build_finder_objects>
+
+=cut
+
 sub _build_finder_objects {
     my ($self) = @_;
     if ( $self->has_finder ) {
@@ -296,6 +318,10 @@ sub _build_finder_objects {
     }
     return [ $self->_vivify_installmodules_pm_finder ];
 }
+
+=p_method C<_found_files>
+
+=cut
 
 sub _found_files {
     my ($self) = @_;

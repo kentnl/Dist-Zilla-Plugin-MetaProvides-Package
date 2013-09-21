@@ -15,9 +15,50 @@ In your `dist.ini`:
     inherit_missing = 0    ; optional
     meta_noindex    = 1    ; optional
 
-# ROLES
+# CONSUMED ROLES
 
 ## [Dist::Zilla::Role::MetaProvider::Provider](http://search.cpan.org/perldoc?Dist::Zilla::Role::MetaProvider::Provider)
+
+# ROLE SATISFYING METHODS
+
+## `provides`
+
+A conformant function to the [Dist::Zilla::Role::MetaProvider::Provider](http://search.cpan.org/perldoc?Dist::Zilla::Role::MetaProvider::Provider) Role.
+
+### signature: $plugin->provides()
+
+### returns: Array of [Dist::Zilla::MetaProvides::ProvideRecord](http://search.cpan.org/perldoc?Dist::Zilla::MetaProvides::ProvideRecord)
+
+# ATTRIBUTES
+
+## `finder`
+
+This attribute, if specified will
+
+- Override the `FileFinder` used to find files containing packages
+- Inhibit autovivification of the `.pm` file finder
+
+This parameter may be specified multiple times to aggregate a list of finders
+
+# PRIVATE ATTRIBUTES
+
+## `_package_blacklist`
+
+## `_finder_objects`
+
+# PRIVATE METHODS
+
+## `_packages_for`
+
+### signature: $plugin->\_packages\_for( $filename, $file\_content )
+
+### returns: Array of [Dist::Zilla::MetaProvides::ProvideRecord](http://search.cpan.org/perldoc?Dist::Zilla::MetaProvides::ProvideRecord)
+
+## `_vivify_installmodules_pm_finder`
+
+## `_build_finder_objects`
+
+## `_found_files`
 
 {
     "namespace":"Dist::Zilla::Plugin::MetaProvides::Package",
@@ -69,24 +110,6 @@ so that its settings can be used to eliminate items from the 'provides' list.
 
     When a module meets the criteria provided to [`MetaNoIndex`](http://search.cpan.org/perldoc?Dist::Zilla::Plugin::MetaNoIndex),
     eliminate it from the metadata shipped to [Dist::Zilla](http://search.cpan.org/perldoc?Dist::Zilla)
-
-# ROLE SATISFYING METHODS
-
-## provides
-
-A conformant function to the [Dist::Zilla::Role::MetaProvider::Provider](http://search.cpan.org/perldoc?Dist::Zilla::Role::MetaProvider::Provider) Role.
-
-### signature: $plugin->provides()
-
-### returns: Array of [Dist::Zilla::MetaProvides::ProvideRecord](http://search.cpan.org/perldoc?Dist::Zilla::MetaProvides::ProvideRecord)
-
-# PRIVATE METHODS
-
-## \_packages\_for
-
-### signature: $plugin->\_packages\_for( $filename, $file\_content )
-
-### returns: Array of [Dist::Zilla::MetaProvides::ProvideRecord](http://search.cpan.org/perldoc?Dist::Zilla::MetaProvides::ProvideRecord)
 
 # SEE ALSO
 
