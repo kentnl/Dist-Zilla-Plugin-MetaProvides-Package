@@ -1,4 +1,5 @@
 .perltidyrc
+.travis.yml
 Build.PL
 Changes
 LICENSE
@@ -16,12 +17,18 @@ dist.ini
 layout/self_structure.dot
 layout/self_structure.png
 lib/Dist/Zilla/Plugin/MetaProvides/Package.pm
+maint-travis-ci/README.mkdn
+maint-travis-ci/merge_travis_yml.pl
+maint-travis-ci/sterilize_env.pl
+maint-travis-ci/sync_tree.pl
+maint-travis-ci/yamls/sterile.yaml
 perlcritic.rc
 t/00-compile.t
 t/000-report-versions-tiny.t
 t/dz2-hidden-provides.t
 t/dz2-provides.t
 t/perl-5-14-package.t
+weaver.ini
 xt/author/critic.t
 xt/release/cpan-changes.t
 xt/release/distmeta.t

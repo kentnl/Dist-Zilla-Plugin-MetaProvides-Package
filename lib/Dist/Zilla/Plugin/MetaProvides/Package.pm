@@ -6,19 +6,20 @@ BEGIN {
   $Dist::Zilla::Plugin::MetaProvides::Package::AUTHORITY = 'cpan:KENTNL';
 }
 {
-  $Dist::Zilla::Plugin::MetaProvides::Package::VERSION = '1.14000003';
+  $Dist::Zilla::Plugin::MetaProvides::Package::VERSION = '1.15000000';
 }
 
 # ABSTRACT: Extract namespaces/version from traditional packages for provides
-#
-# $Id:$
+
 use Moose;
+use MooseX::LazyRequire;
 use MooseX::Types::Moose qw( HashRef Str );
 use Moose::Autobox;
 use Module::Metadata 1.000005;
 use IO::String;
 use Dist::Zilla::MetaProvides::ProvideRecord 1.14000000;
 use Data::Dump 1.16 ();
+
 
 
 
@@ -31,15 +32,13 @@ has '+meta_noindex' => ( default => sub { 1 } );
 
 sub provides {
     my $self        = shift;
-    my $perl_module = sub {
-        ## no critic (RegularExpressions)
-        $_->name =~ m{^lib[/].*[.](pm|pod)$};
-    };
     my $get_records = sub {
         $self->_packages_for( $_->name, $_->content );
     };
-    my (@files)   = $self->zilla->files()->flatten;
-    my (@records) = @files->grep($perl_module)->map($get_records)->flatten;
+    my (@records);
+    for my $file ( @{ $self->_found_files() } ) {
+        push @records, $self->_packages_for( $file->name, $file->content );
+    }
     return $self->_apply_meta_noindex(@records);
 }
 
@@ -53,6 +52,7 @@ has '_package_blacklist' => (
     },
     handles => { _blacklist_contains => 'exists', },
 );
+
 
 sub _packages_for {
     my ( $self, $filename, $content ) = @_;
@@ -113,6 +113,111 @@ sub _packages_for {
     return @namespaces->map($to_record)->flatten;
 
 }
+around dump_config => sub {
+    my ( $orig, $self, @args ) = @_;
+    my $config    = $self->$orig(@args);
+    my $localconf = {};
+    for my $var (qw( finder )) {
+        my $pred = 'has_' . $var;
+        if ( $self->can($pred) ) {
+            next unless $self->$pred();
+        }
+        if ( $self->can($var) ) {
+            $localconf->{$var} = $self->$var();
+        }
+    }
+    $config->{ q{} . __PACKAGE__ } = $localconf;
+    return $config;
+};
+
+
+has finder => (
+    isa           => 'ArrayRef[Str]',
+    is            => ro =>,
+    lazy_required => 1,
+    predicate     => has_finder =>,
+);
+
+
+has _finder_objects => (
+    isa      => 'ArrayRef',
+    is       => ro =>,
+    lazy     => 1,
+    init_arg => undef,
+    builder  => _build_finder_objects =>,
+);
+
+around plugin_from_config => sub {
+    my ( $orig, $self, @args ) = @_;
+    my $plugin = $self->$orig(@args);
+    $plugin->_finder_objects;
+    return $plugin;
+};
+
+
+sub _vivify_installmodules_pm_finder {
+    my ($self) = @_;
+    my $name = $self->plugin_name;
+    $name .= '/AUTOVIV/:InstallModulesPM';
+    if ( my $plugin = $self->zilla->plugin_named($name) ) {
+        return $plugin;
+    }
+    require Dist::Zilla::Plugin::FinderCode;
+    my $plugin = Dist::Zilla::Plugin::FinderCode->new(
+        {
+            plugin_name => $name,
+            zilla       => $self->zilla,
+            style       => 'grep',
+            code        => sub {
+                my ( $file, $self ) = @_;
+                local $_ = $file->name;
+                ## no critic (RegularExpressions)
+                return 1 if m{\Alib/} and m{\.(pm)$};
+                return 1 if $_ eq $self->zilla->main_module;
+                return;
+            },
+        }
+    );
+    $self->zilla->plugins->push($plugin);
+    return $plugin;
+}
+
+
+sub _build_finder_objects {
+    my ($self) = @_;
+    if ( $self->has_finder ) {
+        my @out;
+        for my $finder ( @{ $self->finder } ) {
+            my $plugin = $self->zilla->plugin_named($finder);
+            if ( not $plugin ) {
+                $self->log_fatal("no plugin named $finder found");
+            }
+            if ( not $plugin->does('Dist::Zilla::Role::FileFinder') ) {
+                $self->log_fatal("plugin $finder is not a FileFinder");
+            }
+            push @out, $plugin;
+        }
+        return \@out;
+    }
+    return [ $self->_vivify_installmodules_pm_finder ];
+}
+
+
+sub _found_files {
+    my ($self) = @_;
+    my %by_name;
+    for my $plugin ( @{ $self->_finder_objects } ) {
+        for my $file ( @{ $plugin->find_files } ) {
+            $by_name{ $file->name } = $file;
+        }
+    }
+    return [ values %by_name ];
+}
+
+around mvp_multivalue_args => sub {
+    my ( $orig, $self, @rest ) = @_;
+    return ( 'finder', $self->$orig(@rest) );
+};
 
 
 __PACKAGE__->meta->make_immutable;
@@ -123,13 +228,15 @@ __END__
 
 =pod
 
+=encoding utf-8
+
 =head1 NAME
 
 Dist::Zilla::Plugin::MetaProvides::Package - Extract namespaces/version from traditional packages for provides
 
 =head1 VERSION
 
-version 1.14000003
+version 1.15000000
 
 =head1 SYNOPSIS
 
@@ -140,9 +247,55 @@ In your C<dist.ini>:
     inherit_missing = 0    ; optional
     meta_noindex    = 1    ; optional
 
-=head1 ROLES
+=head1 CONSUMED ROLES
 
 =head2 L<Dist::Zilla::Role::MetaProvider::Provider>
+
+=head1 ROLE SATISFYING METHODS
+
+=head2 C<provides>
+
+A conformant function to the L<Dist::Zilla::Role::MetaProvider::Provider> Role.
+
+=head3 signature: $plugin->provides()
+
+=head3 returns: Array of L<Dist::Zilla::MetaProvides::ProvideRecord>
+
+=head1 ATTRIBUTES
+
+=head2 C<finder>
+
+This attribute, if specified will
+
+=over 4
+
+=item * Override the C<FileFinder> used to find files containing packages
+
+=item * Inhibit autovivification of the C<.pm> file finder
+
+=back
+
+This parameter may be specified multiple times to aggregate a list of finders
+
+=head1 PRIVATE ATTRIBUTES
+
+=head2 C<_package_blacklist>
+
+=head2 C<_finder_objects>
+
+=head1 PRIVATE METHODS
+
+=head2 C<_packages_for>
+
+=head3 signature: $plugin->_packages_for( $filename, $file_content )
+
+=head3 returns: Array of L<Dist::Zilla::MetaProvides::ProvideRecord>
+
+=head2 C<_vivify_installmodules_pm_finder>
+
+=head2 C<_build_finder_objects>
+
+=head2 C<_found_files>
 
 =begin MetaPOD::JSON v1.1.0
 
@@ -209,24 +362,6 @@ When a module meets the criteria provided to L<< C<MetaNoIndex>|Dist::Zilla::Plu
 eliminate it from the metadata shipped to L<Dist::Zilla>
 
 =back
-
-=head1 ROLE SATISFYING METHODS
-
-=head2 provides
-
-A conformant function to the L<Dist::Zilla::Role::MetaProvider::Provider> Role.
-
-=head3 signature: $plugin->provides()
-
-=head3 returns: Array of L<Dist::Zilla::MetaProvides::ProvideRecord>
-
-=head1 PRIVATE METHODS
-
-=head2 _packages_for
-
-=head3 signature: $plugin->_packages_for( $filename, $file_content )
-
-=head3 returns: Array of L<Dist::Zilla::MetaProvides::ProvideRecord>
 
 =head1 SEE ALSO
 

@@ -7,17 +7,17 @@ use Module::Build 0.3601;
 
 my %module_build_args = (
   "build_requires" => {
-    "Module::Build" => "0.4005"
+    "Module::Build" => "0.4007"
   },
   "configure_requires" => {
-    "Module::Build" => "0.4005"
+    "Module::Build" => "0.4007"
   },
   "dist_abstract" => "Extract namespaces/version from traditional packages for provides",
   "dist_author" => [
     "Kent Fredric <kentnl\@cpan.org>"
   ],
   "dist_name" => "Dist-Zilla-Plugin-MetaProvides-Package",
-  "dist_version" => "1.14000003",
+  "dist_version" => "1.15000000",
   "license" => "perl",
   "module_name" => "Dist::Zilla::Plugin::MetaProvides::Package",
   "recommends" => {},
@@ -25,12 +25,14 @@ my %module_build_args = (
   "requires" => {
     "Data::Dump" => "1.16",
     "Dist::Zilla::MetaProvides::ProvideRecord" => "1.14000000",
-    "Dist::Zilla::Plugin::MetaProvides" => "1.14000000",
+    "Dist::Zilla::Plugin::FinderCode" => 0,
+    "Dist::Zilla::Plugin::MetaProvides" => "1.15000000",
     "Dist::Zilla::Role::MetaProvider::Provider" => 0,
     "IO::String" => 0,
     "Module::Metadata" => "1.000005",
     "Moose" => 0,
     "Moose::Autobox" => 0,
+    "MooseX::LazyRequire" => 0,
     "MooseX::Types::Moose" => 0,
     "namespace::autoclean" => 0,
     "perl" => "5.006",
@@ -40,8 +42,9 @@ my %module_build_args = (
   "script_files" => [],
   "test_requires" => {
     "Dist::Zilla::Util::Test::KENTNL" => "0.01000011",
-    "File::Find" => 0,
-    "File::Temp" => 0,
+    "File::Spec" => 0,
+    "IO::Handle" => 0,
+    "IPC::Open3" => 0,
     "Test::Fatal" => 0,
     "Test::Moose" => 0,
     "Test::More" => "0.98"
