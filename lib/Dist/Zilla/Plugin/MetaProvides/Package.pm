@@ -133,7 +133,7 @@ has finder => (
     isa           => 'ArrayRef[Str]',
     is            => ro =>,
     lazy_required => 1,
-    predicate     => has_finder =>
+    predicate     => has_finder =>,
 );
 
 has finder_objects => (
