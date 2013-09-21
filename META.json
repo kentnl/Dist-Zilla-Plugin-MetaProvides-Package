@@ -55,7 +55,7 @@
             "Data::Dump" : "1.16",
             "Dist::Zilla::MetaProvides::ProvideRecord" : "1.14000000",
             "Dist::Zilla::Plugin::FinderCode" : "0",
-            "Dist::Zilla::Plugin::MetaProvides" : "1.14000000",
+            "Dist::Zilla::Plugin::MetaProvides" : "1.15000000",
             "Dist::Zilla::Role::MetaProvider::Provider" : "0",
             "IO::String" : "0",
             "Module::Metadata" : "1.000005",
@@ -74,10 +74,10 @@
       },
       "test" : {
          "requires" : {
-            "Carp" : "0",
             "Dist::Zilla::Util::Test::KENTNL" : "0.01000011",
-            "File::Temp" : "0",
+            "File::Spec" : "0",
             "IO::Handle" : "0",
+            "IPC::Open3" : "0",
             "Test::Fatal" : "0",
             "Test::Moose" : "0",
             "Test::More" : "0.98"
@@ -108,20 +108,20 @@
    "version" : "1.15000000",
    "x_BuiltWith" : {
       "modules" : {
-         "Carp" : "1.32",
          "Data::Dump" : "1.22",
-         "Dist::Zilla::MetaProvides::ProvideRecord" : "1.14000001",
+         "Dist::Zilla::MetaProvides::ProvideRecord" : "1.15000000",
          "Dist::Zilla::Plugin::Bootstrap::lib" : "0.04000000",
          "Dist::Zilla::Plugin::FinderCode" : "4.300039",
          "Dist::Zilla::Plugin::MetaNoIndex" : "4.300039",
-         "Dist::Zilla::Plugin::MetaProvides" : "1.14000001",
+         "Dist::Zilla::Plugin::MetaProvides" : "1.15000000",
          "Dist::Zilla::PluginBundle::Author::KENTNL" : "1.8.3",
          "Dist::Zilla::PluginBundle::Author::KENTNL::Lite" : "1.7.2",
-         "Dist::Zilla::Role::MetaProvider::Provider" : "1.14000001",
+         "Dist::Zilla::Role::MetaProvider::Provider" : "1.15000000",
          "Dist::Zilla::Util::Test::KENTNL" : "0.01015823",
-         "File::Temp" : "0.2301",
+         "File::Spec" : "3.44",
          "IO::Handle" : "1.35",
          "IO::String" : "1.08",
+         "IPC::Open3" : "1.15",
          "Module::Build" : "0.4007",
          "Module::Metadata" : "1.000018",
          "Moose" : "2.1005",
@@ -199,8 +199,15 @@
          },
          {
             "class" : "Dist::Zilla::Plugin::MetaProvides::Package",
+            "config" : {
+               "Dist::Zilla::Role::MetaProvider::Provider" : {
+                  "inherit_missing" : "1",
+                  "inherit_version" : "1",
+                  "meta_noindex" : "1"
+               }
+            },
             "name" : "@Author::KENTNL/MetaProvides::Package",
-            "version" : null
+            "version" : "1.15000000"
          },
          {
             "class" : "Dist::Zilla::Plugin::MetaData::BuiltWith",
@@ -297,7 +304,7 @@
                }
             },
             "name" : "@Author::KENTNL/Test::Compile",
-            "version" : "2.032"
+            "version" : "2.033"
          },
          {
             "class" : "Dist::Zilla::Plugin::Test::Perl::Critic",
