@@ -1,6 +1,15 @@
 Revision history for Dist-Zilla-Plugin-MetaProvides-Package
 
-1.14000004 2013-09-21T06:15:56Z
+1.15000000 2013-09-21T06:27:25Z
+ [00 Major - File Finder]
+ - Guts now uses a FileFinder to find files
+ - Specify finder to override
+ - Mostly FileFinderUser API compatibile, but different
+ - If a FileFinder is not specified by the user, one will be provided for
+   you, and placed in zilla->plugins, using a derivative of the plugins
+   name.
+ - Provided finder only matches .pm files instead of .pm and .pod files
+
  [Dependencies::Added / develop requires]
  - Test::Kwalitee 1.08
 
@@ -19,6 +28,12 @@ Revision history for Dist-Zilla-Plugin-MetaProvides-Package
 
  [Dependencies::Removed / test requires]
  - File::Find
+
+ [Documentation]
+ - Changes file normalised retroactively
+
+ [Tests]
+ - compile and kwalitee tests updated.
 
 1.14000003 2013-07-09T01:30:35Z
  [Bugfix]

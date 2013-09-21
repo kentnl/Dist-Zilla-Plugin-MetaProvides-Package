@@ -6,7 +6,7 @@ BEGIN {
   $Dist::Zilla::Plugin::MetaProvides::Package::AUTHORITY = 'cpan:KENTNL';
 }
 {
-  $Dist::Zilla::Plugin::MetaProvides::Package::VERSION = '1.14000004';
+  $Dist::Zilla::Plugin::MetaProvides::Package::VERSION = '1.15000000';
 }
 
 # ABSTRACT: Extract namespaces/version from traditional packages for provides
@@ -32,15 +32,13 @@ has '+meta_noindex' => ( default => sub { 1 } );
 
 sub provides {
     my $self        = shift;
-    my $perl_module = sub {
-        ## no critic (RegularExpressions)
-        $_->name =~ m{^lib[/].*[.](pm|pod)$};
-    };
     my $get_records = sub {
         $self->_packages_for( $_->name, $_->content );
     };
-    my (@files)   = @{ $self->found_files() };
-    my (@records) = @files->grep($perl_module)->map($get_records)->flatten;
+    my (@records);
+    for my $file ( @{ $self->found_files() } ) {
+        push @records, $self->_packages_for( $file->name, $file->content );
+    }
     return $self->_apply_meta_noindex(@records);
 }
 
@@ -136,6 +134,7 @@ around plugin_from_config => sub {
     $plugin->finder_objects;
     return $plugin;
 };
+
 sub _vivify_installmodules_pm_finder {
     my ($self) = @_;
     my $name = $self->plugin_name;
@@ -212,7 +211,7 @@ Dist::Zilla::Plugin::MetaProvides::Package - Extract namespaces/version from tra
 
 =head1 VERSION
 
-version 1.14000004
+version 1.15000000
 
 =head1 SYNOPSIS
 

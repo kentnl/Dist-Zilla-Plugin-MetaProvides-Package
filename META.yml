@@ -27,7 +27,7 @@ no_index:
 provides:
   Dist::Zilla::Plugin::MetaProvides::Package:
     file: lib/Dist/Zilla/Plugin/MetaProvides/Package.pm
-    version: 1.14000004
+    version: 1.15000000
 requires:
   Data::Dump: 1.16
   Dist::Zilla::MetaProvides::ProvideRecord: 1.14000000
@@ -48,7 +48,7 @@ resources:
   bugtracker: https://github.com/kentfredric/Dist-Zilla-Plugin-MetaProvides-Package/issues
   homepage: https://github.com/kentfredric/Dist-Zilla-Plugin-MetaProvides-Package
   repository: https://github.com/kentfredric/Dist-Zilla-Plugin-MetaProvides-Package.git
-version: 1.14000004
+version: 1.15000000
 x_BuiltWith:
   modules:
     Carp: 1.32

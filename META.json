@@ -90,7 +90,7 @@
    "provides" : {
       "Dist::Zilla::Plugin::MetaProvides::Package" : {
          "file" : "lib/Dist/Zilla/Plugin/MetaProvides/Package.pm",
-         "version" : "1.14000004"
+         "version" : "1.15000000"
       }
    },
    "release_status" : "stable",
@@ -105,7 +105,7 @@
          "web" : "https://github.com/kentfredric/Dist-Zilla-Plugin-MetaProvides-Package"
       }
    },
-   "version" : "1.14000004",
+   "version" : "1.15000000",
    "x_BuiltWith" : {
       "modules" : {
          "Carp" : "1.32",
