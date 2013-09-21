@@ -130,6 +130,10 @@ has finder_objects => (
     builder  => _build_finder_objects =>,
 );
 
+after plugin_from_config => sub {
+    my ( $self ) = @_;
+    $self->finder_objects;
+};
 sub _vivify_installmodules_pm_finder {
     my ($self) = @_;
     my $name = $self->plugin_name;
