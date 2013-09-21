@@ -195,7 +195,7 @@
          {
             "class" : "Dist::Zilla::Plugin::MetaProvides::Package",
             "name" : "@Author::KENTNL/MetaProvides::Package",
-            "version" : null
+            "version" : "1.14000004"
          },
          {
             "class" : "Dist::Zilla::Plugin::MetaData::BuiltWith",
