@@ -36,7 +36,7 @@ sub provides {
         $self->_packages_for( $_->name, $_->content );
     };
     my (@records);
-    for my $file ( @{ $self->found_files() } ) {
+    for my $file ( @{ $self->_found_files() } ) {
         push @records, $self->_packages_for( $file->name, $file->content );
     }
     return $self->_apply_meta_noindex(@records);
@@ -52,6 +52,7 @@ has '_package_blacklist' => (
     },
     handles => { _blacklist_contains => 'exists', },
 );
+
 
 sub _packages_for {
     my ( $self, $filename, $content ) = @_;
@@ -129,6 +130,7 @@ around dump_config => sub {
     return $config;
 };
 
+
 has finder => (
     isa           => 'ArrayRef[Str]',
     is            => ro =>,
@@ -136,7 +138,8 @@ has finder => (
     predicate     => has_finder =>,
 );
 
-has finder_objects => (
+
+has _finder_objects => (
     isa      => 'ArrayRef',
     is       => ro =>,
     lazy     => 1,
@@ -147,9 +150,10 @@ has finder_objects => (
 around plugin_from_config => sub {
     my ( $orig, $self, @args ) = @_;
     my $plugin = $self->$orig(@args);
-    $plugin->finder_objects;
+    $plugin->_finder_objects;
     return $plugin;
 };
+
 
 sub _vivify_installmodules_pm_finder {
     my ($self) = @_;
@@ -178,6 +182,7 @@ sub _vivify_installmodules_pm_finder {
     return $plugin;
 }
 
+
 sub _build_finder_objects {
     my ($self) = @_;
     if ( $self->has_finder ) {
@@ -197,10 +202,11 @@ sub _build_finder_objects {
     return [ $self->_vivify_installmodules_pm_finder ];
 }
 
-sub found_files {
+
+sub _found_files {
     my ($self) = @_;
     my %by_name;
-    for my $plugin ( @{ $self->finder_objects } ) {
+    for my $plugin ( @{ $self->_finder_objects } ) {
         for my $file ( @{ $plugin->find_files } ) {
             $by_name{ $file->name } = $file;
         }
@@ -222,6 +228,8 @@ __END__
 
 =pod
 
+=encoding utf-8
+
 =head1 NAME
 
 Dist::Zilla::Plugin::MetaProvides::Package - Extract namespaces/version from traditional packages for provides
@@ -238,6 +246,42 @@ In your C<dist.ini>:
     inherit_version = 0    ; optional
     inherit_missing = 0    ; optional
     meta_noindex    = 1    ; optional
+
+=head1 ATTRIBUTES
+
+=head2 C<finder>
+
+This attribute, if specified will
+
+=over 4
+
+=item * Override the C<FileFinder> used to find files containing packages
+
+=item * Inhibit autovivifcation of the C<.pm> file finder
+
+=back
+
+This parameter may be specified multiple times to aggregate a list of finders
+
+=head1 PRIVATE ATTRIBUTES
+
+=head2 _package_blacklist
+
+=head2 C<_finder_objects>
+
+=head1 PRIVATE METHODS
+
+=head2 _packages_for
+
+=head3 signature: $plugin->_packages_for( $filename, $file_content )
+
+=head3 returns: Array of L<Dist::Zilla::MetaProvides::ProvideRecord>
+
+=head2 _vivify_installmodules_pm_finder
+
+=head2 _build_finder_objects
+
+=head2 _found_files
 
 =head1 ROLES
 
@@ -316,14 +360,6 @@ eliminate it from the metadata shipped to L<Dist::Zilla>
 A conformant function to the L<Dist::Zilla::Role::MetaProvider::Provider> Role.
 
 =head3 signature: $plugin->provides()
-
-=head3 returns: Array of L<Dist::Zilla::MetaProvides::ProvideRecord>
-
-=head1 PRIVATE METHODS
-
-=head2 _packages_for
-
-=head3 signature: $plugin->_packages_for( $filename, $file_content )
 
 =head3 returns: Array of L<Dist::Zilla::MetaProvides::ProvideRecord>
 
