@@ -28,7 +28,7 @@ ATTRIBUTES
 
     *   Override the "FileFinder" used to find files containing packages
 
-    *   Inhibit autovivifcation of the ".pm" file finder
+    *   Inhibit autovivification of the ".pm" file finder
 
     This parameter may be specified multiple times to aggregate a list of
     finders

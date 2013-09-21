@@ -271,7 +271,7 @@ This attribute, if specified will
 
 =item * Override the C<FileFinder> used to find files containing packages
 
-=item * Inhibit autovivifcation of the C<.pm> file finder
+=item * Inhibit autovivification of the C<.pm> file finder
 
 =back
 
