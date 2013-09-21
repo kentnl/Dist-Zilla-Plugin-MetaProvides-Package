@@ -1,6 +1,6 @@
 Revision history for Dist-Zilla-Plugin-MetaProvides-Package
 
-1.14000004 2013-09-21T06:09:19Z
+1.14000004 2013-09-21T06:11:47Z
  [Dependencies::Added / develop requires]
  - Test::Kwalitee 1.08
 
