@@ -125,7 +125,7 @@ has finder => (
 has finder_objects => (
     isa      => 'ArrayRef',
     is       => ro =>,
-#    lazy     => 1,
+    lazy     => 1,
     init_arg => undef,
     builder  => _build_finder_objects =>,
 );
