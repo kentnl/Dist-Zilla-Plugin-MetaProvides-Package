@@ -13,6 +13,8 @@ SYNOPSIS
         inherit_missing = 0    ; optional
         meta_noindex    = 1    ; optional
 
+CONSUMED ROLES
+  Dist::Zilla::Role::MetaProvider::Provider
 ROLE SATISFYING METHODS
   "provides"
     A conformant function to the Dist::Zilla::Role::MetaProvider::Provider
@@ -41,8 +43,6 @@ PRIVATE METHODS
   "_vivify_installmodules_pm_finder"
   "_build_finder_objects"
   "_found_files"
-ROLES
-  Dist::Zilla::Role::MetaProvider::Provider
 OPTIONS INHERITED FROM Dist::Zilla::Role::MetaProvider::Provider
   "inherit_version"
     How do you want existing versions ( Versions hard-coded into files

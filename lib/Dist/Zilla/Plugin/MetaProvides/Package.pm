@@ -247,6 +247,10 @@ In your C<dist.ini>:
     inherit_missing = 0    ; optional
     meta_noindex    = 1    ; optional
 
+=head1 CONSUMED ROLES
+
+=head2 L<Dist::Zilla::Role::MetaProvider::Provider>
+
 =head1 ROLE SATISFYING METHODS
 
 =head2 C<provides>
@@ -292,10 +296,6 @@ This parameter may be specified multiple times to aggregate a list of finders
 =head2 C<_build_finder_objects>
 
 =head2 C<_found_files>
-
-=head1 ROLES
-
-=head2 L<Dist::Zilla::Role::MetaProvider::Provider>
 
 =begin MetaPOD::JSON v1.1.0
 
