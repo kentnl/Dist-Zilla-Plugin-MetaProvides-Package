@@ -167,6 +167,7 @@ sub _vivify_installmodules_pm_finder {
             code        => sub {
                 my ( $file, $self ) = @_;
                 local $_ = $file->name;
+                ## no critic (RegularExpressions)
                 return 1 if m{\Alib/} and m{\.(pm)$};
                 return 1 if $_ eq $self->zilla->main_module;
                 return;
