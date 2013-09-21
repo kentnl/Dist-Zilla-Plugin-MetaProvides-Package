@@ -13,6 +13,13 @@ SYNOPSIS
         inherit_missing = 0    ; optional
         meta_noindex    = 1    ; optional
 
+ROLE SATISFYING METHODS
+  "provides"
+    A conformant function to the Dist::Zilla::Role::MetaProvider::Provider
+    Role.
+
+   signature: $plugin->provides()
+   returns: Array of Dist::Zilla::MetaProvides::ProvideRecord
 ATTRIBUTES
   "finder"
     This attribute, if specified will
@@ -25,15 +32,15 @@ ATTRIBUTES
     finders
 
 PRIVATE ATTRIBUTES
-  _package_blacklist
+  "_package_blacklist"
   "_finder_objects"
 PRIVATE METHODS
-  _packages_for
+  "_packages_for"
    signature: $plugin->_packages_for( $filename, $file_content )
    returns: Array of Dist::Zilla::MetaProvides::ProvideRecord
-  _vivify_installmodules_pm_finder
-  _build_finder_objects
-  _found_files
+  "_vivify_installmodules_pm_finder"
+  "_build_finder_objects"
+  "_found_files"
 ROLES
   Dist::Zilla::Role::MetaProvider::Provider
 OPTIONS INHERITED FROM Dist::Zilla::Role::MetaProvider::Provider
@@ -81,13 +88,6 @@ OPTIONS INHERITED FROM Dist::Zilla::Role::MetaProvider::Provider
         When a module meets the criteria provided to "MetaNoIndex",
         eliminate it from the metadata shipped to Dist::Zilla
 
-ROLE SATISFYING METHODS
-  provides
-    A conformant function to the Dist::Zilla::Role::MetaProvider::Provider
-    Role.
-
-   signature: $plugin->provides()
-   returns: Array of Dist::Zilla::MetaProvides::ProvideRecord
 SEE ALSO
     *   Dist::Zilla::Plugin::MetaProvides
 

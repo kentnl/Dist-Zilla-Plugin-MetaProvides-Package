@@ -247,6 +247,16 @@ In your C<dist.ini>:
     inherit_missing = 0    ; optional
     meta_noindex    = 1    ; optional
 
+=head1 ROLE SATISFYING METHODS
+
+=head2 C<provides>
+
+A conformant function to the L<Dist::Zilla::Role::MetaProvider::Provider> Role.
+
+=head3 signature: $plugin->provides()
+
+=head3 returns: Array of L<Dist::Zilla::MetaProvides::ProvideRecord>
+
 =head1 ATTRIBUTES
 
 =head2 C<finder>
@@ -265,23 +275,23 @@ This parameter may be specified multiple times to aggregate a list of finders
 
 =head1 PRIVATE ATTRIBUTES
 
-=head2 _package_blacklist
+=head2 C<_package_blacklist>
 
 =head2 C<_finder_objects>
 
 =head1 PRIVATE METHODS
 
-=head2 _packages_for
+=head2 C<_packages_for>
 
 =head3 signature: $plugin->_packages_for( $filename, $file_content )
 
 =head3 returns: Array of L<Dist::Zilla::MetaProvides::ProvideRecord>
 
-=head2 _vivify_installmodules_pm_finder
+=head2 C<_vivify_installmodules_pm_finder>
 
-=head2 _build_finder_objects
+=head2 C<_build_finder_objects>
 
-=head2 _found_files
+=head2 C<_found_files>
 
 =head1 ROLES
 
@@ -352,16 +362,6 @@ When a module meets the criteria provided to L<< C<MetaNoIndex>|Dist::Zilla::Plu
 eliminate it from the metadata shipped to L<Dist::Zilla>
 
 =back
-
-=head1 ROLE SATISFYING METHODS
-
-=head2 provides
-
-A conformant function to the L<Dist::Zilla::Role::MetaProvider::Provider> Role.
-
-=head3 signature: $plugin->provides()
-
-=head3 returns: Array of L<Dist::Zilla::MetaProvides::ProvideRecord>
 
 =head1 SEE ALSO
 

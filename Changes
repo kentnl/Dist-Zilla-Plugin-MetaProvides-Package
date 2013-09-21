@@ -1,6 +1,6 @@
 Revision history for Dist-Zilla-Plugin-MetaProvides-Package
 
-1.15000000 2013-09-21T07:36:57Z
+1.15000000 2013-09-21T07:39:13Z
  [00 Major - File Finder]
  - Guts now uses a FileFinder to find files
  - Specify finder to override
