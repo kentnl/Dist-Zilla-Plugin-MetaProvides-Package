@@ -225,6 +225,10 @@ around dump_config => sub {
     return $config;
 };
 
+=attr C<finder>
+
+=cut
+
 has finder => (
     isa           => 'ArrayRef[Str]',
     is            => ro =>,
@@ -232,7 +236,7 @@ has finder => (
     predicate     => has_finder =>,
 );
 
-has finder_objects => (
+has _finder_objects => (
     isa      => 'ArrayRef',
     is       => ro =>,
     lazy     => 1,
@@ -243,7 +247,7 @@ has finder_objects => (
 around plugin_from_config => sub {
     my ( $orig, $self, @args ) = @_;
     my $plugin = $self->$orig(@args);
-    $plugin->finder_objects;
+    $plugin->_finder_objects;
     return $plugin;
 };
 
@@ -296,7 +300,7 @@ sub _build_finder_objects {
 sub _found_files {
     my ($self) = @_;
     my %by_name;
-    for my $plugin ( @{ $self->finder_objects } ) {
+    for my $plugin ( @{ $self->_finder_objects } ) {
         for my $file ( @{ $plugin->find_files } ) {
             $by_name{ $file->name } = $file;
         }
