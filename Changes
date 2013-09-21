@@ -10,12 +10,20 @@ Revision history for {{$dist->name}}
    name.
  - Provided finder only matches .pm files instead of .pm and .pod files
 
+ [00 Minor]
+ - Shows meta config now
+
  [Dependencies::Added / develop requires]
  - Test::Kwalitee 1.08
 
+ [Dependencies::Added / runtime requires]
+ - Dist::Zilla::Plugin::FinderCode
+ - MooseX::LazyRequire
+
  [Dependencies::Added / test requires]
- - Carp
+ - File::Spec
  - IO::Handle
+ - IPC::Open3
 
  [Dependencies::Changed / build requires]
  - Module::Build 0.4005 → 0.4007
@@ -26,8 +34,12 @@ Revision history for {{$dist->name}}
  [Dependencies::Changed / develop suggests]
  - Dist::Zilla::PluginBundle::Author::KENTNL v1.7.4 → v1.8.3
 
+ [Dependencies::Changed / runtime requires]
+ - Dist::Zilla::Plugin::MetaProvides 1.14000000 → 1.15000000
+
  [Dependencies::Removed / test requires]
  - File::Find
+ - File::Temp
 
  [Documentation]
  - Changes file normalised retroactively
