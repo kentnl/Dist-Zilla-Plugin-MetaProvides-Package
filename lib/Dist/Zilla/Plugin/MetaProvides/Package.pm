@@ -112,6 +112,22 @@ sub _packages_for {
     return @namespaces->map($to_record)->flatten;
 
 }
+around dump_config => sub {
+  my ( $orig, $self, @args ) = @_;
+  my $config    = $self->$orig(@args);
+  my $localconf = {};
+  for my $var (qw( finder )) {
+    my $pred = 'has_' . $var;
+    if ( $self->can($pred) ) {
+      next unless $self->$pred();
+    }
+    if ( $self->can($var) ) {
+      $localconf->{$var} = $self->$var();
+    }
+  }
+  $config->{ q{} . __PACKAGE__ } = $localconf;
+  return $config;
+};
 
 has finder => (
     isa           => 'ArrayRef[Str]',
