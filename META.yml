@@ -130,7 +130,7 @@ x_Dist_Zilla:
     -
       class: Dist::Zilla::Plugin::MetaProvides::Package
       name: '@Author::KENTNL/MetaProvides::Package'
-      version: 1.14000004
+      version: ~
     -
       class: Dist::Zilla::Plugin::MetaData::BuiltWith
       config:
