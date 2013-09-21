@@ -193,9 +193,14 @@
             "version" : "0.38"
          },
          {
+            "class" : "Dist::Zilla::Plugin::FinderCode",
+            "name" : "@Author::KENTNL/MetaProvides::Package/AUTOVIV/:InstallModulesPM",
+            "version" : "4.300039"
+         },
+         {
             "class" : "Dist::Zilla::Plugin::MetaProvides::Package",
             "name" : "@Author::KENTNL/MetaProvides::Package",
-            "version" : "1.14000004"
+            "version" : null
          },
          {
             "class" : "Dist::Zilla::Plugin::MetaData::BuiltWith",
