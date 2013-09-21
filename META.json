@@ -200,6 +200,7 @@
          {
             "class" : "Dist::Zilla::Plugin::MetaProvides::Package",
             "config" : {
+               "Dist::Zilla::Plugin::MetaProvides::Package" : {},
                "Dist::Zilla::Role::MetaProvider::Provider" : {
                   "inherit_missing" : "1",
                   "inherit_version" : "1",
