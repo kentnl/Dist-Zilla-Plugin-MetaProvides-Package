@@ -4,9 +4,9 @@ use warnings;
 package Dist::Zilla::Plugin::MetaProvides::Package;
 
 # ABSTRACT: Extract namespaces/version from traditional packages for provides
-#
-# $Id:$
+
 use Moose;
+use MooseX::LazyRequire;
 use MooseX::Types::Moose qw( HashRef Str );
 use Moose::Autobox;
 use Module::Metadata 1.000005;
@@ -119,15 +119,13 @@ A conformant function to the L<Dist::Zilla::Role::MetaProvider::Provider> Role.
 
 sub provides {
     my $self        = shift;
-    my $perl_module = sub {
-        ## no critic (RegularExpressions)
-        $_->name =~ m{^lib[/].*[.](pm|pod)$};
-    };
     my $get_records = sub {
         $self->_packages_for( $_->name, $_->content );
     };
-    my (@files)   = $self->zilla->files()->flatten;
-    my (@records) = @files->grep($perl_module)->map($get_records)->flatten;
+    my (@records);
+    for my $file ( @{ $self->found_files() } ) {
+        push @records, $self->_packages_for( $file->name, $file->content );
+    }
     return $self->_apply_meta_noindex(@records);
 }
 
@@ -210,6 +208,89 @@ sub _packages_for {
     return @namespaces->map($to_record)->flatten;
 
 }
+
+has finder => (
+    isa           => 'ArrayRef[Str]',
+    is            => ro =>,
+    lazy_required => 1,
+    predicate     => has_finder =>
+);
+
+has finder_objects => (
+    isa      => 'ArrayRef',
+    is       => ro =>,
+    lazy     => 1,
+    init_arg => undef,
+    builder  => _build_finder_objects =>,
+);
+
+around plugin_from_config => sub {
+    my ( $orig, $self, @args ) = @_;
+    my $plugin = $self->$orig(@args);
+    $plugin->finder_objects;
+    return $plugin;
+};
+
+sub _vivify_installmodules_pm_finder {
+    my ($self) = @_;
+    my $name = $self->plugin_name;
+    $name .= '/AUTOVIV/:InstallModulesPM';
+    if ( my $plugin = $self->zilla->plugin_named($name) ) {
+        return $plugin;
+    }
+    require Dist::Zilla::Plugin::FinderCode;
+    my $plugin = Dist::Zilla::Plugin::FinderCode->new(
+        {
+            plugin_name => $name,
+            zilla       => $self->zilla,
+            style       => 'grep',
+            code        => sub {
+                my ( $file, $self ) = @_;
+                local $_ = $file->name;
+                return 1 if m{\Alib/} and m{\.(pm)$};
+                return 1 if $_ eq $self->zilla->main_module;
+                return;
+            },
+        }
+    );
+    $self->zilla->plugins->push($plugin);
+    return $plugin;
+}
+
+sub _build_finder_objects {
+    my ($self) = @_;
+    if ( $self->has_finder ) {
+        my @out;
+        for my $finder ( @{ $self->finder } ) {
+            my $plugin = $self->zilla->plugin_named($finder);
+            if ( not $plugin ) {
+                $self->log_fatal("no plugin named $finder found");
+            }
+            if ( not $plugin->does('Dist::Zilla::Role::FileFinder') ) {
+                $self->log_fatal("plugin $finder is not a FileFinder");
+            }
+            push @out, $plugin;
+        }
+        return \@out;
+    }
+    return [ $self->_vivify_installmodules_pm_finder ];
+}
+
+sub found_files {
+    my ($self) = @_;
+    my %by_name;
+    for my $plugin ( @{ $self->finder_objects } ) {
+        for my $file ( @{ $plugin->find_files } ) {
+            $by_name{ $file->name } = $file;
+        }
+    }
+    return [ values %by_name ];
+}
+
+around mvp_multivalue_args => sub {
+    my ( $orig, $self, @rest ) = @_;
+    return ( 'finder', $self->$orig(@rest) );
+};
 
 =head1 SEE ALSO
 
