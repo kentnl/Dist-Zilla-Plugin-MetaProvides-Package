@@ -1,6 +1,6 @@
 Revision history for Dist-Zilla-Plugin-MetaProvides-Package
 
-1.15000001 2013-11-22T03:59:47Z
+1.15000001 2013-11-22T04:00:18Z
  [Dependencies]
  - Upgrade MB and Test::More
 
