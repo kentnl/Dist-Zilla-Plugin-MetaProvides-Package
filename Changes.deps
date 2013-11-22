@@ -1,0 +1,106 @@
+1.15000001
+ [Changed / build requires]
+ - Module::Build 0.4007 → 0.4202
+
+ [Changed / configure requires]
+ - Module::Build 0.4007 → 0.4202
+
+ [Changed / test requires]
+ - Test::More 0.98 → 1.001002
+
+ [Removed / test requires]
+ - File::Spec
+ - IO::Handle
+ - IPC::Open3
+
+1.15000000 2013-09-21T07:43:15Z
+ [Added / runtime requires]
+ - Dist::Zilla::Plugin::FinderCode
+ - MooseX::LazyRequire
+
+ [Added / test requires]
+ - File::Spec
+ - IO::Handle
+ - IPC::Open3
+
+ [Changed / build requires]
+ - Module::Build 0.4005 → 0.4007
+
+ [Changed / configure requires]
+ - Module::Build 0.4005 → 0.4007
+
+ [Changed / runtime requires]
+ - Dist::Zilla::Plugin::MetaProvides 1.14000000 → 1.15000000
+
+ [Removed / test requires]
+ - File::Find
+ - File::Temp
+
+1.14000003 2013-07-09T01:30:35Z
+ [Changed / build requires]
+ - Module::Build 0.4004 → 0.4005
+
+ [Changed / configure requires]
+ - Module::Build 0.4004 → 0.4005
+
+ [Changed / runtime requires]
+ - Data::Dump 0 → 1.16
+
+1.14000002 2013-04-09T03:09:31Z
+ [Changed / build requires]
+ - Module::Build 0.3601 → 0.4004
+
+ [Changed / configure requires]
+ - Module::Build 0.3601 → 0.4004
+
+ [Changed / test requires]
+ - Test::More 0.96 → 0.98
+
+1.14000001 2012-02-26T20:46:35Z
+ [Changed / runtime requires]
+ - Module::Metadata 0 → 1.000005
+
+1.14000000 2012-02-07T14:46:46Z
+ [Added / runtime requires]
+ - IO::String
+ - Module::Metadata
+ - MooseX::Types::Moose
+
+ [Added / test requires]
+ - File::Temp
+
+ [Changed / runtime requires]
+ - Dist::Zilla::MetaProvides::ProvideRecord 0 → 1.14000000
+ - Dist::Zilla::Plugin::MetaProvides 1.12044806 → 1.14000000
+
+ [Removed / runtime requires]
+ - File::Temp
+ - Module::Extract::Namespaces 0.14
+ - Module::Extract::VERSION 0.13
+
+ [Removed / runtime suggests]
+ - Module::Extract::Namespaces 0.1402
+
+1.12060502 2012-02-04T03:50:41Z
+ [Added / runtime requires]
+ - Data::Dump
+ - perl 5.006
+ - strict
+ - warnings
+
+ [Added / runtime suggests]
+ - Module::Extract::Namespaces 0.1402
+
+ [Removed / test requires]
+ - English
+
+1.12060501 2011-04-08T13:49:06Z
+ [Changed / test requires]
+ - Test::More 0.88 → 0.96
+
+1.12060213 2011-04-06T01:20:11Z
+
+1.12044908 2010-11-07T20:08:27Z
+
+1.11044404 2010-11-02T16:58:53Z
+

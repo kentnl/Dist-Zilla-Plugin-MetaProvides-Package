@@ -169,7 +169,7 @@
          "Dist::Zilla::Plugin::MetaJSON" : "5.006",
          "Dist::Zilla::Plugin::MetaNoIndex" : "5.006",
          "Dist::Zilla::Plugin::MetaProvides" : "1.15000100",
-         "Dist::Zilla::Plugin::MetaProvides::Package" : "1.15000000",
+         "Dist::Zilla::Plugin::MetaProvides::Package" : "1.15000001",
          "Dist::Zilla::Plugin::MetaTests" : "5.006",
          "Dist::Zilla::Plugin::MetaYAML" : "5.006",
          "Dist::Zilla::Plugin::ModuleBuild" : "5.006",
@@ -283,7 +283,7 @@
                }
             },
             "name" : "@Author::KENTNL/MetaProvides::Package",
-            "version" : "1.15000000"
+            "version" : "1.15000001"
          },
          {
             "class" : "Dist::Zilla::Plugin::MetaData::BuiltWith",
@@ -429,9 +429,9 @@
                         "version" : "4.004"
                      },
                      {
-                        "class" : "Pod::Weaver::Plugin::Encoding",
-                        "name" : "-Encoding",
-                        "version" : "0.02"
+                        "class" : "Pod::Weaver::Plugin::SingleEncoding",
+                        "name" : "-SingleEncoding",
+                        "version" : "4.004"
                      },
                      {
                         "class" : "Pod::Weaver::Section::Name",
