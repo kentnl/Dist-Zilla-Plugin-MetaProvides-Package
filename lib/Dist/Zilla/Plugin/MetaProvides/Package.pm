@@ -6,7 +6,7 @@ BEGIN {
   $Dist::Zilla::Plugin::MetaProvides::Package::AUTHORITY = 'cpan:KENTNL';
 }
 {
-  $Dist::Zilla::Plugin::MetaProvides::Package::VERSION = '1.15000000';
+  $Dist::Zilla::Plugin::MetaProvides::Package::VERSION = '1.15000001';
 }
 
 # ABSTRACT: Extract namespaces/version from traditional packages for provides
@@ -228,7 +228,7 @@ __END__
 
 =pod
 
-=encoding utf-8
+=encoding UTF-8
 
 =head1 NAME
 
@@ -236,7 +236,7 @@ Dist::Zilla::Plugin::MetaProvides::Package - Extract namespaces/version from tra
 
 =head1 VERSION
 
-version 1.15000000
+version 1.15000001
 
 =head1 SYNOPSIS
 
