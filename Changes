@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+1.15000001 2013-11-22T04:02:12Z
  [Dependencies]
  - Upgrade MB and Test::More
 
