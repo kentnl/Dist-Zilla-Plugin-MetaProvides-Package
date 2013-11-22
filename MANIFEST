@@ -23,7 +23,7 @@ maint-travis-ci/sterilize_env.pl
 maint-travis-ci/sync_tree.pl
 maint-travis-ci/yamls/sterile.yaml
 perlcritic.rc
-t/00-compile.t
+t/00-compile/lib_Dist_Zilla_Plugin_MetaProvides_Package_pm.t
 t/000-report-versions-tiny.t
 t/dz2-hidden-provides.t
 t/dz2-provides.t
