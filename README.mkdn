@@ -4,7 +4,7 @@ Dist::Zilla::Plugin::MetaProvides::Package - Extract namespaces/version from tra
 
 # VERSION
 
-version 1.15000000
+version 1.15000001
 
 # SYNOPSIS
 
@@ -17,17 +17,17 @@ In your `dist.ini`:
 
 # CONSUMED ROLES
 
-## [Dist::Zilla::Role::MetaProvider::Provider](http://search.cpan.org/perldoc?Dist::Zilla::Role::MetaProvider::Provider)
+## [Dist::Zilla::Role::MetaProvider::Provider](https://metacpan.org/pod/Dist::Zilla::Role::MetaProvider::Provider)
 
 # ROLE SATISFYING METHODS
 
 ## `provides`
 
-A conformant function to the [Dist::Zilla::Role::MetaProvider::Provider](http://search.cpan.org/perldoc?Dist::Zilla::Role::MetaProvider::Provider) Role.
+A conformant function to the [Dist::Zilla::Role::MetaProvider::Provider](https://metacpan.org/pod/Dist::Zilla::Role::MetaProvider::Provider) Role.
 
 ### signature: $plugin->provides()
 
-### returns: Array of [Dist::Zilla::MetaProvides::ProvideRecord](http://search.cpan.org/perldoc?Dist::Zilla::MetaProvides::ProvideRecord)
+### returns: Array of [Dist::Zilla::MetaProvides::ProvideRecord](https://metacpan.org/pod/Dist::Zilla::MetaProvides::ProvideRecord)
 
 # ATTRIBUTES
 
@@ -52,7 +52,7 @@ This parameter may be specified multiple times to aggregate a list of finders
 
 ### signature: $plugin->\_packages\_for( $filename, $file\_content )
 
-### returns: Array of [Dist::Zilla::MetaProvides::ProvideRecord](http://search.cpan.org/perldoc?Dist::Zilla::MetaProvides::ProvideRecord)
+### returns: Array of [Dist::Zilla::MetaProvides::ProvideRecord](https://metacpan.org/pod/Dist::Zilla::MetaProvides::ProvideRecord)
 
 ## `_vivify_installmodules_pm_finder`
 
@@ -69,9 +69,9 @@ This parameter may be specified multiple times to aggregate a list of finders
 
 
 
-# OPTIONS INHERITED FROM [Dist::Zilla::Role::MetaProvider::Provider](http://search.cpan.org/perldoc?Dist::Zilla::Role::MetaProvider::Provider)
+# OPTIONS INHERITED FROM [Dist::Zilla::Role::MetaProvider::Provider](https://metacpan.org/pod/Dist::Zilla::Role::MetaProvider::Provider)
 
-## [`inherit_version`](http://search.cpan.org/perldoc?Dist::Zilla::Role::MetaProvider::Provider#inherit\_version)
+## [`inherit_version`](https://metacpan.org/pod/Dist::Zilla::Role::MetaProvider::Provider#inherit_version)
 
 How do you want existing versions ( Versions hard-coded into files before running this plug-in )to be processed?
 
@@ -83,9 +83,9 @@ How do you want existing versions ( Versions hard-coded into files before runnin
 
     Use this option if you actually want to use hard-coded values in your files and use the versions parsed out of them.
 
-## [`inherit_missing`](http://search.cpan.org/perldoc?Dist::Zilla::Role::MetaProvider::Provider#inherit\_missing)
+## [`inherit_missing`](https://metacpan.org/pod/Dist::Zilla::Role::MetaProvider::Provider#inherit_missing)
 
-In the event you are using the aforementioned `["inherit\_version"](#inherit\_version) = 0`, this determines how to behave when encountering a
+In the event you are using the aforementioned `["inherit_version"](#inherit_version) = 0`, this determines how to behave when encountering a
 module with no version defined.
 
 - DEFAULT: inherit\_missing = 1
@@ -97,9 +97,9 @@ module with no version defined.
 
     When a module has no version, emit a versionless record in the final metadata.
 
-## [`meta_noindex`](http://search.cpan.org/perldoc?Dist::Zilla::Role::MetaProvider::Provider#meta\_noindex)
+## [`meta_noindex`](https://metacpan.org/pod/Dist::Zilla::Role::MetaProvider::Provider#meta_noindex)
 
-This is a utility for people who are also using [`MetaNoIndex`](http://search.cpan.org/perldoc?Dist::Zilla::Plugin::MetaNoIndex),
+This is a utility for people who are also using [`MetaNoIndex`](https://metacpan.org/pod/Dist::Zilla::Plugin::MetaNoIndex),
 so that its settings can be used to eliminate items from the 'provides' list.
 
 - meta\_noindex = 0
@@ -108,12 +108,12 @@ so that its settings can be used to eliminate items from the 'provides' list.
 
 - DEFAULT: meta\_noindex = 1
 
-    When a module meets the criteria provided to [`MetaNoIndex`](http://search.cpan.org/perldoc?Dist::Zilla::Plugin::MetaNoIndex),
-    eliminate it from the metadata shipped to [Dist::Zilla](http://search.cpan.org/perldoc?Dist::Zilla)
+    When a module meets the criteria provided to [`MetaNoIndex`](https://metacpan.org/pod/Dist::Zilla::Plugin::MetaNoIndex),
+    eliminate it from the metadata shipped to [Dist::Zilla](https://metacpan.org/pod/Dist::Zilla)
 
 # SEE ALSO
 
-- [Dist::Zilla::Plugin::MetaProvides](http://search.cpan.org/perldoc?Dist::Zilla::Plugin::MetaProvides)
+- [Dist::Zilla::Plugin::MetaProvides](https://metacpan.org/pod/Dist::Zilla::Plugin::MetaProvides)
 
 # AUTHOR
 
