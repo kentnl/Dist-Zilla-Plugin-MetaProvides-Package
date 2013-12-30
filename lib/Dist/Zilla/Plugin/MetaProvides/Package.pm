@@ -6,7 +6,7 @@ BEGIN {
   $Dist::Zilla::Plugin::MetaProvides::Package::AUTHORITY = 'cpan:KENTNL';
 }
 {
-  $Dist::Zilla::Plugin::MetaProvides::Package::VERSION = '1.15000001';
+  $Dist::Zilla::Plugin::MetaProvides::Package::VERSION = '1.150000';
 }
 
 # ABSTRACT: Extract namespaces/version from traditional packages for provides
@@ -35,6 +35,7 @@ sub provides {
     my $get_records = sub {
         $self->_packages_for( $_->name, $_->content );
     };
+    $self->log_fatal("An Err");
     my (@records);
     for my $file ( @{ $self->_found_files() } ) {
         push @records, $self->_packages_for( $file->name, $file->content );
@@ -236,7 +237,7 @@ Dist::Zilla::Plugin::MetaProvides::Package - Extract namespaces/version from tra
 
 =head1 VERSION
 
-version 1.15000001
+version 1.150000
 
 =head1 SYNOPSIS
 
