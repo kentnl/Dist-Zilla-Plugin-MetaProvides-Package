@@ -258,13 +258,6 @@ has _finder_objects => (
     builder  => _build_finder_objects =>,
 );
 
-around plugin_from_config => sub {
-    my ( $orig, $self, @args ) = @_;
-    my $plugin = $self->$orig(@args);
-    $plugin->_finder_objects;
-    return $plugin;
-};
-
 =p_method C<_vivify_installmodules_pm_finder>
 
 =cut
