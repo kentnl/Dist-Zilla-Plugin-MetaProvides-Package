@@ -166,9 +166,9 @@ sub _packages_for {
                 if ( ref $_[1] and $_[1]->isa('version') ) {
                     return { dump => $_[1]->stringify };
                 }
-                return { hide_keys => ['pod_headings'] };
-            }
-        )
+                return { hide_keys => ['pod_headings'], };
+            },
+        ),
     );
     my $remove_bad = sub {
         my $item = shift;
@@ -190,8 +190,8 @@ sub _packages_for {
                 \%struct,
                 sub {
                     return { hide_keys => ['parent'] };
-                }
-            )
+                },
+            ),
         );
         Dist::Zilla::MetaProvides::ProvideRecord->new(%struct);
     };
@@ -284,7 +284,7 @@ sub _vivify_installmodules_pm_finder {
                 return 1 if $_ eq $self->zilla->main_module;
                 return;
             },
-        }
+        },
     );
     $self->zilla->plugins->push($plugin);
     return $plugin;
