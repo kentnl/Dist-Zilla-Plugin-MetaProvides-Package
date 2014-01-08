@@ -1,3 +1,4 @@
+use 5.010;    # perldoc perl5101delta -> bugfix related to handling of /m
 use strict;
 use warnings;
 
