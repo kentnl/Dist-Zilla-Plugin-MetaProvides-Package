@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+1.15000002 2014-01-08T08:12:21Z
  [00 Minor]
  - Bug fix: Overzealously triggered finder vivification, which lead to
    modules/finders being declared after the plugin not being useable (
