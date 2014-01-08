@@ -75,7 +75,7 @@ sub _packages_for {
                 }
                 return { hide_keys => ['pod_headings'] };
             },
-        )
+        ),
     );
     my $remove_bad = sub {
         my $item = shift;
@@ -118,13 +118,13 @@ around dump_config => sub {
     my ( $orig, $self, @args ) = @_;
     my $config    = $self->$orig(@args);
     my $localconf = {};
-    for my $var (qw( finder )) {
-        my $pred = 'has_' . $var;
+    for my $attribute (qw( finder )) {
+        my $pred = 'has_' . $attribute;
         if ( $self->can($pred) ) {
             next unless $self->$pred();
         }
-        if ( $self->can($var) ) {
-            $localconf->{$var} = $self->$var();
+        if ( $self->can($attribute) ) {
+            $localconf->{$attribute} = $self->$attribute();
         }
     }
     $config->{ q{} . __PACKAGE__ } = $localconf;
