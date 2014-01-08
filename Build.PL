@@ -36,7 +36,7 @@ my %module_build_args = (
     "MooseX::LazyRequire" => 0,
     "MooseX::Types::Moose" => 0,
     "namespace::autoclean" => 0,
-    "perl" => "5.006",
+    "perl" => "5.010",
     "strict" => 0,
     "warnings" => 0
   },

@@ -1,4 +1,4 @@
-use 5.006; # warnings
+use 5.010; # qr//m
 use strict;
 use warnings;
 
@@ -74,7 +74,7 @@ sub _packages_for {
                     return { dump => $_[1]->stringify };
                 }
                 return { hide_keys => ['pod_headings'] };
-            }
+            },
         )
     );
     my $remove_bad = sub {
