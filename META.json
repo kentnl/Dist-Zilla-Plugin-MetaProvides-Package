@@ -166,7 +166,7 @@
          "Dist::Zilla::Plugin::MetaJSON" : "5.009",
          "Dist::Zilla::Plugin::MetaNoIndex" : "5.009",
          "Dist::Zilla::Plugin::MetaProvides" : "1.15000200",
-         "Dist::Zilla::Plugin::MetaProvides::Package" : "1.15000001",
+         "Dist::Zilla::Plugin::MetaProvides::Package" : "1.15000002",
          "Dist::Zilla::Plugin::MetaTests" : "5.009",
          "Dist::Zilla::Plugin::MetaYAML" : "5.009",
          "Dist::Zilla::Plugin::MinimumPerl" : "1.003",
@@ -272,11 +272,6 @@
             "version" : "0.42"
          },
          {
-            "class" : "Dist::Zilla::Plugin::FinderCode",
-            "name" : "@Author::KENTNL/MetaProvides::Package/AUTOVIV/:InstallModulesPM",
-            "version" : "5.009"
-         },
-         {
             "class" : "Dist::Zilla::Plugin::MetaProvides::Package",
             "config" : {
                "Dist::Zilla::Plugin::MetaProvides::Package" : {},
@@ -287,7 +282,7 @@
                }
             },
             "name" : "@Author::KENTNL/MetaProvides::Package",
-            "version" : "1.15000001"
+            "version" : "1.15000002"
          },
          {
             "class" : "Dist::Zilla::Plugin::MetaData::BuiltWith",
