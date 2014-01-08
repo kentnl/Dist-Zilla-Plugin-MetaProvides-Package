@@ -73,7 +73,7 @@ sub _packages_for {
                 if ( ref $_[1] and $_[1]->isa('version') ) {
                     return { dump => $_[1]->stringify };
                 }
-                return { hide_keys => ['pod_headings'] };
+                return { hide_keys => ['pod_headings'], };
             },
         ),
     );
