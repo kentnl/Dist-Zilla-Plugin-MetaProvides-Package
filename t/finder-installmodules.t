@@ -25,11 +25,17 @@ subtest basic_implementation_tests => sub {
             $zilla = test_config(
                 {
                     dist_root => 'corpus/dist/installmodules',
-                    ini       => [ 'GatherDir', [ 'MetaProvides::Package' => { 
-                                    inherit_version => 0, inherit_missing => 1 ,
-                                    finder => ':InstallModules',
-                        } ] ],
-                    build     => 1,
+                    ini       => [
+                        'GatherDir',
+                        [
+                            'MetaProvides::Package' => {
+                                inherit_version => 0,
+                                inherit_missing => 1,
+                                finder          => ':InstallModules',
+                            }
+                        ]
+                    ],
+                    build => 1,
                 }
             );
         },
