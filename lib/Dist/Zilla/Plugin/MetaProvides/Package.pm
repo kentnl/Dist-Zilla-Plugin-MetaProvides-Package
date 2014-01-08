@@ -103,6 +103,7 @@ sub _packages_for {
         Dist::Zilla::MetaProvides::ProvideRecord->new(%struct);
     };
 
+    ## no critic (ProhibitArrayAssignARef)
     my @namespaces = [ $meta->packages_inside() ]->grep($remove_bad)->flatten;
 
     $self->log_debug( 'Discovered namespaces: ' . Data::Dump::pp( \@namespaces ) . ' in ' . $filename );
