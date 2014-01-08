@@ -171,7 +171,7 @@ sub _vivify_installmodules_pm_finder {
                 return 1 if $_ eq $self->zilla->main_module;
                 return;
             },
-        }
+        },
     );
     $self->zilla->plugins->push($plugin);
     return $plugin;
