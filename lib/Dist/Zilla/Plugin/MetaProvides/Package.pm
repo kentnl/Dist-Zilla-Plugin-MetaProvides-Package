@@ -97,7 +97,7 @@ sub _packages_for {
                 \%struct,
                 sub {
                     return { hide_keys => ['parent'] };
-                }
+                },
             )
         );
         Dist::Zilla::MetaProvides::ProvideRecord->new(%struct);
