@@ -1,3 +1,4 @@
+use 5.010;    # perldoc perl5101delta -> bugfix related to handling of /m
 use strict;
 use warnings;
 
@@ -6,12 +7,12 @@ BEGIN {
   $Dist::Zilla::Plugin::MetaProvides::Package::AUTHORITY = 'cpan:KENTNL';
 }
 {
-  $Dist::Zilla::Plugin::MetaProvides::Package::VERSION = '1.15000001';
+  $Dist::Zilla::Plugin::MetaProvides::Package::VERSION = '1.15000002';
 }
 
 # ABSTRACT: Extract namespaces/version from traditional packages for provides
 
-use Moose;
+use Moose qw( with has around );
 use MooseX::LazyRequire;
 use MooseX::Types::Moose qw( HashRef Str );
 use Moose::Autobox;
@@ -72,9 +73,9 @@ sub _packages_for {
                 if ( ref $_[1] and $_[1]->isa('version') ) {
                     return { dump => $_[1]->stringify };
                 }
-                return { hide_keys => ['pod_headings'] };
-            }
-        )
+                return { hide_keys => ['pod_headings'], };
+            },
+        ),
     );
     my $remove_bad = sub {
         my $item = shift;
@@ -96,12 +97,13 @@ sub _packages_for {
                 \%struct,
                 sub {
                     return { hide_keys => ['parent'] };
-                }
-            )
+                },
+            ),
         );
         Dist::Zilla::MetaProvides::ProvideRecord->new(%struct);
     };
 
+    ## no critic (ProhibitArrayAssignARef)
     my @namespaces = [ $meta->packages_inside() ]->grep($remove_bad)->flatten;
 
     $self->log_debug( 'Discovered namespaces: ' . Data::Dump::pp( \@namespaces ) . ' in ' . $filename );
@@ -117,13 +119,13 @@ around dump_config => sub {
     my ( $orig, $self, @args ) = @_;
     my $config    = $self->$orig(@args);
     my $localconf = {};
-    for my $var (qw( finder )) {
-        my $pred = 'has_' . $var;
+    for my $attribute (qw( finder )) {
+        my $pred = 'has_' . $attribute;
         if ( $self->can($pred) ) {
             next unless $self->$pred();
         }
-        if ( $self->can($var) ) {
-            $localconf->{$var} = $self->$var();
+        if ( $self->can($attribute) ) {
+            $localconf->{$attribute} = $self->$attribute();
         }
     }
     $config->{ q{} . __PACKAGE__ } = $localconf;
@@ -147,13 +149,6 @@ has _finder_objects => (
     builder  => _build_finder_objects =>,
 );
 
-around plugin_from_config => sub {
-    my ( $orig, $self, @args ) = @_;
-    my $plugin = $self->$orig(@args);
-    $plugin->_finder_objects;
-    return $plugin;
-};
-
 
 sub _vivify_installmodules_pm_finder {
     my ($self) = @_;
@@ -176,7 +171,7 @@ sub _vivify_installmodules_pm_finder {
                 return 1 if $_ eq $self->zilla->main_module;
                 return;
             },
-        }
+        },
     );
     $self->zilla->plugins->push($plugin);
     return $plugin;
@@ -236,7 +231,7 @@ Dist::Zilla::Plugin::MetaProvides::Package - Extract namespaces/version from tra
 
 =head1 VERSION
 
-version 1.15000001
+version 1.15000002
 
 =head1 SYNOPSIS
 
@@ -377,7 +372,7 @@ Kent Fredric <kentnl@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2013 by Kent Fredric.
+This software is copyright (c) 2014 by Kent Fredric.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

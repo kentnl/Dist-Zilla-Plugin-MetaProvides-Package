@@ -1,4 +1,14 @@
-1.15000001
+1.15000002
+ [Changed / build requires]
+ - Module::Build 0.4202 → 0.4203
+
+ [Changed / configure requires]
+ - Module::Build 0.4202 → 0.4203
+
+ [Changed / runtime requires]
+ - perl 5.006 → 5.010
+
+1.15000001 2013-11-22T04:02:12Z
  [Changed / build requires]
  - Module::Build 0.4007 → 0.4202
 
@@ -103,4 +113,8 @@
 1.12044908 2010-11-07T20:08:27Z
 
 1.11044404 2010-11-02T16:58:53Z
+
+1.11034304 2010-07-25T16:18:01Z
+ [Removed / runtime requires]
+ - aliased
 
