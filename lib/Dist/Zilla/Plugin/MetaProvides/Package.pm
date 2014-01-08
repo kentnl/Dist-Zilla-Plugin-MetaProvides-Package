@@ -6,7 +6,7 @@ BEGIN {
   $Dist::Zilla::Plugin::MetaProvides::Package::AUTHORITY = 'cpan:KENTNL';
 }
 {
-  $Dist::Zilla::Plugin::MetaProvides::Package::VERSION = '1.150000';
+  $Dist::Zilla::Plugin::MetaProvides::Package::VERSION = '1.15000002';
 }
 
 # ABSTRACT: Extract namespaces/version from traditional packages for provides
@@ -35,7 +35,6 @@ sub provides {
     my $get_records = sub {
         $self->_packages_for( $_->name, $_->content );
     };
-    $self->log_fatal("An Err");
     my (@records);
     for my $file ( @{ $self->_found_files() } ) {
         push @records, $self->_packages_for( $file->name, $file->content );
@@ -148,12 +147,12 @@ has _finder_objects => (
     builder  => _build_finder_objects =>,
 );
 
-around plugin_from_config => sub {
-    my ( $orig, $self, @args ) = @_;
-    my $plugin = $self->$orig(@args);
-    $plugin->_finder_objects;
-    return $plugin;
-};
+#around plugin_from_config => sub {
+#    my ( $orig, $self, @args ) = @_;
+#    my $plugin = $self->$orig(@args);
+#    $plugin->_finder_objects;
+#    return $plugin;
+#};
 
 
 sub _vivify_installmodules_pm_finder {
@@ -237,7 +236,7 @@ Dist::Zilla::Plugin::MetaProvides::Package - Extract namespaces/version from tra
 
 =head1 VERSION
 
-version 1.150000
+version 1.15000002
 
 =head1 SYNOPSIS
 
@@ -378,7 +377,7 @@ Kent Fredric <kentnl@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2013 by Kent Fredric.
+This software is copyright (c) 2014 by Kent Fredric.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

@@ -11,7 +11,7 @@ build_requires:
 configure_requires:
   Module::Build: 0.4203
 dynamic_config: 0
-generated_by: 'Dist::Zilla version 5.008, CPAN::Meta::Converter version 2.133380'
+generated_by: 'Dist::Zilla version 5.009, CPAN::Meta::Converter version 2.133380'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -24,7 +24,7 @@ no_index:
 provides:
   Dist::Zilla::Plugin::MetaProvides::Package:
     file: lib/Dist/Zilla/Plugin/MetaProvides/Package.pm
-    version: 1.150000
+    version: 1.15000002
 requires:
   Data::Dump: 1.16
   Dist::Zilla::MetaProvides::ProvideRecord: 1.14000000
@@ -45,17 +45,17 @@ resources:
   bugtracker: https://github.com/kentfredric/Dist-Zilla-Plugin-MetaProvides-Package/issues
   homepage: https://github.com/kentfredric/Dist-Zilla-Plugin-MetaProvides-Package
   repository: https://github.com/kentfredric/Dist-Zilla-Plugin-MetaProvides-Package.git
-version: 1.150000
+version: 1.15000002
 x_BuiltWith:
   modules:
     Data::Dump: 1.22
     Dist::Zilla::MetaProvides::ProvideRecord: 1.15000200
     Dist::Zilla::Plugin::Authority: 1.006
-    Dist::Zilla::Plugin::AutoPrereqs: 5.008
+    Dist::Zilla::Plugin::AutoPrereqs: 5.009
     Dist::Zilla::Plugin::Bootstrap::lib: 0.04000002
-    Dist::Zilla::Plugin::ConfirmRelease: 5.008
+    Dist::Zilla::Plugin::ConfirmRelease: 5.009
     Dist::Zilla::Plugin::EOLTests: 0.02
-    Dist::Zilla::Plugin::FinderCode: 5.008
+    Dist::Zilla::Plugin::FinderCode: 5.009
     Dist::Zilla::Plugin::Git::Check: 2.019
     Dist::Zilla::Plugin::Git::Commit: 2.019
     Dist::Zilla::Plugin::Git::CommitBuild: 2.019
@@ -63,25 +63,25 @@ x_BuiltWith:
     Dist::Zilla::Plugin::Git::NextVersion::Sanitized: 0.001000
     Dist::Zilla::Plugin::Git::Tag: 2.019
     Dist::Zilla::Plugin::GithubMeta: 0.42
-    Dist::Zilla::Plugin::License: 5.008
-    Dist::Zilla::Plugin::Manifest: 5.008
-    Dist::Zilla::Plugin::ManifestSkip: 5.008
-    Dist::Zilla::Plugin::MetaConfig: 5.008
+    Dist::Zilla::Plugin::License: 5.009
+    Dist::Zilla::Plugin::Manifest: 5.009
+    Dist::Zilla::Plugin::ManifestSkip: 5.009
+    Dist::Zilla::Plugin::MetaConfig: 5.009
     Dist::Zilla::Plugin::MetaData::BuiltWith: 0.04000002
-    Dist::Zilla::Plugin::MetaJSON: 5.008
-    Dist::Zilla::Plugin::MetaNoIndex: 5.008
+    Dist::Zilla::Plugin::MetaJSON: 5.009
+    Dist::Zilla::Plugin::MetaNoIndex: 5.009
     Dist::Zilla::Plugin::MetaProvides: 1.15000200
     Dist::Zilla::Plugin::MetaProvides::Package: 1.15000001
-    Dist::Zilla::Plugin::MetaTests: 5.008
-    Dist::Zilla::Plugin::MetaYAML: 5.008
+    Dist::Zilla::Plugin::MetaTests: 5.009
+    Dist::Zilla::Plugin::MetaYAML: 5.009
     Dist::Zilla::Plugin::MinimumPerl: 1.003
-    Dist::Zilla::Plugin::ModuleBuild: 5.008
-    Dist::Zilla::Plugin::NextRelease: 5.008
-    Dist::Zilla::Plugin::PkgVersion: 5.008
-    Dist::Zilla::Plugin::PodCoverageTests: 5.008
-    Dist::Zilla::Plugin::PodSyntaxTests: 5.008
-    Dist::Zilla::Plugin::PodWeaver: 4.002
-    Dist::Zilla::Plugin::Prereqs: 5.008
+    Dist::Zilla::Plugin::ModuleBuild: 5.009
+    Dist::Zilla::Plugin::NextRelease: 5.009
+    Dist::Zilla::Plugin::PkgVersion: 5.009
+    Dist::Zilla::Plugin::PodCoverageTests: 5.009
+    Dist::Zilla::Plugin::PodSyntaxTests: 5.009
+    Dist::Zilla::Plugin::PodWeaver: 4.005
+    Dist::Zilla::Plugin::Prereqs: 5.009
     Dist::Zilla::Plugin::Prereqs::MatchInstalled: 0.1.6
     Dist::Zilla::Plugin::ReadmeAnyFromPod: 0.133360
     Dist::Zilla::Plugin::ReadmeFromPod: 0.21
@@ -92,17 +92,17 @@ x_BuiltWith:
     Dist::Zilla::Plugin::Test::Kwalitee: 2.07
     Dist::Zilla::Plugin::Test::MinimumVersion: 2.000005
     Dist::Zilla::Plugin::Test::Perl::Critic: 2.112410
-    Dist::Zilla::Plugin::TestRelease: 5.008
+    Dist::Zilla::Plugin::TestRelease: 5.009
     Dist::Zilla::Plugin::Twitter: 0.024
-    Dist::Zilla::Plugin::UploadToCPAN: 5.008
-    Dist::Zilla::PluginBundle::Author::KENTNL: 2.007001
+    Dist::Zilla::Plugin::UploadToCPAN: 5.009
+    Dist::Zilla::PluginBundle::Author::KENTNL: 2.007003
     Dist::Zilla::PluginBundle::Author::KENTNL::Lite: 1.7.2
     Dist::Zilla::Role::MetaProvider::Provider: 1.15000200
     Dist::Zilla::Util::Test::KENTNL: 0.01015824
     IO::String: 1.08
     Module::Build: 0.4203
     Module::Metadata: 1.000019
-    Moose: 2.1107
+    Moose: 2.1200
     Moose::Autobox: 0.15
     MooseX::LazyRequire: 0.10
     MooseX::Types::Moose: 0.41
@@ -111,13 +111,13 @@ x_BuiltWith:
     Test::CPAN::Meta: 0.23
     Test::Fatal: 0.013
     Test::Kwalitee: 1.17
-    Test::Moose: 2.1107
+    Test::Moose: 2.1200
     Test::More: 1.001002
     Test::Pod: 1.48
     Test::Pod::Coverage: 1.08
     namespace::autoclean: 0.15
     strict: 1.08
-    version: 0.9904
+    version: 0.9906
     warnings: 1.20
   perl:
     original: v5.19.6
@@ -150,14 +150,14 @@ x_Dist_Zilla:
       class: Dist::Zilla::Plugin::Git::NextVersion::Sanitized
       config:
         Dist::Zilla::Role::Version::Sanitize:
-          mantissa: 6
+          mantissa: 8
           normal_form: numify
       name: '@Author::KENTNL/Git::NextVersion::Sanitized'
       version: 0.001000
     -
       class: Dist::Zilla::Plugin::MetaConfig
       name: '@Author::KENTNL/MetaConfig'
-      version: 5.008
+      version: 5.009
     -
       class: Dist::Zilla::Plugin::GithubMeta
       name: '@Author::KENTNL/GithubMeta'
@@ -165,7 +165,7 @@ x_Dist_Zilla:
     -
       class: Dist::Zilla::Plugin::FinderCode
       name: '@Author::KENTNL/MetaProvides::Package/AUTOVIV/:InstallModulesPM'
-      version: 5.008
+      version: 5.009
     -
       class: Dist::Zilla::Plugin::MetaProvides::Package
       config:
@@ -200,31 +200,31 @@ x_Dist_Zilla:
     -
       class: Dist::Zilla::Plugin::License
       name: '@Author::KENTNL/License'
-      version: 5.008
+      version: 5.009
     -
       class: Dist::Zilla::Plugin::MetaJSON
       name: '@Author::KENTNL/MetaJSON'
-      version: 5.008
+      version: 5.009
     -
       class: Dist::Zilla::Plugin::MetaYAML
       name: '@Author::KENTNL/MetaYAML'
-      version: 5.008
+      version: 5.009
     -
       class: Dist::Zilla::Plugin::Manifest
       name: '@Author::KENTNL/Manifest'
-      version: 5.008
+      version: 5.009
     -
       class: Dist::Zilla::Plugin::MetaTests
       name: '@Author::KENTNL/MetaTests'
-      version: 5.008
+      version: 5.009
     -
       class: Dist::Zilla::Plugin::PodCoverageTests
       name: '@Author::KENTNL/PodCoverageTests'
-      version: 5.008
+      version: 5.009
     -
       class: Dist::Zilla::Plugin::PodSyntaxTests
       name: '@Author::KENTNL/PodSyntaxTests'
-      version: 5.008
+      version: 5.009
     -
       class: Dist::Zilla::Plugin::ReportVersions::Tiny
       name: '@Author::KENTNL/ReportVersions::Tiny'
@@ -244,7 +244,7 @@ x_Dist_Zilla:
     -
       class: Dist::Zilla::Plugin::FinderCode
       name: '@Author::KENTNL/Test::Compile::PerFile/AUTOVIV/:InstallModulesPM'
-      version: 5.008
+      version: 5.009
     -
       class: Dist::Zilla::Plugin::Test::Compile::PerFile
       config:
@@ -265,11 +265,11 @@ x_Dist_Zilla:
     -
       class: Dist::Zilla::Plugin::ManifestSkip
       name: '@Author::KENTNL/ManifestSkip'
-      version: 5.008
+      version: 5.009
     -
       class: Dist::Zilla::Plugin::PkgVersion
       name: '@Author::KENTNL/PkgVersion'
-      version: 5.008
+      version: 5.009
     -
       class: Dist::Zilla::Plugin::PodWeaver
       config:
@@ -281,93 +281,93 @@ x_Dist_Zilla:
             -
               class: Pod::Weaver::Plugin::EnsurePod5
               name: '@CorePrep/EnsurePod5'
-              version: 4.005
+              version: 4.006
             -
               class: Pod::Weaver::Plugin::H1Nester
               name: '@CorePrep/H1Nester'
-              version: 4.005
+              version: 4.006
             -
               class: Pod::Weaver::Plugin::SingleEncoding
               name: '-SingleEncoding'
-              version: 4.005
+              version: 4.006
             -
               class: Pod::Weaver::Section::Name
               name: Name
-              version: 4.005
+              version: 4.006
             -
               class: Pod::Weaver::Section::Version
               name: Version
-              version: 4.005
+              version: 4.006
             -
               class: Pod::Weaver::Section::Region
               name: prelude
-              version: 4.005
+              version: 4.006
             -
               class: Pod::Weaver::Section::Generic
               name: SYNOPSIS
-              version: 4.005
+              version: 4.006
             -
               class: Pod::Weaver::Section::Generic
               name: DESCRIPTION
-              version: 4.005
+              version: 4.006
             -
               class: Pod::Weaver::Section::Generic
               name: NAMING_SCHEME
-              version: 4.005
+              version: 4.006
             -
               class: Pod::Weaver::Section::Generic
               name: OVERVIEW
-              version: 4.005
+              version: 4.006
             -
               class: Pod::Weaver::Section::Collect
               name: ROLES
-              version: 4.005
+              version: 4.006
             -
               class: Pod::Weaver::Section::Collect
               name: ROLEMETHODS
-              version: 4.005
+              version: 4.006
             -
               class: Pod::Weaver::Section::Collect
               name: METHODS
-              version: 4.005
+              version: 4.006
             -
               class: Pod::Weaver::Section::Collect
               name: ATTRIBUTES
-              version: 4.005
+              version: 4.006
             -
               class: Pod::Weaver::Section::Collect
               name: PRIVATE_ATTRIBUTES
-              version: 4.005
+              version: 4.006
             -
               class: Pod::Weaver::Section::Collect
               name: PRIVATE_METHODS
-              version: 4.005
+              version: 4.006
             -
               class: Pod::Weaver::Section::Leftovers
               name: Leftovers
-              version: 4.005
+              version: 4.006
             -
               class: Pod::Weaver::Section::Region
               name: postlude
-              version: 4.005
+              version: 4.006
             -
               class: Pod::Weaver::Section::Authors
               name: Authors
-              version: 4.005
+              version: 4.006
             -
               class: Pod::Weaver::Section::Legal
               name: Legal
-              version: 4.005
+              version: 4.006
       name: '@Author::KENTNL/PodWeaver'
-      version: 4.002
+      version: 4.005
     -
       class: Dist::Zilla::Plugin::NextRelease
       name: '@Author::KENTNL/NextRelease'
-      version: 5.008
+      version: 5.009
     -
       class: Dist::Zilla::Plugin::AutoPrereqs
       name: '@Author::KENTNL/AutoPrereqs'
-      version: 5.008
+      version: 5.009
     -
       class: Dist::Zilla::Plugin::Prereqs
       config:
@@ -375,7 +375,7 @@ x_Dist_Zilla:
           phase: develop
           type: suggests
       name: '@Author::KENTNL/BundleDevelSuggests'
-      version: 5.008
+      version: 5.009
     -
       class: Dist::Zilla::Plugin::Prereqs
       config:
@@ -383,7 +383,7 @@ x_Dist_Zilla:
           phase: develop
           type: requires
       name: '@Author::KENTNL/BundleDevelRequires'
-      version: 5.008
+      version: 5.009
     -
       class: Dist::Zilla::Plugin::MinimumPerl
       name: '@Author::KENTNL/MinimumPerl'
@@ -395,7 +395,7 @@ x_Dist_Zilla:
     -
       class: Dist::Zilla::Plugin::ModuleBuild
       name: '@Author::KENTNL/ModuleBuild'
-      version: 5.008
+      version: 5.009
     -
       class: Dist::Zilla::Plugin::ReadmeFromPod
       name: '@Author::KENTNL/ReadmeFromPod'
@@ -415,11 +415,11 @@ x_Dist_Zilla:
     -
       class: Dist::Zilla::Plugin::TestRelease
       name: '@Author::KENTNL/TestRelease'
-      version: 5.008
+      version: 5.009
     -
       class: Dist::Zilla::Plugin::ConfirmRelease
       name: '@Author::KENTNL/ConfirmRelease'
-      version: 5.008
+      version: 5.009
     -
       class: Dist::Zilla::Plugin::Git::Check
       name: '@Author::KENTNL/Git::Check'
@@ -443,7 +443,7 @@ x_Dist_Zilla:
     -
       class: Dist::Zilla::Plugin::UploadToCPAN
       name: '@Author::KENTNL/UploadToCPAN'
-      version: 5.008
+      version: 5.009
     -
       class: Dist::Zilla::Plugin::Twitter
       name: '@Author::KENTNL/Twitter'
@@ -491,7 +491,7 @@ x_Dist_Zilla:
           phase: develop
           type: requires
       name: '@Author::KENTNL/::Role::BundleDeps'
-      version: 5.008
+      version: 5.009
     -
       class: Dist::Zilla::Plugin::Prereqs
       config:
@@ -499,7 +499,7 @@ x_Dist_Zilla:
           phase: runtime
           type: requires
       name: RuntimeRequires
-      version: 5.008
+      version: 5.009
     -
       class: Dist::Zilla::Plugin::Prereqs
       config:
@@ -507,7 +507,7 @@ x_Dist_Zilla:
           phase: runtime
           type: suggests
       name: RuntimeSuggests
-      version: 5.008
+      version: 5.009
     -
       class: Dist::Zilla::Plugin::Prereqs
       config:
@@ -515,7 +515,7 @@ x_Dist_Zilla:
           phase: develop
           type: requires
       name: DevelopRequires
-      version: 5.008
+      version: 5.009
     -
       class: Dist::Zilla::Plugin::Prereqs
       config:
@@ -523,46 +523,46 @@ x_Dist_Zilla:
           phase: test
           type: suggests
       name: TestSuggests
-      version: 5.008
+      version: 5.009
     -
       class: Dist::Zilla::Plugin::MetaNoIndex
       name: MetaNoIndex
-      version: 5.008
+      version: 5.009
     -
       class: Dist::Zilla::Plugin::FinderCode
       name: ':InstallModules'
-      version: 5.008
+      version: 5.009
     -
       class: Dist::Zilla::Plugin::FinderCode
       name: ':IncModules'
-      version: 5.008
+      version: 5.009
     -
       class: Dist::Zilla::Plugin::FinderCode
       name: ':TestFiles'
-      version: 5.008
+      version: 5.009
     -
       class: Dist::Zilla::Plugin::FinderCode
       name: ':ExecFiles'
-      version: 5.008
+      version: 5.009
     -
       class: Dist::Zilla::Plugin::FinderCode
       name: ':ShareFiles'
-      version: 5.008
+      version: 5.009
     -
       class: Dist::Zilla::Plugin::FinderCode
       name: ':MainModule'
-      version: 5.008
+      version: 5.009
     -
       class: Dist::Zilla::Plugin::FinderCode
       name: ':AllFiles'
-      version: 5.008
+      version: 5.009
     -
       class: Dist::Zilla::Plugin::FinderCode
       name: ':NoFiles'
-      version: 5.008
+      version: 5.009
   zilla:
     class: Dist::Zilla::Dist::Builder
     config:
       is_trial: 0
-    version: 5.008
+    version: 5.009
 x_authority: cpan:KENTNL
