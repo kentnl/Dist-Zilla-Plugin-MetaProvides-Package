@@ -6,7 +6,7 @@ package Dist::Zilla::Plugin::MetaProvides::Package;
 
 # ABSTRACT: Extract namespaces/version from traditional packages for provides
 
-use Moose;
+use Moose qw( with has around );
 use MooseX::LazyRequire;
 use MooseX::Types::Moose qw( HashRef Str );
 use Moose::Autobox;
