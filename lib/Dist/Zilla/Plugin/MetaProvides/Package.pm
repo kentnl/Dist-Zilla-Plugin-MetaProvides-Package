@@ -6,10 +6,7 @@ package Dist::Zilla::Plugin::MetaProvides::Package;
 BEGIN {
   $Dist::Zilla::Plugin::MetaProvides::Package::AUTHORITY = 'cpan:KENTNL';
 }
-{
-  $Dist::Zilla::Plugin::MetaProvides::Package::VERSION = '1.15000003';
-}
-
+$Dist::Zilla::Plugin::MetaProvides::Package::VERSION = '1.15000003';
 # ABSTRACT: Extract namespaces/version from traditional packages for provides
 
 use Moose qw( with has around );
@@ -126,6 +123,12 @@ around dump_config => sub {
         }
         if ( $self->can($attribute) ) {
             $localconf->{$attribute} = $self->$attribute();
+        }
+    }
+    for my $finder_object ( @{ $self->_finder_objects } ) {
+        $localconf->{finder_objects} = [] if not exists $localconf->{finder_objects};
+        if ( $finder_object->can('dump_config') ) {
+            push @{$localconf->{finder_objects}}, $finder_object->dump_config;
         }
     }
     $config->{ q{} . __PACKAGE__ } = $localconf;
