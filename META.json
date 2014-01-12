@@ -274,7 +274,11 @@
          {
             "class" : "Dist::Zilla::Plugin::MetaProvides::Package",
             "config" : {
-               "Dist::Zilla::Plugin::MetaProvides::Package" : {},
+               "Dist::Zilla::Plugin::MetaProvides::Package" : {
+                  "finder_objects" : [
+                     {}
+                  ]
+               },
                "Dist::Zilla::Role::MetaProvider::Provider" : {
                   "inherit_missing" : "1",
                   "inherit_version" : "1",
@@ -771,6 +775,11 @@
          {
             "class" : "Dist::Zilla::Plugin::FinderCode",
             "name" : ":NoFiles",
+            "version" : "5.010"
+         },
+         {
+            "class" : "Dist::Zilla::Plugin::FinderCode",
+            "name" : "@Author::KENTNL/MetaProvides::Package/AUTOVIV/:InstallModulesPM",
             "version" : "5.010"
          }
       ],
