@@ -115,15 +115,15 @@ A conformant function to the L<Dist::Zilla::Role::MetaProvider::Provider> Role.
 =cut
 
 sub provides {
-    my $self        = shift;
-    my $get_records = sub {
-        $self->_packages_for( $_->name, $_->content );
-    };
-    my (@records);
-    for my $file ( @{ $self->_found_files() } ) {
-        push @records, $self->_packages_for( $file->name, $file->content );
-    }
-    return $self->_apply_meta_noindex(@records);
+  my $self        = shift;
+  my $get_records = sub {
+    $self->_packages_for( $_->name, $_->content );
+  };
+  my (@records);
+  for my $file ( @{ $self->_found_files() } ) {
+    push @records, $self->_packages_for( $file->name, $file->content );
+  }
+  return $self->_apply_meta_noindex(@records);
 }
 
 =p_attr C<_package_blacklist>
@@ -131,13 +131,13 @@ sub provides {
 =cut
 
 has '_package_blacklist' => (
-    isa => HashRef [Str],
-    traits  => [ 'Hash', ],
-    is      => 'rw',
-    default => sub {
-        return { map { $_ => 1 } qw( main DB ) };
-    },
-    handles => { _blacklist_contains => 'exists', },
+  isa => HashRef [Str],
+  traits  => [ 'Hash', ],
+  is      => 'rw',
+  default => sub {
+    return { map { $_ => 1 } qw( main DB ) };
+  },
+  handles => { _blacklist_contains => 'exists', },
 );
 
 =p_method C<_packages_for>
@@ -149,80 +149,80 @@ has '_package_blacklist' => (
 =cut
 
 sub _packages_for {
-    my ( $self, $filename, $content ) = @_;
+  my ( $self, $filename, $content ) = @_;
 
-    my $fh = IO::String->new($content);
+  my $fh = IO::String->new($content);
 
-    my $meta = Module::Metadata->new_from_handle( $fh, $filename, collect_pod => 0 );
+  my $meta = Module::Metadata->new_from_handle( $fh, $filename, collect_pod => 0 );
 
-    if ( not $meta ) {
-        $self->log_fatal("Can't extract metadata from $filename");
-    }
+  if ( not $meta ) {
+    $self->log_fatal("Can't extract metadata from $filename");
+  }
 
-    $self->log_debug(
-        "Version metadata from $filename : " . Data::Dump::dumpf(
-            $meta,
-            sub {
-                if ( ref $_[1] and $_[1]->isa('version') ) {
-                    return { dump => $_[1]->stringify };
-                }
-                return { hide_keys => ['pod_headings'], };
-            },
-        ),
+  $self->log_debug(
+    "Version metadata from $filename : " . Data::Dump::dumpf(
+      $meta,
+      sub {
+        if ( ref $_[1] and $_[1]->isa('version') ) {
+          return { dump => $_[1]->stringify };
+        }
+        return { hide_keys => ['pod_headings'], };
+      },
+    ),
+  );
+  my $remove_bad = sub {
+    my $item = shift;
+    return if $item =~ qr/\A_/msx;
+    return if $item =~ qr/::_/msx;
+    return not $self->_blacklist_contains($item);
+  };
+  my $to_record = sub {
+
+    my $v = $meta->version($_);
+    my (%struct) = (
+      module => $_,
+      file   => $filename,
+      ( ref $v ? ( version => $v->stringify ) : ( version => undef ) ),
+      parent => $self,
     );
-    my $remove_bad = sub {
-        my $item = shift;
-        return if $item =~ qr/\A_/msx;
-        return if $item =~ qr/::_/msx;
-        return not $self->_blacklist_contains($item);
-    };
-    my $to_record = sub {
+    $self->log_debug(
+      'Version metadata: ' . Data::Dump::dumpf(
+        \%struct,
+        sub {
+          return { hide_keys => ['parent'] };
+        },
+      ),
+    );
+    Dist::Zilla::MetaProvides::ProvideRecord->new(%struct);
+  };
 
-        my $v = $meta->version($_);
-        my (%struct) = (
-            module => $_,
-            file   => $filename,
-            ( ref $v ? ( version => $v->stringify ) : ( version => undef ) ),
-            parent => $self,
-        );
-        $self->log_debug(
-            'Version metadata: ' . Data::Dump::dumpf(
-                \%struct,
-                sub {
-                    return { hide_keys => ['parent'] };
-                },
-            ),
-        );
-        Dist::Zilla::MetaProvides::ProvideRecord->new(%struct);
-    };
+  ## no critic (ProhibitArrayAssignARef)
+  my @namespaces = [ $meta->packages_inside() ]->grep($remove_bad)->flatten;
 
-    ## no critic (ProhibitArrayAssignARef)
-    my @namespaces = [ $meta->packages_inside() ]->grep($remove_bad)->flatten;
+  $self->log_debug( 'Discovered namespaces: ' . Data::Dump::pp( \@namespaces ) . ' in ' . $filename );
 
-    $self->log_debug( 'Discovered namespaces: ' . Data::Dump::pp( \@namespaces ) . ' in ' . $filename );
-
-    if ( not @namespaces ) {
-        $self->log( 'No namespaces detected in file ' . $filename );
-        return ();
-    }
-    return @namespaces->map($to_record)->flatten;
+  if ( not @namespaces ) {
+    $self->log( 'No namespaces detected in file ' . $filename );
+    return ();
+  }
+  return @namespaces->map($to_record)->flatten;
 
 }
 around dump_config => sub {
-    my ( $orig, $self, @args ) = @_;
-    my $config    = $self->$orig(@args);
-    my $localconf = {};
-    for my $attribute (qw( finder )) {
-        my $pred = 'has_' . $attribute;
-        if ( $self->can($pred) ) {
-            next unless $self->$pred();
-        }
-        if ( $self->can($attribute) ) {
-            $localconf->{$attribute} = $self->$attribute();
-        }
+  my ( $orig, $self, @args ) = @_;
+  my $config    = $self->$orig(@args);
+  my $localconf = {};
+  for my $attribute (qw( finder )) {
+    my $pred = 'has_' . $attribute;
+    if ( $self->can($pred) ) {
+      next unless $self->$pred();
     }
-    $config->{ q{} . __PACKAGE__ } = $localconf;
-    return $config;
+    if ( $self->can($attribute) ) {
+      $localconf->{$attribute} = $self->$attribute();
+    }
+  }
+  $config->{ q{} . __PACKAGE__ } = $localconf;
+  return $config;
 };
 
 =attr C<finder>
@@ -242,10 +242,10 @@ This parameter may be specified multiple times to aggregate a list of finders
 =cut
 
 has finder => (
-    isa           => 'ArrayRef[Str]',
-    is            => ro =>,
-    lazy_required => 1,
-    predicate     => has_finder =>,
+  isa           => 'ArrayRef[Str]',
+  is            => ro =>,
+  lazy_required => 1,
+  predicate     => has_finder =>,
 );
 
 =p_attr C<_finder_objects>
@@ -253,11 +253,11 @@ has finder => (
 =cut
 
 has _finder_objects => (
-    isa      => 'ArrayRef',
-    is       => ro =>,
-    lazy     => 1,
-    init_arg => undef,
-    builder  => _build_finder_objects =>,
+  isa      => 'ArrayRef',
+  is       => ro =>,
+  lazy     => 1,
+  init_arg => undef,
+  builder  => _build_finder_objects =>,
 );
 
 =p_method C<_vivify_installmodules_pm_finder>
@@ -265,30 +265,30 @@ has _finder_objects => (
 =cut
 
 sub _vivify_installmodules_pm_finder {
-    my ($self) = @_;
-    my $name = $self->plugin_name;
-    $name .= '/AUTOVIV/:InstallModulesPM';
-    if ( my $plugin = $self->zilla->plugin_named($name) ) {
-        return $plugin;
-    }
-    require Dist::Zilla::Plugin::FinderCode;
-    my $plugin = Dist::Zilla::Plugin::FinderCode->new(
-        {
-            plugin_name => $name,
-            zilla       => $self->zilla,
-            style       => 'grep',
-            code        => sub {
-                my ( $file, $self ) = @_;
-                local $_ = $file->name;
-                ## no critic (RegularExpressions)
-                return 1 if m{\Alib/} and m{\.(pm)$};
-                return 1 if $_ eq $self->zilla->main_module;
-                return;
-            },
-        },
-    );
-    $self->zilla->plugins->push($plugin);
+  my ($self) = @_;
+  my $name = $self->plugin_name;
+  $name .= '/AUTOVIV/:InstallModulesPM';
+  if ( my $plugin = $self->zilla->plugin_named($name) ) {
     return $plugin;
+  }
+  require Dist::Zilla::Plugin::FinderCode;
+  my $plugin = Dist::Zilla::Plugin::FinderCode->new(
+    {
+      plugin_name => $name,
+      zilla       => $self->zilla,
+      style       => 'grep',
+      code        => sub {
+        my ( $file, $self ) = @_;
+        local $_ = $file->name;
+        ## no critic (RegularExpressions)
+        return 1 if m{\Alib/} and m{\.(pm)$};
+        return 1 if $_ eq $self->zilla->main_module;
+        return;
+      },
+    },
+  );
+  $self->zilla->plugins->push($plugin);
+  return $plugin;
 }
 
 =p_method C<_build_finder_objects>
@@ -296,22 +296,22 @@ sub _vivify_installmodules_pm_finder {
 =cut
 
 sub _build_finder_objects {
-    my ($self) = @_;
-    if ( $self->has_finder ) {
-        my @out;
-        for my $finder ( @{ $self->finder } ) {
-            my $plugin = $self->zilla->plugin_named($finder);
-            if ( not $plugin ) {
-                $self->log_fatal("no plugin named $finder found");
-            }
-            if ( not $plugin->does('Dist::Zilla::Role::FileFinder') ) {
-                $self->log_fatal("plugin $finder is not a FileFinder");
-            }
-            push @out, $plugin;
-        }
-        return \@out;
+  my ($self) = @_;
+  if ( $self->has_finder ) {
+    my @out;
+    for my $finder ( @{ $self->finder } ) {
+      my $plugin = $self->zilla->plugin_named($finder);
+      if ( not $plugin ) {
+        $self->log_fatal("no plugin named $finder found");
+      }
+      if ( not $plugin->does('Dist::Zilla::Role::FileFinder') ) {
+        $self->log_fatal("plugin $finder is not a FileFinder");
+      }
+      push @out, $plugin;
     }
-    return [ $self->_vivify_installmodules_pm_finder ];
+    return \@out;
+  }
+  return [ $self->_vivify_installmodules_pm_finder ];
 }
 
 =p_method C<_found_files>
@@ -319,19 +319,19 @@ sub _build_finder_objects {
 =cut
 
 sub _found_files {
-    my ($self) = @_;
-    my %by_name;
-    for my $plugin ( @{ $self->_finder_objects } ) {
-        for my $file ( @{ $plugin->find_files } ) {
-            $by_name{ $file->name } = $file;
-        }
+  my ($self) = @_;
+  my %by_name;
+  for my $plugin ( @{ $self->_finder_objects } ) {
+    for my $file ( @{ $plugin->find_files } ) {
+      $by_name{ $file->name } = $file;
     }
-    return [ values %by_name ];
+  }
+  return [ values %by_name ];
 }
 
 around mvp_multivalue_args => sub {
-    my ( $orig, $self, @rest ) = @_;
-    return ( 'finder', $self->$orig(@rest) );
+  my ( $orig, $self, @rest ) = @_;
+  return ( 'finder', $self->$orig(@rest) );
 };
 
 =head1 SEE ALSO
