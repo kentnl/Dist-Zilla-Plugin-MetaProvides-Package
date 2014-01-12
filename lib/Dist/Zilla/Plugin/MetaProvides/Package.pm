@@ -130,7 +130,7 @@ around dump_config => sub {
         my $object_config = {};
 
         $object_config->{class} = $finder_object->meta->name if $finder_object->can('meta') and $finder_object->meta->can('name');
-        $object_config->{name} = $finder_object->plugin if $finder_object->can('plugin_name');
+        $object_config->{name} = $finder_object->plugin_name if $finder_object->can('plugin_name');
         $object_config->{version} = $finder_object->VERSION if $finder_object->can('VERSION');
 
         if ( $finder_object->can('dump_config') ) {

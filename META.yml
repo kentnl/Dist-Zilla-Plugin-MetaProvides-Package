@@ -71,7 +71,7 @@ x_BuiltWith:
     Dist::Zilla::Plugin::MetaJSON: 5.010
     Dist::Zilla::Plugin::MetaNoIndex: 5.010
     Dist::Zilla::Plugin::MetaProvides: 1.15000200
-    Dist::Zilla::Plugin::MetaProvides::Package: 1.15000003
+    Dist::Zilla::Plugin::MetaProvides::Package: 1.15000002
     Dist::Zilla::Plugin::MetaTests: 5.010
     Dist::Zilla::Plugin::MetaYAML: 5.010
     Dist::Zilla::Plugin::MinimumPerl: 1.003
@@ -165,15 +165,13 @@ x_Dist_Zilla:
     -
       class: Dist::Zilla::Plugin::MetaProvides::Package
       config:
-        Dist::Zilla::Plugin::MetaProvides::Package:
-          finder_objects:
-            - {}
+        Dist::Zilla::Plugin::MetaProvides::Package: {}
         Dist::Zilla::Role::MetaProvider::Provider:
           inherit_missing: 1
           inherit_version: 1
           meta_noindex: 1
       name: '@Author::KENTNL/MetaProvides::Package'
-      version: 1.15000003
+      version: 1.15000002
     -
       class: Dist::Zilla::Plugin::MetaData::BuiltWith
       config:
@@ -557,10 +555,6 @@ x_Dist_Zilla:
     -
       class: Dist::Zilla::Plugin::FinderCode
       name: ':NoFiles'
-      version: 5.010
-    -
-      class: Dist::Zilla::Plugin::FinderCode
-      name: '@Author::KENTNL/MetaProvides::Package/AUTOVIV/:InstallModulesPM'
       version: 5.010
   zilla:
     class: Dist::Zilla::Dist::Builder
