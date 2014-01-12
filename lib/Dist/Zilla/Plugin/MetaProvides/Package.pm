@@ -137,6 +137,7 @@ around dump_config => sub {
             my $config = $finder_object->dump_config;
             $object_config->{config} = $config if keys %{$config};
         }
+        push @{ $localconf->{finder_objects}  }, $object_config;
     }
     $config->{ q{} . __PACKAGE__ } = $localconf;
     return $config;
