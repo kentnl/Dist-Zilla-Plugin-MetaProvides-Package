@@ -221,6 +221,20 @@ around dump_config => sub {
       $localconf->{$attribute} = $self->$attribute();
     }
   }
+  for my $finder_object ( @{ $self->_finder_objects } ) {
+    $localconf->{finder_objects} = [] if not exists $localconf->{finder_objects};
+    my $object_config = {};
+
+    $object_config->{class}   = $finder_object->meta->name  if $finder_object->can('meta') and $finder_object->meta->can('name');
+    $object_config->{name}    = $finder_object->plugin_name if $finder_object->can('plugin_name');
+    $object_config->{version} = $finder_object->VERSION     if $finder_object->can('VERSION');
+
+    if ( $finder_object->can('dump_config') ) {
+      my $config = $finder_object->dump_config;
+      $object_config->{config} = $config if keys %{$config};
+    }
+    push @{ $localconf->{finder_objects} }, $object_config;
+  }
   $config->{ q{} . __PACKAGE__ } = $localconf;
   return $config;
 };
