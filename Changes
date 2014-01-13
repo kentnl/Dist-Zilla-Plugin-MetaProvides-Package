@@ -7,6 +7,12 @@ Revision history for {{$dist->name}}
    elements.
  - Great DZIL Whitespace injection commences.
 
+ [Dependencies::Stats]
+ - Dependencies changed since 1.15000002, see Changes.deps{,.all,.dev} for
+   details
+ - build: ↑1
+ - configure: ↑1
+ - develop: +1 ↑1 -1
 
 1.15000002 2014-01-08T08:12:21Z
  [00 Minor]
