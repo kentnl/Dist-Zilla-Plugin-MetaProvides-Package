@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+1.15000003 2014-01-13T06:37:51Z
  [00 Minor]
  - Bug Fix: Previous release dropped data about vivified finders from
    metaconfig, so instead, now reports finder data directly as child
