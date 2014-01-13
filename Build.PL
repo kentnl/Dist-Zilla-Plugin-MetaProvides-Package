@@ -38,6 +38,7 @@ my %module_build_args = (
     "namespace::autoclean" => 0,
     "perl" => "5.010",
     "strict" => 0,
+    "utf8" => 0,
     "warnings" => 0
   },
   "script_files" => [],

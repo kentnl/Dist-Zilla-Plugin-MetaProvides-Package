@@ -104,6 +104,7 @@
             "namespace::autoclean" : "0",
             "perl" : "5.010",
             "strict" : "0",
+            "utf8" : "0",
             "warnings" : "0"
          },
          "suggests" : {
@@ -212,6 +213,7 @@
          "Test::Pod::Coverage" : "1.08",
          "namespace::autoclean" : "0.15",
          "strict" : "1.08",
+         "utf8" : "1.13",
          "version" : "0.9906",
          "warnings" : "1.20"
       },

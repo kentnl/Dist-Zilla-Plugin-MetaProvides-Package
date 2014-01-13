@@ -67,6 +67,7 @@ eval { $v .= pmver('Test::Moose','any version') };
 eval { $v .= pmver('Test::More','1.001002') };
 eval { $v .= pmver('namespace::autoclean','any version') };
 eval { $v .= pmver('strict','any version') };
+eval { $v .= pmver('utf8','any version') };
 eval { $v .= pmver('warnings','any version') };
 
 

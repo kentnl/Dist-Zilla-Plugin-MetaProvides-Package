@@ -1,6 +1,7 @@
 use 5.010;    # perldoc perl5101delta -> bugfix related to handling of /m
 use strict;
 use warnings;
+use utf8;
 
 package Dist::Zilla::Plugin::MetaProvides::Package;
 BEGIN {
@@ -118,10 +119,7 @@ has '+meta_noindex' => ( default => sub { 1 } );
 
 
 sub provides {
-  my $self        = shift;
-  my $get_records = sub {
-    $self->_packages_for( $_->name, $_->content );
-  };
+  my $self = shift;
   my (@records);
   for my $file ( @{ $self->_found_files() } ) {
     push @records, $self->_packages_for( $file->name, $file->content );
