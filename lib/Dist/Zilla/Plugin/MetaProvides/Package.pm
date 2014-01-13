@@ -116,10 +116,7 @@ A conformant function to the L<Dist::Zilla::Role::MetaProvider::Provider> Role.
 =cut
 
 sub provides {
-  my $self        = shift;
-  my $get_records = sub {
-    $self->_packages_for( $_->name, $_->content );
-  };
+  my $self = shift;
   my (@records);
   for my $file ( @{ $self->_found_files() } ) {
     push @records, $self->_packages_for( $file->name, $file->content );
