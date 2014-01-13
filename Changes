@@ -1,6 +1,12 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+ [00 Minor]
+ - Bug Fix: Previous release dropped data about vivified finders from
+   metaconfig, so instead, now reports finder data directly as child
+   elements.
+ - Great DZIL Whitespace injection commences.
+
 
 1.15000002 2014-01-08T08:12:21Z
  [00 Minor]
