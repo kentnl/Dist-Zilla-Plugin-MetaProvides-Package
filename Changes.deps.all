@@ -1,4 +1,20 @@
-1.15000002
+1.15000003
+ [Added / develop requires]
+ - Dist::Zilla::Plugin::Git::NextRelease
+
+ [Changed / build requires]
+ - Module::Build 0.4203 → 0.4204
+
+ [Changed / configure requires]
+ - Module::Build 0.4203 → 0.4204
+
+ [Changed / develop requires]
+ - Dist::Zilla::PluginBundle::Author::KENTNL 2.007003 → 2.008001
+
+ [Removed / develop requires]
+ - Dist::Zilla::Plugin::NextRelease
+
+1.15000002 2014-01-08T08:12:21Z
  [Added / develop requires]
  - Dist::Zilla::Plugin::Git::NextVersion::Sanitized
  - Dist::Zilla::Plugin::MinimumPerl

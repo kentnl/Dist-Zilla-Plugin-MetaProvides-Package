@@ -1,5 +1,19 @@
 Revision history for Dist-Zilla-Plugin-MetaProvides-Package
 
+1.15000003 2014-01-13T06:37:51Z
+ [00 Minor]
+ - Bug Fix: Previous release dropped data about vivified finders from
+   metaconfig, so instead, now reports finder data directly as child
+   elements.
+ - Great DZIL Whitespace injection commences.
+
+ [Dependencies::Stats]
+ - Dependencies changed since 1.15000002, see Changes.deps{,.all,.dev} for
+   details
+ - build: ↑1
+ - configure: ↑1
+ - develop: +1 ↑1 -1
+
 1.15000002 2014-01-08T08:12:21Z
  [00 Minor]
  - Bug fix: Overzealously triggered finder vivification, which lead to

@@ -56,7 +56,7 @@ eval { $v .= pmver('Dist::Zilla::Plugin::MetaProvides','1.15000000') };
 eval { $v .= pmver('Dist::Zilla::Role::MetaProvider::Provider','any version') };
 eval { $v .= pmver('Dist::Zilla::Util::Test::KENTNL','0.01000011') };
 eval { $v .= pmver('IO::String','any version') };
-eval { $v .= pmver('Module::Build','0.4203') };
+eval { $v .= pmver('Module::Build','0.4204') };
 eval { $v .= pmver('Module::Metadata','1.000005') };
 eval { $v .= pmver('Moose','any version') };
 eval { $v .= pmver('Moose::Autobox','any version') };
@@ -67,6 +67,7 @@ eval { $v .= pmver('Test::Moose','any version') };
 eval { $v .= pmver('Test::More','1.001002') };
 eval { $v .= pmver('namespace::autoclean','any version') };
 eval { $v .= pmver('strict','any version') };
+eval { $v .= pmver('utf8','any version') };
 eval { $v .= pmver('warnings','any version') };
 
 

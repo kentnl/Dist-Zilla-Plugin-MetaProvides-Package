@@ -1,4 +1,11 @@
-1.15000002
+1.15000003
+ [Changed / build requires]
+ - Module::Build 0.4203 → 0.4204
+
+ [Changed / configure requires]
+ - Module::Build 0.4203 → 0.4204
+
+1.15000002 2014-01-08T08:12:21Z
  [Changed / build requires]
  - Module::Build 0.4202 → 0.4203
 
