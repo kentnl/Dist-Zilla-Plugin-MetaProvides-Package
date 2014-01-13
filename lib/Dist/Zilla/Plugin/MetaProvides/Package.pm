@@ -230,8 +230,8 @@ around dump_config => sub {
     $object_config->{version} = $finder_object->VERSION     if $finder_object->can('VERSION');
 
     if ( $finder_object->can('dump_config') ) {
-      my $config = $finder_object->dump_config;
-      $object_config->{config} = $config if keys %{$config};
+      my $finder_config = $finder_object->dump_config;
+      $object_config->{config} = $finder_config if keys %{$finder_config};
     }
     push @{ $localconf->{finder_objects} }, $object_config;
   }
