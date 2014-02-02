@@ -1,6 +1,14 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+ [Dependencies::Stats]
+ - Dependencies changed since 1.15000003, see Changes.deps{,.all,.dev} for
+   details
+ - build: -1
+ - configure: +2 -1
+ - develop: +3 ↑1 -4
+ - runtime: -1
+ - test: +8 ↓1
 
 1.15000003 2014-01-13T06:37:51Z
  [00 Minor]
@@ -15,6 +23,7 @@ Revision history for {{$dist->name}}
  - build: ↑1
  - configure: ↑1
  - develop: +1 ↑1 -1
+ - runtime: +1
 
 1.15000002 2014-01-08T08:12:21Z
  [00 Minor]
