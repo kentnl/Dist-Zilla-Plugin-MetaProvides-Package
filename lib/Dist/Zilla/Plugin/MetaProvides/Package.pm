@@ -4,10 +4,7 @@ use warnings;
 use utf8;
 
 package Dist::Zilla::Plugin::MetaProvides::Package;
-BEGIN {
-  $Dist::Zilla::Plugin::MetaProvides::Package::AUTHORITY = 'cpan:KENTNL';
-}
-$Dist::Zilla::Plugin::MetaProvides::Package::VERSION = '1.15000003';
+$Dist::Zilla::Plugin::MetaProvides::Package::VERSION = '1.150000';
 # ABSTRACT: Extract namespaces/version from traditional packages for provides
 
 use Moose qw( with has around );
@@ -375,7 +372,7 @@ Dist::Zilla::Plugin::MetaProvides::Package - Extract namespaces/version from tra
 
 =head1 VERSION
 
-version 1.15000003
+version 1.150000
 
 =head1 SYNOPSIS
 
