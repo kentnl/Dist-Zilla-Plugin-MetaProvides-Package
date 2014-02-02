@@ -79,7 +79,7 @@ x_BuiltWith:
     Dist::Zilla::Plugin::MetaJSON: '5.012'
     Dist::Zilla::Plugin::MetaNoIndex: '5.012'
     Dist::Zilla::Plugin::MetaProvides: '2.000000'
-    Dist::Zilla::Plugin::MetaProvides::Package: '1.150000'
+    Dist::Zilla::Plugin::MetaProvides::Package: '2.000000'
     Dist::Zilla::Plugin::MetaTests: '5.012'
     Dist::Zilla::Plugin::MetaYAML: '5.012'
     Dist::Zilla::Plugin::MinimumPerl: '1.003'
@@ -185,7 +185,7 @@ x_Dist_Zilla:
           inherit_version: '1'
           meta_noindex: '1'
       name: '@Author::KENTNL/MetaProvides::Package'
-      version: '1.150000'
+      version: '2.000000'
     -
       class: Dist::Zilla::Plugin::MetaData::BuiltWith
       config:
