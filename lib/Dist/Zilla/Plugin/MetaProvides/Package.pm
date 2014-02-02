@@ -14,7 +14,6 @@ use MooseX::LazyRequire;
 use MooseX::Types::Moose qw( HashRef Str );
 use Moose::Autobox;
 use Module::Metadata 1.000005;
-use IO::String;
 use Dist::Zilla::MetaProvides::ProvideRecord 1.14000000;
 use Data::Dump 1.16 ();
 
