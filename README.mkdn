@@ -4,7 +4,7 @@ Dist::Zilla::Plugin::MetaProvides::Package - Extract namespaces/version from tra
 
 # VERSION
 
-version 1.15000003
+version 2.000000
 
 # SYNOPSIS
 
@@ -59,15 +59,6 @@ This parameter may be specified multiple times to aggregate a list of finders
 ## `_build_finder_objects`
 
 ## `_found_files`
-
-{
-    "namespace":"Dist::Zilla::Plugin::MetaProvides::Package",
-    "interface":"class",
-    "inherits":"Moose::Object",
-    "does":"Dist::Zilla::Role::MetaProvider::Provider"
-}
-
-
 
 # OPTIONS INHERITED FROM [Dist::Zilla::Role::MetaProvider::Provider](https://metacpan.org/pod/Dist::Zilla::Role::MetaProvider::Provider)
 
