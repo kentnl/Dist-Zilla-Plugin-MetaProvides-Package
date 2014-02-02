@@ -4,18 +4,16 @@ use warnings;
 use utf8;
 
 package Dist::Zilla::Plugin::MetaProvides::Package;
-BEGIN {
-  $Dist::Zilla::Plugin::MetaProvides::Package::AUTHORITY = 'cpan:KENTNL';
-}
-$Dist::Zilla::Plugin::MetaProvides::Package::VERSION = '1.15000003';
+$Dist::Zilla::Plugin::MetaProvides::Package::VERSION = '2.000000';
 # ABSTRACT: Extract namespaces/version from traditional packages for provides
+
+our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
 
 use Moose qw( with has around );
 use MooseX::LazyRequire;
 use MooseX::Types::Moose qw( HashRef Str );
 use Moose::Autobox;
 use Module::Metadata 1.000005;
-use IO::String;
 use Dist::Zilla::MetaProvides::ProvideRecord 1.14000000;
 use Data::Dump 1.16 ();
 
@@ -122,7 +120,7 @@ sub provides {
   my $self = shift;
   my (@records);
   for my $file ( @{ $self->_found_files() } ) {
-    push @records, $self->_packages_for( $file->name, $file->content );
+    push @records, $self->_packages_for( $file->name, $file->encoded_content, $file->encoding );
   }
   return $self->_apply_meta_noindex(@records);
 }
@@ -150,9 +148,11 @@ has '_package_blacklist' => (
 
 
 sub _packages_for {
-  my ( $self, $filename, $content ) = @_;
+  my ( $self, $filename, $content, $encoding ) = @_;
 
-  my $fh = IO::String->new($content);
+  ## no critic (InputOutput::RequireBriefOpen, Variables::ProhibitPunctuationVars)
+  open my $fh, '<', \$content or $self->log_fatal( [ 'Cant open scalar filehandle for read. %s', $!, ] );
+  binmode $fh, sprintf ':encoding(%s)', $encoding;
 
   my $meta = Module::Metadata->new_from_handle( $fh, $filename, collect_pod => 0 );
 
@@ -375,7 +375,7 @@ Dist::Zilla::Plugin::MetaProvides::Package - Extract namespaces/version from tra
 
 =head1 VERSION
 
-version 1.15000003
+version 2.000000
 
 =head1 SYNOPSIS
 

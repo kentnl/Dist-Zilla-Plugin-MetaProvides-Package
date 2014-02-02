@@ -1,5 +1,27 @@
 Revision history for Dist-Zilla-Plugin-MetaProvides-Package
 
+2.000000 2014-02-02T06:25:35Z
+ [00 Major]
+ - Toolkit moved to EUMM.
+ - Tooling dependencies softened.
+ - IO::String no longer used.
+ - Version schema moved to mantissa length = 6 ( primary reason for 1 → 2 )
+
+ [Dependencies::Aggregate]
+ - 5.10 : before = 186 , after: 186
+ - 5.19 : before = 171 , after: 171
+ - Limited by Dzil → Path::Class → Module::Build
+ - Limited by DZP:Test::KENTNL → Module::Build
+
+ [Dependencies::Stats]
+ - Dependencies changed since 1.15000003, see Changes.deps{,.all,.dev} for
+   details
+ - build: -1
+ - configure: +2 -1
+ - develop: +3 ↑1 -4
+ - runtime: -1
+ - test: +8 ↓1
+
 1.15000003 2014-01-13T06:37:51Z
  [00 Minor]
  - Bug Fix: Previous release dropped data about vivified finders from
@@ -13,6 +35,7 @@ Revision history for Dist-Zilla-Plugin-MetaProvides-Package
  - build: ↑1
  - configure: ↑1
  - develop: +1 ↑1 -1
+ - runtime: +1
 
 1.15000002 2014-01-08T08:12:21Z
  [00 Minor]
