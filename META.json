@@ -133,7 +133,7 @@
    "provides" : {
       "Dist::Zilla::Plugin::MetaProvides::Package" : {
          "file" : "lib/Dist/Zilla/Plugin/MetaProvides/Package.pm",
-         "version" : "2.000000"
+         "version" : "1.150000"
       }
    },
    "release_status" : "stable",
@@ -148,7 +148,7 @@
          "web" : "https://github.com/kentfredric/Dist-Zilla-Plugin-MetaProvides-Package"
       }
    },
-   "version" : "2.000000",
+   "version" : "1.150000",
    "x_BuiltWith" : {
       "modules" : {
          "CPAN::Meta" : "2.133380",
