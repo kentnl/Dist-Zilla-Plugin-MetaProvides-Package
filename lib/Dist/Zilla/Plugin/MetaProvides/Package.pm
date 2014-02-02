@@ -7,6 +7,8 @@ package Dist::Zilla::Plugin::MetaProvides::Package;
 
 # ABSTRACT: Extract namespaces/version from traditional packages for provides
 
+# AUTHORITY
+
 use Moose qw( with has around );
 use MooseX::LazyRequire;
 use MooseX::Types::Moose qw( HashRef Str );
