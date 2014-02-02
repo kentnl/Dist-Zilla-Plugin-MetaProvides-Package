@@ -121,7 +121,7 @@ sub provides {
   my $self = shift;
   my (@records);
   for my $file ( @{ $self->_found_files() } ) {
-    push @records, $self->_packages_for( $file->name, $file->content );
+    push @records, $self->_packages_for( $file->name, $file->encoded_content, $file->encoding );
   }
   return $self->_apply_meta_noindex(@records);
 }
@@ -149,9 +149,10 @@ has '_package_blacklist' => (
 =cut
 
 sub _packages_for {
-  my ( $self, $filename, $content ) = @_;
+  my ( $self, $filename, $content, $encoding ) = @_;
 
-  my $fh = IO::String->new($content);
+  open my $fh, '<', \$content;
+  binmode $fh, sprintf ':encoding(%s)', $encoding;
 
   my $meta = Module::Metadata->new_from_handle( $fh, $filename, collect_pod => 0 );
 
