@@ -150,7 +150,8 @@ has '_package_blacklist' => (
 sub _packages_for {
   my ( $self, $filename, $content, $encoding ) = @_;
 
-  open my $fh, '<', \$content;
+  ## no critic (InputOutput::RequireBriefOpen, Variables::ProhibitPunctuationVars)
+  open my $fh, '<', \$content or $self->log_fatal( [ 'Cant open scalar filehandle for read. %s', $!, ] );
   binmode $fh, sprintf ':encoding(%s)', $encoding;
 
   my $meta = Module::Metadata->new_from_handle( $fh, $filename, collect_pod => 0 );
