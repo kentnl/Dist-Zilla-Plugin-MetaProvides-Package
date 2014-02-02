@@ -1,6 +1,12 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+ [00 Major]
+ - Toolkit moved to EUMM.
+ - Tooling dependencies softened.
+ - IO::String no longer used.
+ - Version schema moved to mantissa length = 6 ( primary reason for 1 → 2 )
+
  [Dependencies::Stats]
  - Dependencies changed since 1.15000003, see Changes.deps{,.all,.dev} for
    details
