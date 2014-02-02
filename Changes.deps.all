@@ -40,6 +40,9 @@
  - Dist::Zilla::Plugin::ReportVersions::Tiny
  - version 0.9901
 
+ [Removed / runtime requires]
+ - IO::String
+
 1.15000003 2014-01-13T06:37:51Z
  [Added / develop requires]
  - Dist::Zilla::Plugin::Git::NextRelease

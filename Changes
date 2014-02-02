@@ -1,12 +1,19 @@
 Revision history for Dist-Zilla-Plugin-MetaProvides-Package
 
-2.000000 2014-02-02T06:05:30Z
+2.000000 2014-02-02T06:08:39Z
+ [00 Major]
+ - Toolkit moved to EUMM.
+ - Tooling dependencies softened.
+ - IO::String no longer used.
+ - Version schema moved to mantissa length = 6 ( primary reason for 1 → 2 )
+
  [Dependencies::Stats]
  - Dependencies changed since 1.15000003, see Changes.deps{,.all,.dev} for
    details
  - build: -1
  - configure: +2 -1
  - develop: +3 ↑1 -4
+ - runtime: -1
  - test: +8 ↓1
 
 1.15000003 2014-01-13T06:37:51Z

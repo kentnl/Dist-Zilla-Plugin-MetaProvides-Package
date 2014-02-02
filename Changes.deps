@@ -26,6 +26,9 @@
  [Removed / configure requires]
  - Module::Build 0.4204
 
+ [Removed / runtime requires]
+ - IO::String
+
 1.15000003 2014-01-13T06:37:51Z
  [Added / runtime requires]
  - utf8
