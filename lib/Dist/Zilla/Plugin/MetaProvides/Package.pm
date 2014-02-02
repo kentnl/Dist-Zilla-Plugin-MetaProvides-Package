@@ -4,8 +4,10 @@ use warnings;
 use utf8;
 
 package Dist::Zilla::Plugin::MetaProvides::Package;
-$Dist::Zilla::Plugin::MetaProvides::Package::VERSION = '1.150000';
+$Dist::Zilla::Plugin::MetaProvides::Package::VERSION = '2.000000';
 # ABSTRACT: Extract namespaces/version from traditional packages for provides
+
+our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
 
 use Moose qw( with has around );
 use MooseX::LazyRequire;
@@ -372,7 +374,7 @@ Dist::Zilla::Plugin::MetaProvides::Package - Extract namespaces/version from tra
 
 =head1 VERSION
 
-version 1.150000
+version 2.000000
 
 =head1 SYNOPSIS
 

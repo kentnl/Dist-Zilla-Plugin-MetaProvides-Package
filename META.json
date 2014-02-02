@@ -133,7 +133,7 @@
    "provides" : {
       "Dist::Zilla::Plugin::MetaProvides::Package" : {
          "file" : "lib/Dist/Zilla/Plugin/MetaProvides/Package.pm",
-         "version" : "1.150000"
+         "version" : "2.000000"
       }
    },
    "release_status" : "stable",
@@ -148,7 +148,7 @@
          "web" : "https://github.com/kentfredric/Dist-Zilla-Plugin-MetaProvides-Package"
       }
    },
-   "version" : "1.150000",
+   "version" : "2.000000",
    "x_BuiltWith" : {
       "modules" : {
          "CPAN::Meta" : "2.133380",
@@ -178,7 +178,7 @@
          "Dist::Zilla::Plugin::MetaJSON" : "5.012",
          "Dist::Zilla::Plugin::MetaNoIndex" : "5.012",
          "Dist::Zilla::Plugin::MetaProvides" : "2.000000",
-         "Dist::Zilla::Plugin::MetaProvides::Package" : "1.15000003",
+         "Dist::Zilla::Plugin::MetaProvides::Package" : "1.150000",
          "Dist::Zilla::Plugin::MetaTests" : "5.012",
          "Dist::Zilla::Plugin::MetaYAML" : "5.012",
          "Dist::Zilla::Plugin::MinimumPerl" : "1.003",
@@ -303,7 +303,7 @@
                }
             },
             "name" : "@Author::KENTNL/MetaProvides::Package",
-            "version" : "1.15000003"
+            "version" : "1.150000"
          },
          {
             "class" : "Dist::Zilla::Plugin::MetaData::BuiltWith",
