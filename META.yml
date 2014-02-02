@@ -34,7 +34,6 @@ requires:
   Dist::Zilla::Plugin::FinderCode: '0'
   Dist::Zilla::Plugin::MetaProvides: '1.15000000'
   Dist::Zilla::Role::MetaProvider::Provider: '0'
-  IO::String: '0'
   Module::Metadata: '1.000005'
   Moose: '0'
   Moose::Autobox: '0'
@@ -79,7 +78,7 @@ x_BuiltWith:
     Dist::Zilla::Plugin::MetaJSON: '5.012'
     Dist::Zilla::Plugin::MetaNoIndex: '5.012'
     Dist::Zilla::Plugin::MetaProvides: '2.000000'
-    Dist::Zilla::Plugin::MetaProvides::Package: '1.150000'
+    Dist::Zilla::Plugin::MetaProvides::Package: '2.000000'
     Dist::Zilla::Plugin::MetaTests: '5.012'
     Dist::Zilla::Plugin::MetaYAML: '5.012'
     Dist::Zilla::Plugin::MinimumPerl: '1.003'
@@ -107,7 +106,6 @@ x_BuiltWith:
     Dist::Zilla::Util::Test::KENTNL: '0.01015824'
     ExtUtils::MakeMaker: '6.88'
     File::Spec::Functions: '3.40'
-    IO::String: '1.08'
     List::Util: '1.38'
     Module::Metadata: '1.000019'
     Moose: '2.1202'
@@ -185,7 +183,7 @@ x_Dist_Zilla:
           inherit_version: '1'
           meta_noindex: '1'
       name: '@Author::KENTNL/MetaProvides::Package'
-      version: '1.150000'
+      version: '2.000000'
     -
       class: Dist::Zilla::Plugin::MetaData::BuiltWith
       config:

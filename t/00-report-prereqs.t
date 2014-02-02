@@ -115,7 +115,6 @@ my $static_prereqs = do { my $x = {
                                       'Dist::Zilla::Plugin::FinderCode' => '0',
                                       'Dist::Zilla::Plugin::MetaProvides' => '1.15000000',
                                       'Dist::Zilla::Role::MetaProvider::Provider' => '0',
-                                      'IO::String' => '0',
                                       'Module::Metadata' => '1.000005',
                                       'Moose' => '0',
                                       'Moose::Autobox' => '0',
