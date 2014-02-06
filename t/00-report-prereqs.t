@@ -111,6 +111,7 @@ my $static_prereqs = do { my $x = {
        'runtime' => {
                       'requires' => {
                                       'Data::Dump' => '1.16',
+                                      'Dist::Zilla' => '5.000',
                                       'Dist::Zilla::MetaProvides::ProvideRecord' => '1.14000000',
                                       'Dist::Zilla::Plugin::FinderCode' => '0',
                                       'Dist::Zilla::Plugin::MetaProvides' => '1.15000000',
