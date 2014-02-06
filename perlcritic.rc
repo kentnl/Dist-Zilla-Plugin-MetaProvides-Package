@@ -156,7 +156,7 @@ stop_words = versionless metadata conformant autovivification
 
 [Documentation::RequirePodAtEnd]
 
-[Documentation::RequirePodLinksIncludeText]
+[-Documentation::RequirePodLinksIncludeText]
 
 [-Documentation::RequirePodSections]
 
