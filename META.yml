@@ -27,9 +27,10 @@ no_index:
 provides:
   Dist::Zilla::Plugin::MetaProvides::Package:
     file: lib/Dist/Zilla/Plugin/MetaProvides/Package.pm
-    version: '2.000000'
+    version: '2.000001'
 requires:
   Data::Dump: '1.16'
+  Dist::Zilla: '5.000'
   Dist::Zilla::MetaProvides::ProvideRecord: '1.14000000'
   Dist::Zilla::Plugin::FinderCode: '0'
   Dist::Zilla::Plugin::MetaProvides: '1.15000000'
@@ -48,12 +49,13 @@ resources:
   bugtracker: https://github.com/kentfredric/Dist-Zilla-Plugin-MetaProvides-Package/issues
   homepage: https://github.com/kentfredric/Dist-Zilla-Plugin-MetaProvides-Package
   repository: https://github.com/kentfredric/Dist-Zilla-Plugin-MetaProvides-Package.git
-version: '2.000000'
+version: '2.000001'
 x_BuiltWith:
   modules:
     CPAN::Meta: '2.133380'
     CPAN::Meta::Requirements: '2.125'
     Data::Dump: '1.22'
+    Dist::Zilla: '5.012'
     Dist::Zilla::MetaProvides::ProvideRecord: '2.000000'
     Dist::Zilla::Plugin::Authority: '1.006'
     Dist::Zilla::Plugin::AutoPrereqs: '5.012'
@@ -78,7 +80,7 @@ x_BuiltWith:
     Dist::Zilla::Plugin::MetaJSON: '5.012'
     Dist::Zilla::Plugin::MetaNoIndex: '5.012'
     Dist::Zilla::Plugin::MetaProvides: '2.000000'
-    Dist::Zilla::Plugin::MetaProvides::Package: '2.000000'
+    Dist::Zilla::Plugin::MetaProvides::Package: '2.000001'
     Dist::Zilla::Plugin::MetaTests: '5.012'
     Dist::Zilla::Plugin::MetaYAML: '5.012'
     Dist::Zilla::Plugin::MinimumPerl: '1.003'
@@ -103,7 +105,7 @@ x_BuiltWith:
     Dist::Zilla::PluginBundle::Author::KENTNL: '2.012000'
     Dist::Zilla::PluginBundle::Author::KENTNL::Lite: 1.7.2
     Dist::Zilla::Role::MetaProvider::Provider: '2.000000'
-    Dist::Zilla::Util::Test::KENTNL: '0.01015824'
+    Dist::Zilla::Util::Test::KENTNL: '1.000000'
     ExtUtils::MakeMaker: '6.88'
     File::Spec::Functions: '3.40'
     List::Util: '1.38'
@@ -124,7 +126,7 @@ x_BuiltWith:
     namespace::autoclean: '0.15'
     strict: '1.08'
     utf8: '1.13'
-    version: '0.9907'
+    version: '0.9908'
     warnings: '1.21'
   perl:
     original: v5.19.8
@@ -183,7 +185,7 @@ x_Dist_Zilla:
           inherit_version: '1'
           meta_noindex: '1'
       name: '@Author::KENTNL/MetaProvides::Package'
-      version: '2.000000'
+      version: '2.000001'
     -
       class: Dist::Zilla::Plugin::MetaData::BuiltWith
       config:

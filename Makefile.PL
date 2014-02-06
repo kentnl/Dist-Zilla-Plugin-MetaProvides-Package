@@ -22,6 +22,7 @@ my %WriteMakefileArgs = (
   "NAME" => "Dist::Zilla::Plugin::MetaProvides::Package",
   "PREREQ_PM" => {
     "Data::Dump" => "1.16",
+    "Dist::Zilla" => "5.000",
     "Dist::Zilla::MetaProvides::ProvideRecord" => "1.14000000",
     "Dist::Zilla::Plugin::FinderCode" => 0,
     "Dist::Zilla::Plugin::MetaProvides" => "1.15000000",
@@ -46,7 +47,7 @@ my %WriteMakefileArgs = (
     "Test::More" => "0.96",
     "version" => 0
   },
-  "VERSION" => "2.000000",
+  "VERSION" => "2.000001",
   "test" => {
     "TESTS" => "t/*.t t/00-compile/*.t"
   }
@@ -55,6 +56,7 @@ my %WriteMakefileArgs = (
 
 my %FallbackPrereqs = (
   "Data::Dump" => "1.16",
+  "Dist::Zilla" => "5.000",
   "Dist::Zilla::MetaProvides::ProvideRecord" => "1.14000000",
   "Dist::Zilla::Plugin::FinderCode" => 0,
   "Dist::Zilla::Plugin::MetaProvides" => "1.15000000",
