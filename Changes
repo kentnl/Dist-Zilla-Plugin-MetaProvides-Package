@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+2.000001 2014-02-06T17:13:11Z
  [00 Bugfix]
  - Need newer Dzil for encoded_content
 
