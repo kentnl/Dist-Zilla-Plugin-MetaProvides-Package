@@ -1,4 +1,8 @@
-2.000000
+2.000001
+ [Added / runtime requires]
+ - Dist::Zilla 5.000
+
+2.000000 2014-02-02T06:25:35Z
  [Added / configure recommends]
  - ExtUtils::MakeMaker 6.88
 
