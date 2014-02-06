@@ -1,6 +1,16 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+ [00 Bugfix]
+ - Need newer Dzil for encoded_content
+
+ [Dependencies::Aggregate]
+ - 5.10 : 185 → 184
+ - 5.19 : 169 → 167
+ - https://gist.github.com/kentfredric/8848439
+ - Devel::FindPerl was dropped from Build to Test in Module::Path
+ - Dist::Zilla::Util::Test::KENTNL stopped causing MB upgrade on 5.19
+
  [Dependencies::Stats]
  - Dependencies changed since 2.000000, see Changes.deps{,.all,.dev} for
    details
@@ -14,8 +24,8 @@ Revision history for {{$dist->name}}
  - Version schema moved to mantissa length = 6 ( primary reason for 1 → 2 )
 
  [Dependencies::Aggregate]
- - 5.10 : before = 186 , after: 186
- - 5.19 : before = 171 , after: 171
+ - 5.10 : before = 186 , after: 185
+ - 5.19 : before = 171 , after: 169
  - Limited by Dzil → Path::Class → Module::Build
  - Limited by DZP:Test::KENTNL → Module::Build
 
