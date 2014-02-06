@@ -9,7 +9,7 @@ verbose = 9
 
 [Bangs::ProhibitCommentedOutCode]
 
-[Bangs::ProhibitDebuggingModules]
+[-Bangs::ProhibitDebuggingModules]
 
 [-Bangs::ProhibitFlagComments]
 
