@@ -1,4 +1,8 @@
-2.000001
+This file contains ALL changes in dependencies in both REQUIRED / OPTIONAL dependencies for all phases (configure/build/runtime/test/develop)
+
+2.000002
+
+2.000001 2014-02-06T17:13:11Z
  [Added / runtime requires]
  - Dist::Zilla 5.000
 
