@@ -1,6 +1,9 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+ [00 Trivial]
+ - Minor packaging changes.
+
  [Dependencies::Stats]
  - Dependencies changed since 2.000001, see misc/*.deps* for details
  - configure: (recommends: ↑1)
