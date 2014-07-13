@@ -58,6 +58,7 @@ my $static_prereqs = do { my $x = {
                                       'Dist::Zilla::Plugin::Bootstrap::lib' => '0',
                                       'Dist::Zilla::Plugin::BumpVersionAfterRelease' => '0',
                                       'Dist::Zilla::Plugin::ConfirmRelease' => '0',
+                                      'Dist::Zilla::Plugin::CopyFilesFromBuild' => '0',
                                       'Dist::Zilla::Plugin::EOLTests' => '0',
                                       'Dist::Zilla::Plugin::Git::Check' => '0',
                                       'Dist::Zilla::Plugin::Git::Commit' => '0',
