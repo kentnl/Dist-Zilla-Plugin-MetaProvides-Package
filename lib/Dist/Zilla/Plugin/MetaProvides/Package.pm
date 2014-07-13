@@ -5,6 +5,8 @@ use utf8;
 
 package Dist::Zilla::Plugin::MetaProvides::Package;
 
+our $VERSION = '2.000002';
+
 # ABSTRACT: Extract namespaces/version from traditional packages for provides
 
 # AUTHORITY

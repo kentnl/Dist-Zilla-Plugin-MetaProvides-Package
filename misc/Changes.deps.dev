@@ -1,11 +1,17 @@
 This file contains changes to DEVELOPMENT dependencies only ( both REQUIRED and OPTIONAL )
 
 2.000002
+ [Added / develop requires]
+ - Dist::Zilla::Plugin::BumpVersionAfterRelease
+ - Dist::Zilla::Plugin::RewriteVersion::Sanitized
+
  [Added / develop suggests]
  - Dist::Zilla::App::Command::bakeini 0.001001
  - Dist::Zilla::PluginBundle::Author::KENTNL 2.016002
 
  [Removed / develop requires]
+ - Dist::Zilla::Plugin::Git::NextVersion::Sanitized
+ - Dist::Zilla::Plugin::PkgVersion
  - Dist::Zilla::PluginBundle::Author::KENTNL 2.012000
 
  [Removed / develop suggests]
