@@ -3,6 +3,7 @@ This file contains changes to DEVELOPMENT dependencies only ( both REQUIRED and 
 2.000002
  [Added / develop requires]
  - Dist::Zilla::Plugin::BumpVersionAfterRelease
+ - Dist::Zilla::Plugin::CopyFilesFromBuild
  - Dist::Zilla::Plugin::RewriteVersion::Sanitized
 
  [Added / develop suggests]

@@ -4,7 +4,7 @@ Revision history for {{$dist->name}}
  [Dependencies::Stats]
  - Dependencies changed since 2.000001, see misc/*.deps* for details
  - configure: (recommends: ↑1)
- - develop: +2 -3 (suggests: +2 -1)
+ - develop: +3 -3 (suggests: +2 -1)
  - test: (recommends: ↑2)
 
 2.000001 2014-02-06T17:13:11Z

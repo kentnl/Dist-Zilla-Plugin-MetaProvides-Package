@@ -3,6 +3,7 @@ This file contains ALL changes in dependencies in both REQUIRED / OPTIONAL depen
 2.000002
  [Added / develop requires]
  - Dist::Zilla::Plugin::BumpVersionAfterRelease
+ - Dist::Zilla::Plugin::CopyFilesFromBuild
  - Dist::Zilla::Plugin::RewriteVersion::Sanitized
 
  [Added / develop suggests]
