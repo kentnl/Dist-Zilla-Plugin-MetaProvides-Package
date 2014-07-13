@@ -1,19 +1,14 @@
-2.000001
+This file contains changes in REQUIRED dependencies for standard CPAN phases (configure/build/runtime/test)
+
+2.000002
+
+2.000001 2014-02-06T17:13:11Z
  [Added / runtime requires]
  - Dist::Zilla 5.000
 
 2.000000 2014-02-02T06:25:35Z
- [Added / configure recommends]
- - ExtUtils::MakeMaker 6.88
-
  [Added / configure requires]
  - ExtUtils::MakeMaker 6.30
-
- [Added / test recommends]
- - CPAN::Meta
- - CPAN::Meta::Requirements 2.120900
- - ExtUtils::MakeMaker 6.88
- - Test::More 1.001002
 
  [Added / test requires]
  - ExtUtils::MakeMaker
@@ -133,18 +128,12 @@
  - Module::Extract::Namespaces 0.14
  - Module::Extract::VERSION 0.13
 
- [Removed / runtime suggests]
- - Module::Extract::Namespaces 0.1402
-
 1.12060502 2012-02-04T03:50:41Z
  [Added / runtime requires]
  - Data::Dump
  - perl 5.006
  - strict
  - warnings
-
- [Added / runtime suggests]
- - Module::Extract::Namespaces 0.1402
 
  [Removed / test requires]
  - English
