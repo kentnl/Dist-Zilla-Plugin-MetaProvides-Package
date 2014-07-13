@@ -4,7 +4,9 @@ use warnings;
 use utf8;
 
 package Dist::Zilla::Plugin::MetaProvides::Package;
-$Dist::Zilla::Plugin::MetaProvides::Package::VERSION = '2.000002';
+
+our $VERSION = '2.000002';
+
 # ABSTRACT: Extract namespaces/version from traditional packages for provides
 
 our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
