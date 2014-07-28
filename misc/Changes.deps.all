@@ -1,6 +1,8 @@
 This file contains ALL changes in dependencies in both REQUIRED / OPTIONAL dependencies for all phases (configure/build/runtime/test/develop)
 
-2.000003
+2.000004
+
+2.000003 2014-07-28T23:48:39Z
  [Added / test recommends]
  - CPAN::Meta::Prereqs
 
