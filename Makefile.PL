@@ -39,14 +39,16 @@ my %WriteMakefileArgs = (
   "TEST_REQUIRES" => {
     "Dist::Zilla::Util::Test::KENTNL" => "0.01000011",
     "ExtUtils::MakeMaker" => 0,
+    "File::Spec" => 0,
     "File::Spec::Functions" => 0,
     "List::Util" => 0,
+    "Scalar::Util" => 0,
     "Test::Fatal" => 0,
     "Test::Moose" => 0,
     "Test::More" => "0.96",
-    "version" => 0
+    "version" => "0.77"
   },
-  "VERSION" => "2.000002",
+  "VERSION" => "2.000003",
   "test" => {
     "TESTS" => "t/*.t t/00-compile/*.t"
   }
@@ -62,6 +64,7 @@ my %FallbackPrereqs = (
   "Dist::Zilla::Role::MetaProvider::Provider" => 0,
   "Dist::Zilla::Util::Test::KENTNL" => "0.01000011",
   "ExtUtils::MakeMaker" => 0,
+  "File::Spec" => 0,
   "File::Spec::Functions" => 0,
   "List::Util" => 0,
   "Module::Metadata" => "1.000005",
@@ -69,13 +72,14 @@ my %FallbackPrereqs = (
   "Moose::Autobox" => 0,
   "MooseX::LazyRequire" => 0,
   "MooseX::Types::Moose" => 0,
+  "Scalar::Util" => 0,
   "Test::Fatal" => 0,
   "Test::Moose" => 0,
   "Test::More" => "0.96",
   "namespace::autoclean" => 0,
   "strict" => 0,
   "utf8" => 0,
-  "version" => 0,
+  "version" => "0.77",
   "warnings" => 0
 );
 
