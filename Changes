@@ -1,6 +1,6 @@
 Revision history for Dist-Zilla-Plugin-MetaProvides-Package
 
-2.000004 2014-07-28T23:50:37Z
+2.000004 2014-08-05T07:23:29Z
 
 2.000003 2014-07-28T23:48:39Z
  [00 Trivial]
@@ -299,9 +299,24 @@ Revision history for Dist-Zilla-Plugin-MetaProvides-Package
  - Use File::Temp and a few other test tools
  - Use newer MetaProvides bases.
 
+ [Dependencies::Stats]
+ - Dependencies changed since 1.11044404, see misc/*.deps* for details
+ - build: +1
+ - configure: +1
+ - develop: +3 (recommends: +1, suggests: +1)
+ - runtime: +9 (suggests: +1)
+ - test: +6 (suggests: +1)
+
 1.11044404 2010-11-02T16:58:53Z
  - Update dist info.
  - Integrated the new meta_noindex / _apply_meta_noindex behaviour added to the role.
+
+ [Dependencies::Stats]
+ - Dependencies changed since 1.11034304, see misc/*.deps* for details
+ - build: -1
+ - configure: -1
+ - runtime: -8
+ - test: -4
 
 1.11034304 2010-07-25T16:18:01Z
  - Improved documentation so people don't need to do so much link checking. ( This is pretty much an acknowledgement
