@@ -36,75 +36,8 @@ use Data::Dump 1.16 ();
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 use namespace::autoclean;
 with 'Dist::Zilla::Role::MetaProvider::Provider';
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 has '+meta_noindex' => ( default => sub { 1 } );
 
@@ -350,16 +283,6 @@ around mvp_multivalue_args => sub {
   my ( $orig, $self, @rest ) = @_;
   return ( 'finder', $self->$orig(@rest) );
 };
-
-
-
-
-
-
-
-
-
-
 
 __PACKAGE__->meta->make_immutable;
 no Moose;

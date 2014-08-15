@@ -1,14 +1,18 @@
 Revision history for Dist-Zilla-Plugin-MetaProvides-Package
 
-2.000004 2014-08-07T11:00:34Z
+2.000004 2014-08-15T19:15:52Z
  [00 Trivial]
- - update Test::ReportVersions
+ - no code changes.
+ - tests augmented.
 
  [Dependencies::Stats]
  - Dependencies changed since 2.000003, see misc/*.deps* for details
  - configure: ↓1
  - develop: +1 (suggests: ↑1)
  - test: -4 (recommends: ↑1 -2)
+
+ [Tests]
+ - update Test::ReportPrereqs
 
 2.000003 2014-07-28T23:48:39Z
  [00 Trivial]
@@ -114,7 +118,7 @@ Revision history for Dist-Zilla-Plugin-MetaProvides-Package
 
  [Test]
  - Use Test::Compile::PerFile
- - Reports no develop deps due to newer ReportVersions Test
+ - Reports no develop deps due to newer ReportPrereqs Test
 
 1.15000000 2013-09-21T07:43:15Z
  [00 Major - File Finder]
