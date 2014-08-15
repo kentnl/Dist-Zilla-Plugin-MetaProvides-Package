@@ -4,12 +4,16 @@ Revision history for {{$dist->name}}
  [00 Trivial]
  - no code changes.
  - tests augmented.
+ - whitespace adjusted.
 
  [Dependencies::Stats]
  - Dependencies changed since 2.000003, see misc/*.deps* for details
  - configure: ↓1
  - develop: +1 (suggests: ↑1)
  - test: -4 (recommends: ↑1 -2)
+
+ [Misc]
+ - Improve source side POD to reduce build side whitespace.
 
  [Tests]
  - update Test::ReportPrereqs

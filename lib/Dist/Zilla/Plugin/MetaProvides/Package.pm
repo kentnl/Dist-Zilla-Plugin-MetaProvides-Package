@@ -19,17 +19,6 @@ use Module::Metadata 1.000005;
 use Dist::Zilla::MetaProvides::ProvideRecord 1.14000000;
 use Data::Dump 1.16 ();
 
-=head1 SYNOPSIS
-
-In your C<dist.ini>:
-
-    [MetaProvides::Package]
-    inherit_version = 0    ; optional
-    inherit_missing = 0    ; optional
-    meta_noindex    = 1    ; optional
-
-=cut
-
 =with L<Dist::Zilla::Role::MetaProvider::Provider>
 
 =cut
@@ -49,62 +38,6 @@ In your C<dist.ini>:
 
 use namespace::autoclean;
 with 'Dist::Zilla::Role::MetaProvider::Provider';
-
-=head1 OPTIONS INHERITED FROM L<Dist::Zilla::Role::MetaProvider::Provider>
-
-=head2 L<< C<inherit_version>|Dist::Zilla::Role::MetaProvider::Provider/inherit_version >>
-
-How do you want existing versions ( Versions hard-coded into files before running this plug-in )to be processed?
-
-=over 4
-
-=item * DEFAULT: inherit_version = 1
-
-Ignore anything you find in a file, and just probe C<< DZIL->version() >> for a value. This is a sane default and most will want this.
-
-=item * inherit_version = 0
-
-Use this option if you actually want to use hard-coded values in your files and use the versions parsed out of them.
-
-=back
-
-=head2 L<< C<inherit_missing>|Dist::Zilla::Role::MetaProvider::Provider/inherit_missing >>
-
-In the event you are using the aforementioned C<< L</inherit_version> = 0 >>, this determines how to behave when encountering a
-module with no version defined.
-
-=over 4
-
-=item * DEFAULT: inherit_missing = 1
-
-When a module has no version, probe C<< DZIL->version() >> for an answer. This is what you want if you want to have some
-files with fixed versions, and others to just automatically be maintained by Dist::Zilla.
-
-=item * inherit_missing = 0
-
-When a module has no version, emit a versionless record in the final metadata.
-
-=back
-
-=head2 L<< C<meta_noindex>|Dist::Zilla::Role::MetaProvider::Provider/meta_noindex >>
-
-This is a utility for people who are also using L<< C<MetaNoIndex>|Dist::Zilla::Plugin::MetaNoIndex >>,
-so that its settings can be used to eliminate items from the 'provides' list.
-
-=over 4
-
-=item * meta_noindex = 0
-
-By default, do nothing unusual.
-
-=item * DEFAULT: meta_noindex = 1
-
-When a module meets the criteria provided to L<< C<MetaNoIndex>|Dist::Zilla::Plugin::MetaNoIndex >>,
-eliminate it from the metadata shipped to L<Dist::Zilla>
-
-=back
-
-=cut
 
 has '+meta_noindex' => ( default => sub { 1 } );
 
@@ -351,6 +284,73 @@ around mvp_multivalue_args => sub {
   return ( 'finder', $self->$orig(@rest) );
 };
 
+__PACKAGE__->meta->make_immutable;
+no Moose;
+1;
+
+=head1 SYNOPSIS
+
+In your C<dist.ini>:
+
+    [MetaProvides::Package]
+    inherit_version = 0    ; optional
+    inherit_missing = 0    ; optional
+    meta_noindex    = 1    ; optional
+
+=head1 OPTIONS INHERITED FROM L<Dist::Zilla::Role::MetaProvider::Provider>
+
+=head2 L<< C<inherit_version>|Dist::Zilla::Role::MetaProvider::Provider/inherit_version >>
+
+How do you want existing versions ( Versions hard-coded into files before running this plug-in )to be processed?
+
+=over 4
+
+=item * DEFAULT: inherit_version = 1
+
+Ignore anything you find in a file, and just probe C<< DZIL->version() >> for a value. This is a sane default and most will want this.
+
+=item * inherit_version = 0
+
+Use this option if you actually want to use hard-coded values in your files and use the versions parsed out of them.
+
+=back
+
+=head2 L<< C<inherit_missing>|Dist::Zilla::Role::MetaProvider::Provider/inherit_missing >>
+
+In the event you are using the aforementioned C<< L</inherit_version> = 0 >>, this determines how to behave when encountering a
+module with no version defined.
+
+=over 4
+
+=item * DEFAULT: inherit_missing = 1
+
+When a module has no version, probe C<< DZIL->version() >> for an answer. This is what you want if you want to have some
+files with fixed versions, and others to just automatically be maintained by Dist::Zilla.
+
+=item * inherit_missing = 0
+
+When a module has no version, emit a versionless record in the final metadata.
+
+=back
+
+=head2 L<< C<meta_noindex>|Dist::Zilla::Role::MetaProvider::Provider/meta_noindex >>
+
+This is a utility for people who are also using L<< C<MetaNoIndex>|Dist::Zilla::Plugin::MetaNoIndex >>,
+so that its settings can be used to eliminate items from the 'provides' list.
+
+=over 4
+
+=item * meta_noindex = 0
+
+By default, do nothing unusual.
+
+=item * DEFAULT: meta_noindex = 1
+
+When a module meets the criteria provided to L<< C<MetaNoIndex>|Dist::Zilla::Plugin::MetaNoIndex >>,
+eliminate it from the metadata shipped to L<Dist::Zilla>
+
+=back
+
 =head1 SEE ALSO
 
 =over 4
@@ -360,8 +360,3 @@ around mvp_multivalue_args => sub {
 =back
 
 =cut
-
-__PACKAGE__->meta->make_immutable;
-no Moose;
-1;
-
