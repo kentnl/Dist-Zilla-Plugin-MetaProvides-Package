@@ -2,6 +2,7 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
  [00 Trivial]
+ - CPANDAY!
  - no code changes.
  - tests augmented.
  - whitespace adjusted.
