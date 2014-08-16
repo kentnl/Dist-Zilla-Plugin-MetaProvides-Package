@@ -5,7 +5,7 @@ use utf8;
 
 package Dist::Zilla::Plugin::MetaProvides::Package;
 
-our $VERSION = '2.000004';
+our $VERSION = '2.000005';
 
 # ABSTRACT: Extract namespaces/version from traditional packages for provides
 
@@ -300,7 +300,7 @@ Dist::Zilla::Plugin::MetaProvides::Package - Extract namespaces/version from tra
 
 =head1 VERSION
 
-version 2.000004
+version 2.000005
 
 =head1 SYNOPSIS
 
