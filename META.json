@@ -180,7 +180,7 @@
          "Dist::Zilla::Plugin::MetaJSON" : "5.020",
          "Dist::Zilla::Plugin::MetaNoIndex" : "5.020",
          "Dist::Zilla::Plugin::MetaProvides" : "2.000002",
-         "Dist::Zilla::Plugin::MetaProvides::Package" : "2.000004",
+         "Dist::Zilla::Plugin::MetaProvides::Package" : "2.000005",
          "Dist::Zilla::Plugin::MetaTests" : "5.020",
          "Dist::Zilla::Plugin::MetaYAML" : "5.020",
          "Dist::Zilla::Plugin::MinimumPerl" : "1.003",
@@ -290,7 +290,7 @@
                }
             },
             "name" : "@Author::KENTNL/MetaProvides::Package",
-            "version" : "2.000004"
+            "version" : "2.000005"
          },
          {
             "class" : "Dist::Zilla::Plugin::MetaData::BuiltWith",
