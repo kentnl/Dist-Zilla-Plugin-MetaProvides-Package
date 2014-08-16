@@ -1,6 +1,16 @@
 This file contains changes in REQUIRED dependencies for standard CPAN phases (configure/build/runtime/test)
 
-2.000003
+2.000004
+ [Changed / configure requires]
+ - ExtUtils::MakeMaker 6.30 → 0
+
+ [Removed / test requires]
+ - File::Spec::Functions
+ - List::Util
+ - Scalar::Util
+ - version 0.77
+
+2.000003 2014-07-28T23:48:39Z
  [Added / test requires]
  - File::Spec
  - Scalar::Util
@@ -153,8 +163,53 @@ This file contains changes in REQUIRED dependencies for standard CPAN phases (co
 1.12060213 2011-04-06T01:20:11Z
 
 1.12044908 2010-11-07T20:08:27Z
+ [Added / build requires]
+ - Module::Build 0.3601
+
+ [Added / configure requires]
+ - Module::Build 0.3601
+
+ [Added / runtime requires]
+ - Dist::Zilla::MetaProvides::ProvideRecord
+ - Dist::Zilla::Plugin::MetaProvides 1.12044806
+ - Dist::Zilla::Role::MetaProvider::Provider
+ - File::Temp
+ - Module::Extract::Namespaces 0.14
+ - Module::Extract::VERSION 0.13
+ - Moose
+ - Moose::Autobox
+ - namespace::autoclean
+
+ [Added / test requires]
+ - Dist::Zilla::Util::Test::KENTNL 0.01000011
+ - English
+ - File::Find
+ - Test::Fatal
+ - Test::Moose
+ - Test::More 0.88
 
 1.11044404 2010-11-02T16:58:53Z
+ [Removed / build requires]
+ - Module::Build 0.3601
+
+ [Removed / configure requires]
+ - Module::Build 0.3601
+
+ [Removed / runtime requires]
+ - Dist::Zilla::MetaProvides::ProvideRecord
+ - Dist::Zilla::Plugin::MetaProvides 1.11034201
+ - Dist::Zilla::Role::MetaProvider::Provider
+ - Module::Extract::Namespaces 0.14
+ - Module::Extract::VERSION 0.13
+ - Moose
+ - Moose::Autobox
+ - namespace::autoclean
+
+ [Removed / test requires]
+ - Dist::Zilla::App::Tester
+ - File::Find
+ - File::Temp
+ - Test::More 0.88
 
 1.11034304 2010-07-25T16:18:01Z
  [Removed / runtime requires]

@@ -1,6 +1,29 @@
 This file contains ALL changes in dependencies in both REQUIRED / OPTIONAL dependencies for all phases (configure/build/runtime/test/develop)
 
-2.000003
+2.000004
+ [Added / develop requires]
+ - Dist::Zilla::Plugin::Git::Contributors 0.006
+
+ [Changed / configure requires]
+ - ExtUtils::MakeMaker 6.30 → 0
+
+ [Changed / develop suggests]
+ - Dist::Zilla::PluginBundle::Author::KENTNL 2.016005 → 2.017002
+
+ [Changed / test recommends]
+ - CPAN::Meta 0 → 2.120900
+
+ [Removed / test recommends]
+ - CPAN::Meta::Prereqs
+ - CPAN::Meta::Requirements 2.120900
+
+ [Removed / test requires]
+ - File::Spec::Functions
+ - List::Util
+ - Scalar::Util
+ - version 0.77
+
+2.000003 2014-07-28T23:48:39Z
  [Added / test recommends]
  - CPAN::Meta::Prereqs
 
@@ -339,8 +362,70 @@ This file contains ALL changes in dependencies in both REQUIRED / OPTIONAL depen
  - Dist::Zilla::PluginBundle::KENTNL 0.01017119
 
 1.12044908 2010-11-07T20:08:27Z
+ [Added / build requires]
+ - Module::Build 0.3601
+
+ [Added / configure requires]
+ - Module::Build 0.3601
+
+ [Added / develop recommends]
+ - Dist::Zilla::PluginBundle::KENTNL::Lite 0.01009803
+
+ [Added / develop requires]
+ - Dist::Zilla::Plugin::Bootstrap::lib
+ - Dist::Zilla::Plugin::MetaNoIndex
+ - Dist::Zilla::PluginBundle::KENTNL::Lite
+
+ [Added / develop suggests]
+ - Dist::Zilla::PluginBundle::KENTNL 0.01017119
+
+ [Added / runtime requires]
+ - Dist::Zilla::MetaProvides::ProvideRecord
+ - Dist::Zilla::Plugin::MetaProvides 1.12044806
+ - Dist::Zilla::Role::MetaProvider::Provider
+ - File::Temp
+ - Module::Extract::Namespaces 0.14
+ - Module::Extract::VERSION 0.13
+ - Moose
+ - Moose::Autobox
+ - namespace::autoclean
+
+ [Added / runtime suggests]
+ - Dist::Zilla::Plugin::MetaNoIndex
+
+ [Added / test requires]
+ - Dist::Zilla::Util::Test::KENTNL 0.01000011
+ - English
+ - File::Find
+ - Test::Fatal
+ - Test::Moose
+ - Test::More 0.88
+
+ [Added / test suggests]
+ - Dist::Zilla::Plugin::MetaNoIndex
 
 1.11044404 2010-11-02T16:58:53Z
+ [Removed / build requires]
+ - Module::Build 0.3601
+
+ [Removed / configure requires]
+ - Module::Build 0.3601
+
+ [Removed / runtime requires]
+ - Dist::Zilla::MetaProvides::ProvideRecord
+ - Dist::Zilla::Plugin::MetaProvides 1.11034201
+ - Dist::Zilla::Role::MetaProvider::Provider
+ - Module::Extract::Namespaces 0.14
+ - Module::Extract::VERSION 0.13
+ - Moose
+ - Moose::Autobox
+ - namespace::autoclean
+
+ [Removed / test requires]
+ - Dist::Zilla::App::Tester
+ - File::Find
+ - File::Temp
+ - Test::More 0.88
 
 1.11034304 2010-07-25T16:18:01Z
  [Removed / runtime requires]

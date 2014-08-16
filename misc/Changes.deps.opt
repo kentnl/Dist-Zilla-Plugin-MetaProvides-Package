@@ -1,6 +1,14 @@
 This file contains changes in OPTIONAL dependencies for standard CPAN phases (configure/build/runtime/test)
 
-2.000003
+2.000004
+ [Changed / test recommends]
+ - CPAN::Meta 0 → 2.120900
+
+ [Removed / test recommends]
+ - CPAN::Meta::Prereqs
+ - CPAN::Meta::Requirements 2.120900
+
+2.000003 2014-07-28T23:48:39Z
  [Added / test recommends]
  - CPAN::Meta::Prereqs
 
@@ -51,6 +59,11 @@ This file contains changes in OPTIONAL dependencies for standard CPAN phases (co
 1.12060213 2011-04-06T01:20:11Z
 
 1.12044908 2010-11-07T20:08:27Z
+ [Added / runtime suggests]
+ - Dist::Zilla::Plugin::MetaNoIndex
+
+ [Added / test suggests]
+ - Dist::Zilla::Plugin::MetaNoIndex
 
 1.11044404 2010-11-02T16:58:53Z
 

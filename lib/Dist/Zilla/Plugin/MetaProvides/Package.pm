@@ -5,7 +5,7 @@ use utf8;
 
 package Dist::Zilla::Plugin::MetaProvides::Package;
 
-our $VERSION = '2.000003';
+our $VERSION = '2.000004';
 
 # ABSTRACT: Extract namespaces/version from traditional packages for provides
 
@@ -36,75 +36,8 @@ use Data::Dump 1.16 ();
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 use namespace::autoclean;
 with 'Dist::Zilla::Role::MetaProvider::Provider';
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 has '+meta_noindex' => ( default => sub { 1 } );
 
@@ -351,16 +284,6 @@ around mvp_multivalue_args => sub {
   return ( 'finder', $self->$orig(@rest) );
 };
 
-
-
-
-
-
-
-
-
-
-
 __PACKAGE__->meta->make_immutable;
 no Moose;
 1;
@@ -377,7 +300,7 @@ Dist::Zilla::Plugin::MetaProvides::Package - Extract namespaces/version from tra
 
 =head1 VERSION
 
-version 2.000003
+version 2.000004
 
 =head1 SYNOPSIS
 

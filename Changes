@@ -1,5 +1,24 @@
 Revision history for Dist-Zilla-Plugin-MetaProvides-Package
 
+2.000004 2014-08-15T21:17:41Z
+ [00 Trivial]
+ - CPANDAY!
+ - no code changes.
+ - tests augmented.
+ - whitespace adjusted.
+
+ [Dependencies::Stats]
+ - Dependencies changed since 2.000003, see misc/*.deps* for details
+ - configure: ↓1
+ - develop: +1 (suggests: ↑1)
+ - test: -4 (recommends: ↑1 -2)
+
+ [Misc]
+ - Improve source side POD to reduce build side whitespace.
+
+ [Tests]
+ - update Test::ReportPrereqs
+
 2.000003 2014-07-28T23:48:39Z
  [00 Trivial]
  - Move to org
@@ -104,7 +123,7 @@ Revision history for Dist-Zilla-Plugin-MetaProvides-Package
 
  [Test]
  - Use Test::Compile::PerFile
- - Reports no develop deps due to newer ReportVersions Test
+ - Reports no develop deps due to newer ReportPrereqs Test
 
 1.15000000 2013-09-21T07:43:15Z
  [00 Major - File Finder]
@@ -297,9 +316,24 @@ Revision history for Dist-Zilla-Plugin-MetaProvides-Package
  - Use File::Temp and a few other test tools
  - Use newer MetaProvides bases.
 
+ [Dependencies::Stats]
+ - Dependencies changed since 1.11044404, see misc/*.deps* for details
+ - build: +1
+ - configure: +1
+ - develop: +3 (recommends: +1, suggests: +1)
+ - runtime: +9 (suggests: +1)
+ - test: +6 (suggests: +1)
+
 1.11044404 2010-11-02T16:58:53Z
  - Update dist info.
  - Integrated the new meta_noindex / _apply_meta_noindex behaviour added to the role.
+
+ [Dependencies::Stats]
+ - Dependencies changed since 1.11034304, see misc/*.deps* for details
+ - build: -1
+ - configure: -1
+ - runtime: -8
+ - test: -4
 
 1.11034304 2010-07-25T16:18:01Z
  - Improved documentation so people don't need to do so much link checking. ( This is pretty much an acknowledgement
