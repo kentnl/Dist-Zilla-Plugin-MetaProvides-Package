@@ -85,7 +85,7 @@
          },
          "suggests" : {
             "Dist::Zilla::App::Command::bakeini" : "0.001002",
-            "Dist::Zilla::PluginBundle::Author::KENTNL" : "2.018000"
+            "Dist::Zilla::PluginBundle::Author::KENTNL" : "2.019000"
          }
       },
       "runtime" : {
@@ -156,7 +156,7 @@
          "Dist::Zilla" : "5.020",
          "Dist::Zilla::App::Command::bakeini" : "0.001002",
          "Dist::Zilla::MetaProvides::ProvideRecord" : "2.000003",
-         "Dist::Zilla::Plugin::Author::KENTNL::RecommendFixes" : "0.002001",
+         "Dist::Zilla::Plugin::Author::KENTNL::RecommendFixes" : "0.002002",
          "Dist::Zilla::Plugin::Authority" : "1.006",
          "Dist::Zilla::Plugin::AutoPrereqs" : "5.020",
          "Dist::Zilla::Plugin::Bootstrap::lib" : "1.000005",
@@ -178,7 +178,7 @@
          "Dist::Zilla::Plugin::Manifest" : "5.020",
          "Dist::Zilla::Plugin::ManifestSkip" : "5.020",
          "Dist::Zilla::Plugin::MetaConfig" : "5.020",
-         "Dist::Zilla::Plugin::MetaData::BuiltWith" : "1.001001",
+         "Dist::Zilla::Plugin::MetaData::BuiltWith" : "1.002000",
          "Dist::Zilla::Plugin::MetaJSON" : "5.020",
          "Dist::Zilla::Plugin::MetaNoIndex" : "5.020",
          "Dist::Zilla::Plugin::MetaProvides" : "2.000003",
@@ -204,7 +204,7 @@
          "Dist::Zilla::Plugin::TestRelease" : "5.020",
          "Dist::Zilla::Plugin::Twitter" : "0.025",
          "Dist::Zilla::Plugin::UploadToCPAN" : "5.020",
-         "Dist::Zilla::PluginBundle::Author::KENTNL" : "2.018000",
+         "Dist::Zilla::PluginBundle::Author::KENTNL" : "2.019000",
          "Dist::Zilla::Role::MetaProvider::Provider" : "2.000003",
          "Dist::Zilla::Util::Test::KENTNL" : "1.000003",
          "ExtUtils::MakeMaker" : "6.98",
@@ -314,7 +314,7 @@
                }
             },
             "name" : "@Author::KENTNL/MetaData::BuiltWith",
-            "version" : "1.001001"
+            "version" : "1.002000"
          },
          {
             "class" : "Dist::Zilla::Plugin::Git::Contributors",
@@ -604,7 +604,7 @@
          {
             "class" : "Dist::Zilla::Plugin::Author::KENTNL::RecommendFixes",
             "name" : "@Author::KENTNL/Author::KENTNL::RecommendFixes",
-            "version" : "0.002001"
+            "version" : "0.002002"
          },
          {
             "class" : "Dist::Zilla::Plugin::ReadmeFromPod",
