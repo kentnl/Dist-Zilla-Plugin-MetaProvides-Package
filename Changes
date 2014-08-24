@@ -4,6 +4,7 @@ Revision history for Dist-Zilla-Plugin-MetaProvides-Package
  [00 Minor]
  - Internals changes.
  - Tests overhaulled.
+ - 5.14 package NAME VERSION BLOCK now works due to Module::Metadata 1.000022
 
  [Dependencies::Stats]
  - Dependencies changed since 2.000004, see misc/*.deps* for details
@@ -15,13 +16,8 @@ Revision history for Dist-Zilla-Plugin-MetaProvides-Package
  - Implement ->dump_config in terms of Util::ConfigDumper
 
  [Tests]
- - t/dz2-hidden-provides.t reimplemented and simplified in terms of new dztest.
- - t/dz2-provides.t '' '' ''
- - t/finder-installmodules.t '' '' ''
- - t/perl-5-14-package.t '' '' '' ''
- - t/perl-5-14-package.t is no longer a TODO test, and appears to have been passing for a while since switching to
-   Module::Metadata with only one exception, and that was because the test was testing for the wrong value, a version
-   **without** a v!
+ - All tests simplified in terms of dztest and inline content.
+ - 5.14 package statement tests no longer a TODO
 
 2.000004 2014-08-15T21:17:41Z
  [00 Trivial]
