@@ -1,6 +1,6 @@
 Revision history for Dist-Zilla-Plugin-MetaProvides-Package
 
-2.001000 2014-08-24T17:53:44Z
+2.001000 2014-08-24T18:06:07Z
  [00 Minor]
  - Internals changes.
  - Tests overhaulled.
@@ -9,6 +9,7 @@ Revision history for Dist-Zilla-Plugin-MetaProvides-Package
  - Dependencies changed since 2.000004, see misc/*.deps* for details
  - develop: +1 ↑1 (suggests: ↑2)
  - runtime: +1
+ - test: +1 ↑1
 
  [Internals]
  - Implement ->dump_config in terms of Util::ConfigDumper
