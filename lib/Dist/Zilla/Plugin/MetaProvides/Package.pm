@@ -149,12 +149,12 @@ sub _packages_for {
 around dump_config => config_dumper( __PACKAGE__,
   { attrs => [qw( finder )] },
   sub {
-    my ( $self, $payload, $fails ) = @_;
+    my ( $self, $payload, ) = @_;
     for my $finder_object ( @{ $self->_finder_objects } ) {
       push @{ $payload->{finder_objects} ||= [] }, dump_plugin($finder_object);
     }
     return;
-  }
+  },
 );
 
 
