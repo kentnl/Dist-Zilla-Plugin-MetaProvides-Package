@@ -3,7 +3,7 @@ abstract: 'Extract namespaces/version from traditional packages for provides'
 author:
   - 'Kent Fredric <kentnl@cpan.org>'
 build_requires:
-  Dist::Zilla::Util::Test::KENTNL: '1.002000'
+  Dist::Zilla::Util::Test::KENTNL: '1.002'
   ExtUtils::MakeMaker: '0'
   File::Spec: '0'
   Module::Metadata: '1.000022'
