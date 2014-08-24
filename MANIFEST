@@ -9,8 +9,6 @@ META.json
 META.yml
 Makefile.PL
 README
-corpus/dist/perl-5-14/dist.ini
-corpus/dist/perl-5-14/lib/DZ2.pm
 dist.ini
 dist.ini.meta
 layout/self_structure.dot

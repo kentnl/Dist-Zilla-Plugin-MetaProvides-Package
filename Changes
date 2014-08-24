@@ -1,6 +1,6 @@
 Revision history for Dist-Zilla-Plugin-MetaProvides-Package
 
-2.001000 2014-08-24T18:16:49Z
+2.001000 2014-08-24T18:37:37Z
  [00 Minor]
  - Internals changes.
  - Tests overhaulled.
@@ -17,6 +17,11 @@ Revision history for Dist-Zilla-Plugin-MetaProvides-Package
  [Tests]
  - t/dz2-hidden-provides.t reimplemented and simplified in terms of new dztest.
  - t/dz2-provides.t '' '' ''
+ - t/finder-installmodules.t '' '' ''
+ - t/perl-5-14-package.t '' '' '' ''
+ - t/perl-5-14-package.t is no longer a TODO test, and appears to have been passing for a while since switching to
+   Module::Metadata with only one exception, and that was because the test was testing for the wrong value, a version
+   **without** a v!
 
 2.000004 2014-08-15T21:17:41Z
  [00 Trivial]
