@@ -150,10 +150,8 @@ around dump_config => config_dumper( __PACKAGE__,
   { attrs => [qw( finder )] },
   sub {
     my ( $self, $payload, $fails ) = @_;
-
     for my $finder_object ( @{ $self->_finder_objects } ) {
-#      $payload->{finder_objects} = [] if not exists $payload->{finder_objects};
-      push @{ $payload->{finder_objects} ||= []}, dump_plugin($finder_object);
+      push @{ $payload->{finder_objects} ||= [] }, dump_plugin($finder_object);
     }
     return;
   }
