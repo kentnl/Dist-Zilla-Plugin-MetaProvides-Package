@@ -7,12 +7,18 @@ This file contains ALL changes in dependencies in both REQUIRED / OPTIONAL depen
  [Added / runtime requires]
  - Dist::Zilla::Util::ConfigDumper 0.003000
 
+ [Added / test requires]
+ - Test::DZil
+
  [Changed / develop requires]
  - Test::Kwalitee 1.12 → 1.21
 
  [Changed / develop suggests]
  - Dist::Zilla::App::Command::bakeini 0.001001 → 0.001002
  - Dist::Zilla::PluginBundle::Author::KENTNL 2.017002 → 2.020000
+
+ [Changed / test requires]
+ - Dist::Zilla::Util::Test::KENTNL 0.01000011 → 1.002
 
 2.000004 2014-08-15T21:17:41Z
  [Added / develop requires]

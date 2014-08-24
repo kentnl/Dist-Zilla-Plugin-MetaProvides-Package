@@ -3,14 +3,19 @@ Revision history for {{$dist->name}}
 {{$NEXT}}
  [00 Minor]
  - Internals changes.
+ - Tests overhaulled.
 
  [Dependencies::Stats]
  - Dependencies changed since 2.000004, see misc/*.deps* for details
  - develop: +1 ↑1 (suggests: ↑2)
  - runtime: +1
+ - test: +1 ↑1
 
  [Internals]
  - Implement ->dump_config in terms of Util::ConfigDumper
+
+ [Tests]
+ - t/dz2-hidden-provides.t reimplemented and simplified in terms of new dztest.
 
 2.000004 2014-08-15T21:17:41Z
  [00 Trivial]
