@@ -1,3 +1,4 @@
 .build
 Dist-Zilla-Plugin-MetaProvides*
 *.swp
+tmp/
