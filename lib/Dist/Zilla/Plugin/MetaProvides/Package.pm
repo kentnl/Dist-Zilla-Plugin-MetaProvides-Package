@@ -18,6 +18,7 @@ use Moose::Autobox;
 use Module::Metadata 1.000005;
 use Dist::Zilla::MetaProvides::ProvideRecord 1.14000000;
 use Data::Dump 1.16 ();
+use Dist::Zilla::Util::ConfigDumper 0.003000 qw( config_dumper dump_plugin );
 
 
 
@@ -144,36 +145,19 @@ sub _packages_for {
   return @namespaces->map($to_record)->flatten;
 
 }
-around dump_config => sub {
-  my ( $orig, $self, @args ) = @_;
-  my $config    = $self->$orig(@args);
-  my $localconf = {};
-  for my $attribute (qw( finder )) {
-    my $pred = 'has_' . $attribute;
-    if ( $self->can($pred) ) {
-      next unless $self->$pred();
-    }
-    if ( $self->can($attribute) ) {
-      $localconf->{$attribute} = $self->$attribute();
-    }
-  }
-  for my $finder_object ( @{ $self->_finder_objects } ) {
-    $localconf->{finder_objects} = [] if not exists $localconf->{finder_objects};
-    my $object_config = {};
 
-    $object_config->{class}   = $finder_object->meta->name  if $finder_object->can('meta') and $finder_object->meta->can('name');
-    $object_config->{name}    = $finder_object->plugin_name if $finder_object->can('plugin_name');
-    $object_config->{version} = $finder_object->VERSION     if $finder_object->can('VERSION');
+around dump_config => config_dumper( __PACKAGE__,
+  { attrs => [qw( finder )] },
+  sub {
+    my ( $self, $payload, $fails ) = @_;
 
-    if ( $finder_object->can('dump_config') ) {
-      my $finder_config = $finder_object->dump_config;
-      $object_config->{config} = $finder_config if keys %{$finder_config};
+    for my $finder_object ( @{ $self->_finder_objects } ) {
+      $payload->{finder_objects} = [] if not exists $localconf->{finder_objects};
+      push @{ $payload->{finder_objects} }, dump_plugin($finder_object);
     }
-    push @{ $localconf->{finder_objects} }, $object_config;
+    return;
   }
-  $config->{ q{} . __PACKAGE__ } = $localconf;
-  return $config;
-};
+);
 
 
 
@@ -287,6 +271,81 @@ around mvp_multivalue_args => sub {
 __PACKAGE__->meta->make_immutable;
 no Moose;
 1;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Please see file perltidy.ERR
 
 __END__
 
