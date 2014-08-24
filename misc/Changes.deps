@@ -5,7 +5,11 @@ This file contains changes in REQUIRED dependencies for standard CPAN phases (co
  - Dist::Zilla::Util::ConfigDumper 0.003000
 
  [Added / test requires]
+ - Module::Metadata 1.000022
  - Test::DZil
+
+ [Changed / runtime requires]
+ - Module::Metadata 1.000005 → 1.000022
 
  [Changed / test requires]
  - Dist::Zilla::Util::Test::KENTNL 0.01000011 → 1.002
