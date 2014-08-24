@@ -8,7 +8,17 @@ use Test::DZil qw( simple_ini );
 use Dist::Zilla::Util::Test::KENTNL 1.002 qw( dztest );
 
 my $config = dztest();
-$config->add_file( 'dist.ini', simple_ini( 'GatherDir', [ 'MetaProvides::Package' => {@_} ] ) );
+$config->add_file(
+  'dist.ini' => simple_ini(
+    ['GatherDir'],    #
+    [
+      'MetaProvides::Package' => {
+        inherit_version => 0,    #
+        inherit_missing => 1
+      }
+    ]
+  )
+);
 $config->add_file( 'lib/DZ2.pm', <<'EOF');
 use strict;
 use warnings;

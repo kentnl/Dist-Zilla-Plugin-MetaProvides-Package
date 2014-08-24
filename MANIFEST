@@ -9,10 +9,6 @@ META.json
 META.yml
 Makefile.PL
 README
-corpus/dist/DZ2/dist.ini
-corpus/dist/DZ2/lib/DZ2.pm
-corpus/dist/installmodules/dist.ini
-corpus/dist/installmodules/lib/DZ2.pm
 corpus/dist/perl-5-14/dist.ini
 corpus/dist/perl-5-14/lib/DZ2.pm
 dist.ini
