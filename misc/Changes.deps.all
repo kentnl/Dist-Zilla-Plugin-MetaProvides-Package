@@ -8,6 +8,7 @@ This file contains ALL changes in dependencies in both REQUIRED / OPTIONAL depen
  - Dist::Zilla::Util::ConfigDumper 0.003000
 
  [Added / test requires]
+ - Module::Metadata 1.000022
  - Test::DZil
 
  [Changed / develop requires]
@@ -16,6 +17,9 @@ This file contains ALL changes in dependencies in both REQUIRED / OPTIONAL depen
  [Changed / develop suggests]
  - Dist::Zilla::App::Command::bakeini 0.001001 → 0.001002
  - Dist::Zilla::PluginBundle::Author::KENTNL 2.017002 → 2.020000
+
+ [Changed / runtime requires]
+ - Module::Metadata 1.000005 → 1.000022
 
  [Changed / test requires]
  - Dist::Zilla::Util::Test::KENTNL 0.01000011 → 1.002
