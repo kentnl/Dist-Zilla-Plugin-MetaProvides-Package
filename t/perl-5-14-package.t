@@ -7,6 +7,10 @@ use Test::Moose;
 use Test::DZil qw( simple_ini );
 use Dist::Zilla::Util::Test::KENTNL 1.002000 qw( dztest );
 
+unless ( eval { require Module::Metadata; Module::Metadata->(1.000022); 1 } ) {
+  plan skip_all => "Need Module::Metadata >=1.000022 for this test";
+}
+
 sub nofail(&) {
   my $code = shift;
   return is( exception { $code->() }, undef, "Contained Code should not fail" );
