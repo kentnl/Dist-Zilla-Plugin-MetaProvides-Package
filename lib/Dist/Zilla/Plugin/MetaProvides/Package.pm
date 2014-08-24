@@ -152,8 +152,8 @@ around dump_config => config_dumper( __PACKAGE__,
     my ( $self, $payload, $fails ) = @_;
 
     for my $finder_object ( @{ $self->_finder_objects } ) {
-      $payload->{finder_objects} = [] if not exists $payload->{finder_objects};
-      push @{ $payload->{finder_objects} }, dump_plugin($finder_object);
+#      $payload->{finder_objects} = [] if not exists $payload->{finder_objects};
+      push @{ $payload->{finder_objects} ||= []}, dump_plugin($finder_object);
     }
     return;
   }
