@@ -9,6 +9,7 @@ do { my $x = {
                       },
        'develop' => {
                       'requires' => {
+                                      'Dist::Zilla::Plugin::Author::KENTNL::RecommendFixes' => '0.001001',
                                       'Dist::Zilla::Plugin::Authority' => '1.006',
                                       'Dist::Zilla::Plugin::AutoPrereqs' => '0',
                                       'Dist::Zilla::Plugin::Bootstrap::lib' => '0',
@@ -57,13 +58,13 @@ do { my $x = {
                                       'Pod::Coverage::TrustPod' => '0',
                                       'Test::CPAN::Changes' => '0.19',
                                       'Test::CPAN::Meta' => '0',
-                                      'Test::Kwalitee' => '1.12',
+                                      'Test::Kwalitee' => '1.21',
                                       'Test::Pod' => '1.41',
                                       'Test::Pod::Coverage' => '1.08'
                                     },
                       'suggests' => {
-                                      'Dist::Zilla::App::Command::bakeini' => '0.001001',
-                                      'Dist::Zilla::PluginBundle::Author::KENTNL' => '2.017002'
+                                      'Dist::Zilla::App::Command::bakeini' => '0.001002',
+                                      'Dist::Zilla::PluginBundle::Author::KENTNL' => '2.020000'
                                     }
                     },
        'runtime' => {
@@ -74,7 +75,8 @@ do { my $x = {
                                       'Dist::Zilla::Plugin::FinderCode' => '0',
                                       'Dist::Zilla::Plugin::MetaProvides' => '1.15000000',
                                       'Dist::Zilla::Role::MetaProvider::Provider' => '0',
-                                      'Module::Metadata' => '1.000005',
+                                      'Dist::Zilla::Util::ConfigDumper' => '0.003000',
+                                      'Module::Metadata' => '1.000022',
                                       'Moose' => '0',
                                       'Moose::Autobox' => '0',
                                       'MooseX::LazyRequire' => '0',
@@ -96,9 +98,11 @@ do { my $x = {
                                      'Test::More' => '1.001003'
                                    },
                    'requires' => {
-                                   'Dist::Zilla::Util::Test::KENTNL' => '0.01000011',
+                                   'Dist::Zilla::Util::Test::KENTNL' => '1.002',
                                    'ExtUtils::MakeMaker' => '0',
                                    'File::Spec' => '0',
+                                   'Module::Metadata' => '1.000022',
+                                   'Test::DZil' => '0',
                                    'Test::Fatal' => '0',
                                    'Test::Moose' => '0',
                                    'Test::More' => '0.96'

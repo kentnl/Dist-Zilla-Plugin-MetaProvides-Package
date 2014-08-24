@@ -3,7 +3,7 @@ NAME
     from traditional packages for provides
 
 VERSION
-    version 2.000004
+    version 2.001000
 
 SYNOPSIS
     In your "dist.ini":
@@ -12,6 +12,80 @@ SYNOPSIS
         inherit_version = 0    ; optional
         inherit_missing = 0    ; optional
         meta_noindex    = 1    ; optional
+
+QUICK REFERENCE
+      ->new(options={})
+        finder => ?attr
+
+
+      A>finder                            # ArrayRef[Str]
+
+      ->dumpconfig                        # HashRef
+      ->has_finder                        # via finder
+      ->mvp_multivalue_args               # List
+      ->provides
+
+      A>_finder_objects                   # ArrayRef[FileFinder]
+      A>_package_blacklist                # HashRef[Str]
+
+      ->_blacklist_contains               # via _package_blacklist ( exists )
+      ->_build_finder_objects             # for _finder_objects
+      ->_found_files                      # ArrayRef[ File ]
+      ->_packages_for(options=[])         # List[Record]
+        0 => $filename
+        1 => $content
+        2 => $encoding
+      ->_vivify_installmodules_pm_finder  # Plugin
+
+
+      -~- Dist::Zilla::Role::MetaProvider::Provider
+      ->new(options={})
+        inherit_version => ?attr
+        inherit_missing => ?attr
+        meta_noindex    => ?attr
+
+      [>] provides
+
+      A>inherit_missing                 # Bool = 1
+      A>inherit_version                 # Bool = 1
+      A>meta_noindex                    # Bool = 1
+
+      ->dumpconfig                      # HashRef
+      ->metadata                        # { provides => ... }
+
+      ->_apply_meta_noindex(options=[]) # Modified @items
+        0..$# =>  @items
+      ->_resolve_version(options=[])    # ( 'version' , $resolved )
+        0     =>  $version              # ()
+                                        # ()
+      ->_try_regen_meta                 # HashRef
+
+
+      -~- Dist::Zilla::Role::MetaProvider
+      [>] metadata
+
+      -~- Dist::Zilla::Role::Plugin
+      ->new(options={})
+        plugin_name => ^attr
+        zilla       => ^attr
+        logger      => ?attr
+
+      A>logger                          #
+      A>plugin_name                     # Str
+      A>zilla                           # DZil
+      ->log                             # via logger
+      ->log_debug                       # via logger
+      ->log_fatal                       # via logger
+      ->mvp_multivalue_args             # ArrayRef
+      ->mvp_aliases                     # HashRef
+      ->plugin_from_config(options=[])  # Instance
+        0 =>  $name
+        1 =>  $arg
+        2 =>  $section
+      ->register_component(options=[])
+        0 =>  $name
+        1 =>  $arg
+        2 =>  $section
 
 CONSUMED ROLES
   Dist::Zilla::Role::MetaProvider::Provider

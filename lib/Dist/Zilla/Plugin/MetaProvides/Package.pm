@@ -5,7 +5,7 @@ use utf8;
 
 package Dist::Zilla::Plugin::MetaProvides::Package;
 
-our $VERSION = '2.000004';
+our $VERSION = '2.001000';
 
 # ABSTRACT: Extract namespaces/version from traditional packages for provides
 
@@ -18,6 +18,7 @@ use Moose::Autobox;
 use Module::Metadata 1.000005;
 use Dist::Zilla::MetaProvides::ProvideRecord 1.14000000;
 use Data::Dump 1.16 ();
+use Dist::Zilla::Util::ConfigDumper 0.003000 qw( config_dumper dump_plugin );
 
 
 
@@ -144,36 +145,17 @@ sub _packages_for {
   return @namespaces->map($to_record)->flatten;
 
 }
-around dump_config => sub {
-  my ( $orig, $self, @args ) = @_;
-  my $config    = $self->$orig(@args);
-  my $localconf = {};
-  for my $attribute (qw( finder )) {
-    my $pred = 'has_' . $attribute;
-    if ( $self->can($pred) ) {
-      next unless $self->$pred();
-    }
-    if ( $self->can($attribute) ) {
-      $localconf->{$attribute} = $self->$attribute();
-    }
-  }
-  for my $finder_object ( @{ $self->_finder_objects } ) {
-    $localconf->{finder_objects} = [] if not exists $localconf->{finder_objects};
-    my $object_config = {};
 
-    $object_config->{class}   = $finder_object->meta->name  if $finder_object->can('meta') and $finder_object->meta->can('name');
-    $object_config->{name}    = $finder_object->plugin_name if $finder_object->can('plugin_name');
-    $object_config->{version} = $finder_object->VERSION     if $finder_object->can('VERSION');
-
-    if ( $finder_object->can('dump_config') ) {
-      my $finder_config = $finder_object->dump_config;
-      $object_config->{config} = $finder_config if keys %{$finder_config};
+around dump_config => config_dumper( __PACKAGE__,
+  { attrs => [qw( finder )] },
+  sub {
+    my ( $self, $payload, ) = @_;
+    for my $finder_object ( @{ $self->_finder_objects } ) {
+      push @{ $payload->{finder_objects} ||= [] }, dump_plugin($finder_object);
     }
-    push @{ $localconf->{finder_objects} }, $object_config;
-  }
-  $config->{ q{} . __PACKAGE__ } = $localconf;
-  return $config;
-};
+    return;
+  },
+);
 
 
 
@@ -300,7 +282,7 @@ Dist::Zilla::Plugin::MetaProvides::Package - Extract namespaces/version from tra
 
 =head1 VERSION
 
-version 2.000004
+version 2.001000
 
 =head1 SYNOPSIS
 
@@ -310,6 +292,81 @@ In your C<dist.ini>:
     inherit_version = 0    ; optional
     inherit_missing = 0    ; optional
     meta_noindex    = 1    ; optional
+
+=head1 QUICK REFERENCE
+
+  ->new(options={})
+    finder => ?attr
+
+
+  A>finder                            # ArrayRef[Str]
+
+  ->dumpconfig                        # HashRef
+  ->has_finder                        # via finder
+  ->mvp_multivalue_args               # List
+  ->provides
+
+  A>_finder_objects                   # ArrayRef[FileFinder]
+  A>_package_blacklist                # HashRef[Str]
+
+  ->_blacklist_contains               # via _package_blacklist ( exists )
+  ->_build_finder_objects             # for _finder_objects
+  ->_found_files                      # ArrayRef[ File ]
+  ->_packages_for(options=[])         # List[Record]
+    0 => $filename
+    1 => $content
+    2 => $encoding
+  ->_vivify_installmodules_pm_finder  # Plugin
+
+
+  -~- Dist::Zilla::Role::MetaProvider::Provider
+  ->new(options={})
+    inherit_version => ?attr
+    inherit_missing => ?attr
+    meta_noindex    => ?attr
+
+  [>] provides
+
+  A>inherit_missing                 # Bool = 1
+  A>inherit_version                 # Bool = 1
+  A>meta_noindex                    # Bool = 1
+
+  ->dumpconfig                      # HashRef
+  ->metadata                        # { provides => ... }
+
+  ->_apply_meta_noindex(options=[]) # Modified @items
+    0..$# =>  @items
+  ->_resolve_version(options=[])    # ( 'version' , $resolved )
+    0     =>  $version              # ()
+                                    # ()
+  ->_try_regen_meta                 # HashRef
+
+
+  -~- Dist::Zilla::Role::MetaProvider
+  [>] metadata
+
+  -~- Dist::Zilla::Role::Plugin
+  ->new(options={})
+    plugin_name => ^attr
+    zilla       => ^attr
+    logger      => ?attr
+
+  A>logger                          #
+  A>plugin_name                     # Str
+  A>zilla                           # DZil
+  ->log                             # via logger
+  ->log_debug                       # via logger
+  ->log_fatal                       # via logger
+  ->mvp_multivalue_args             # ArrayRef
+  ->mvp_aliases                     # HashRef
+  ->plugin_from_config(options=[])  # Instance
+    0 =>  $name
+    1 =>  $arg
+    2 =>  $section
+  ->register_component(options=[])
+    0 =>  $name
+    1 =>  $arg
+    2 =>  $section
 
 =head1 CONSUMED ROLES
 

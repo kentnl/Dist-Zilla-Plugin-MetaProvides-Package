@@ -1,6 +1,20 @@
 This file contains changes in REQUIRED dependencies for standard CPAN phases (configure/build/runtime/test)
 
-2.000004
+2.001000
+ [Added / runtime requires]
+ - Dist::Zilla::Util::ConfigDumper 0.003000
+
+ [Added / test requires]
+ - Module::Metadata 1.000022
+ - Test::DZil
+
+ [Changed / runtime requires]
+ - Module::Metadata 1.000005 → 1.000022
+
+ [Changed / test requires]
+ - Dist::Zilla::Util::Test::KENTNL 0.01000011 → 1.002
+
+2.000004 2014-08-15T21:17:41Z
  [Changed / configure requires]
  - ExtUtils::MakeMaker 6.30 → 0
 

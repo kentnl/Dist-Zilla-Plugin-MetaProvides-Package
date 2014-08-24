@@ -1,5 +1,24 @@
 Revision history for Dist-Zilla-Plugin-MetaProvides-Package
 
+2.001000 2014-08-24T20:33:44Z
+ [00 Minor]
+ - Internals changes.
+ - Tests overhaulled.
+ - 5.14 package NAME VERSION BLOCK now works due to Module::Metadata 1.000022
+
+ [Dependencies::Stats]
+ - Dependencies changed since 2.000004, see misc/*.deps* for details
+ - develop: +1 ↑1 (suggests: ↑2)
+ - runtime: +1 ↑1
+ - test: +2 ↑1
+
+ [Internals]
+ - Implement ->dump_config in terms of Util::ConfigDumper
+
+ [Tests]
+ - All tests simplified in terms of dztest and inline content.
+ - 5.14 package statement tests no longer a TODO
+
 2.000004 2014-08-15T21:17:41Z
  [00 Trivial]
  - CPANDAY!
