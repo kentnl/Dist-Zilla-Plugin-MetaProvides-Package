@@ -1,6 +1,12 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+ [Bugfix]
+ - avoid fail on non-build-dir
+
+ [Dependencies::Stats]
+ - Dependencies changed since 2.001000, see misc/*.deps* for details
+ - test: ↑1
 
 2.001000 2014-08-24T20:33:44Z
  [00 Minor]
