@@ -1,5 +1,13 @@
 Revision history for Dist-Zilla-Plugin-MetaProvides-Package
 
+2.001001 2014-08-29T12:00:46Z
+ [Bugfix]
+ - avoid fail on non-build-dir
+
+ [Dependencies::Stats]
+ - Dependencies changed since 2.001000, see misc/*.deps* for details
+ - test: ↑1
+
 2.001000 2014-08-24T20:33:44Z
  [00 Minor]
  - Internals changes.
