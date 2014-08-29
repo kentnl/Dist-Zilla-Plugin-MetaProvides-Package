@@ -38,7 +38,7 @@ my %WriteMakefileArgs = (
     "warnings" => 0
   },
   "TEST_REQUIRES" => {
-    "Dist::Zilla::Util::Test::KENTNL" => "1.002",
+    "Dist::Zilla::Util::Test::KENTNL" => "1.003001",
     "ExtUtils::MakeMaker" => 0,
     "File::Spec" => 0,
     "Module::Metadata" => "1.000022",
@@ -62,7 +62,7 @@ my %FallbackPrereqs = (
   "Dist::Zilla::Plugin::MetaProvides" => "1.15000000",
   "Dist::Zilla::Role::MetaProvider::Provider" => 0,
   "Dist::Zilla::Util::ConfigDumper" => "0.003000",
-  "Dist::Zilla::Util::Test::KENTNL" => "1.002",
+  "Dist::Zilla::Util::Test::KENTNL" => "1.003001",
   "ExtUtils::MakeMaker" => 0,
   "File::Spec" => 0,
   "Module::Metadata" => "1.000022",

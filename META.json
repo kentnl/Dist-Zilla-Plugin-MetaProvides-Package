@@ -119,7 +119,7 @@
             "Test::More" : "1.001003"
          },
          "requires" : {
-            "Dist::Zilla::Util::Test::KENTNL" : "1.002",
+            "Dist::Zilla::Util::Test::KENTNL" : "1.003001",
             "ExtUtils::MakeMaker" : "0",
             "File::Spec" : "0",
             "Module::Metadata" : "1.000022",
@@ -200,7 +200,7 @@
          "Dist::Zilla::Plugin::RunExtraTests" : "0.022",
          "Dist::Zilla::Plugin::Test::CPAN::Changes" : "0.008",
          "Dist::Zilla::Plugin::Test::Compile::PerFile" : "0.002002",
-         "Dist::Zilla::Plugin::Test::Kwalitee" : "2.10",
+         "Dist::Zilla::Plugin::Test::Kwalitee" : "2.11",
          "Dist::Zilla::Plugin::Test::MinimumVersion" : "2.000005",
          "Dist::Zilla::Plugin::Test::Perl::Critic" : "2.112410",
          "Dist::Zilla::Plugin::Test::ReportPrereqs" : "0.019",
@@ -209,8 +209,8 @@
          "Dist::Zilla::Plugin::UploadToCPAN" : "5.020",
          "Dist::Zilla::PluginBundle::Author::KENTNL" : "2.020000",
          "Dist::Zilla::Role::MetaProvider::Provider" : "2.001000",
-         "Dist::Zilla::Util::ConfigDumper" : "0.003000",
-         "Dist::Zilla::Util::Test::KENTNL" : "1.002000",
+         "Dist::Zilla::Util::ConfigDumper" : "0.003001",
+         "Dist::Zilla::Util::Test::KENTNL" : "1.003001",
          "ExtUtils::MakeMaker" : "6.98",
          "File::Spec" : "3.49",
          "Module::Metadata" : "1.000024",
@@ -403,7 +403,7 @@
                }
             },
             "name" : "@Author::KENTNL/Test::Kwalitee",
-            "version" : "2.10"
+            "version" : "2.11"
          },
          {
             "class" : "Dist::Zilla::Plugin::EOLTests",
@@ -885,6 +885,17 @@
                }
             },
             "name" : "DevelopRequires",
+            "version" : "5.020"
+         },
+         {
+            "class" : "Dist::Zilla::Plugin::Prereqs",
+            "config" : {
+               "Dist::Zilla::Plugin::Prereqs" : {
+                  "phase" : "test",
+                  "type" : "requires"
+               }
+            },
+            "name" : "TestRequires",
             "version" : "5.020"
          },
          {
