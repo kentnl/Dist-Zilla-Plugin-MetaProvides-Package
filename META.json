@@ -159,7 +159,7 @@
          "Dist::Zilla" : "5.020",
          "Dist::Zilla::App::Command::bakeini" : "0.001002",
          "Dist::Zilla::MetaProvides::ProvideRecord" : "2.001001",
-         "Dist::Zilla::Plugin::Author::KENTNL::RecommendFixes" : "0.003001",
+         "Dist::Zilla::Plugin::Author::KENTNL::RecommendFixes" : "0.003002",
          "Dist::Zilla::Plugin::Authority" : "1.006",
          "Dist::Zilla::Plugin::AutoPrereqs" : "5.020",
          "Dist::Zilla::Plugin::Bootstrap::lib" : "1.001000",
@@ -617,7 +617,7 @@
          {
             "class" : "Dist::Zilla::Plugin::Author::KENTNL::RecommendFixes",
             "name" : "@Author::KENTNL/Author::KENTNL::RecommendFixes",
-            "version" : "0.003001"
+            "version" : "0.003002"
          },
          {
             "class" : "Dist::Zilla::Plugin::ReadmeFromPod",
