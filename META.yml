@@ -27,7 +27,7 @@ no_index:
 provides:
   Dist::Zilla::Plugin::MetaProvides::Package:
     file: lib/Dist/Zilla/Plugin/MetaProvides/Package.pm
-    version: '2.001001'
+    version: '2.001002'
 requires:
   Data::Dump: '1.16'
   Dist::Zilla: '5.000'
@@ -50,18 +50,18 @@ resources:
   bugtracker: https://github.com/kentnl/Dist-Zilla-Plugin-MetaProvides-Package/issues
   homepage: https://github.com/kentnl/Dist-Zilla-Plugin-MetaProvides-Package
   repository: https://github.com/kentnl/Dist-Zilla-Plugin-MetaProvides-Package.git
-version: '2.001001'
+version: '2.001002'
 x_BuiltWith:
   modules:
     CPAN::Meta: '2.142060'
     Data::Dump: '1.22'
     Dist::Zilla: '5.020'
     Dist::Zilla::App::Command::bakeini: '0.001002'
-    Dist::Zilla::MetaProvides::ProvideRecord: '2.001000'
-    Dist::Zilla::Plugin::Author::KENTNL::RecommendFixes: '0.002003'
+    Dist::Zilla::MetaProvides::ProvideRecord: '2.001001'
+    Dist::Zilla::Plugin::Author::KENTNL::RecommendFixes: '0.003002'
     Dist::Zilla::Plugin::Authority: '1.006'
     Dist::Zilla::Plugin::AutoPrereqs: '5.020'
-    Dist::Zilla::Plugin::Bootstrap::lib: '1.000005'
+    Dist::Zilla::Plugin::Bootstrap::lib: '1.001000'
     Dist::Zilla::Plugin::BumpVersionAfterRelease: '0.002'
     Dist::Zilla::Plugin::ConfirmRelease: '5.020'
     Dist::Zilla::Plugin::CopyFilesFromBuild: '0.103510'
@@ -72,7 +72,7 @@ x_BuiltWith:
     Dist::Zilla::Plugin::Git::CommitBuild: '2.023'
     Dist::Zilla::Plugin::Git::Contributors: '0.007'
     Dist::Zilla::Plugin::Git::GatherDir: '2.023'
-    Dist::Zilla::Plugin::Git::NextRelease: '0.002012'
+    Dist::Zilla::Plugin::Git::NextRelease: '0.003000'
     Dist::Zilla::Plugin::Git::Tag: '2.023'
     Dist::Zilla::Plugin::GithubMeta: '0.46'
     Dist::Zilla::Plugin::License: '5.020'
@@ -80,11 +80,11 @@ x_BuiltWith:
     Dist::Zilla::Plugin::Manifest: '5.020'
     Dist::Zilla::Plugin::ManifestSkip: '5.020'
     Dist::Zilla::Plugin::MetaConfig: '5.020'
-    Dist::Zilla::Plugin::MetaData::BuiltWith: '1.002000'
+    Dist::Zilla::Plugin::MetaData::BuiltWith: '1.003000'
     Dist::Zilla::Plugin::MetaJSON: '5.020'
     Dist::Zilla::Plugin::MetaNoIndex: '5.020'
-    Dist::Zilla::Plugin::MetaProvides: '2.001000'
-    Dist::Zilla::Plugin::MetaProvides::Package: '2.001002'
+    Dist::Zilla::Plugin::MetaProvides: '2.001001'
+    Dist::Zilla::Plugin::MetaProvides::Package: '2.001003'
     Dist::Zilla::Plugin::MetaTests: '5.020'
     Dist::Zilla::Plugin::MetaYAML: '5.020'
     Dist::Zilla::Plugin::MinimumPerl: '1.003'
@@ -107,8 +107,8 @@ x_BuiltWith:
     Dist::Zilla::Plugin::Twitter: '0.025'
     Dist::Zilla::Plugin::UploadToCPAN: '5.020'
     Dist::Zilla::PluginBundle::Author::KENTNL: '2.020000'
-    Dist::Zilla::Role::MetaProvider::Provider: '2.001000'
-    Dist::Zilla::Util::ConfigDumper: '0.003001'
+    Dist::Zilla::Role::MetaProvider::Provider: '2.001001'
+    Dist::Zilla::Util::ConfigDumper: '0.003004'
     Dist::Zilla::Util::Test::KENTNL: '1.003001'
     ExtUtils::MakeMaker: '6.98'
     File::Spec: '3.49'
@@ -116,7 +116,7 @@ x_BuiltWith:
     Moose: '2.1211'
     Moose::Autobox: '0.15'
     MooseX::LazyRequire: '0.11'
-    MooseX::Types::Moose: '0.44'
+    MooseX::Types::Moose: '0.45'
     Pod::Coverage::TrustPod: '0.100003'
     Test::CPAN::Changes: '0.30'
     Test::CPAN::Meta: '0.23'
@@ -124,7 +124,7 @@ x_BuiltWith:
     Test::Fatal: '0.013'
     Test::Kwalitee: '1.22'
     Test::Moose: '2.1211'
-    Test::More: '1.001003'
+    Test::More: '1.001006'
     Test::Pod: '1.48'
     Test::Pod::Coverage: '1.10'
     namespace::autoclean: '0.19'
@@ -159,7 +159,7 @@ x_Dist_Zilla:
           try_built: ~
           try_built_method: mtime
       name: Bootstrap::lib
-      version: '1.000005'
+      version: '1.001000'
     -
       class: Dist::Zilla::Plugin::MetaConfig
       name: '@Author::KENTNL/MetaConfig'
@@ -182,7 +182,7 @@ x_Dist_Zilla:
           inherit_version: '1'
           meta_noindex: '1'
       name: '@Author::KENTNL/MetaProvides::Package'
-      version: '2.001001'
+      version: '2.001002'
     -
       class: Dist::Zilla::Plugin::MetaData::BuiltWith
       config:
@@ -199,7 +199,7 @@ x_Dist_Zilla:
               - -i
             uname_call: uname
       name: '@Author::KENTNL/MetaData::BuiltWith'
-      version: '1.002000'
+      version: '1.003000'
     -
       class: Dist::Zilla::Plugin::Git::Contributors
       config:
@@ -428,7 +428,7 @@ x_Dist_Zilla:
     -
       class: Dist::Zilla::Plugin::Author::KENTNL::RecommendFixes
       name: '@Author::KENTNL/Author::KENTNL::RecommendFixes'
-      version: '0.002003'
+      version: '0.003002'
     -
       class: Dist::Zilla::Plugin::ReadmeFromPod
       name: '@Author::KENTNL/ReadmeFromPod'
@@ -494,7 +494,7 @@ x_Dist_Zilla:
         Dist::Zilla::Plugin::Git::Tag:
           branch: ~
           signed: '0'
-          tag: 2.001001-source
+          tag: 2.001002-source
           tag_format: '%v-source'
           tag_message: v%v
           time_zone: local
@@ -505,7 +505,7 @@ x_Dist_Zilla:
     -
       class: Dist::Zilla::Plugin::Git::NextRelease
       name: '@Author::KENTNL/Git::NextRelease'
-      version: '0.002012'
+      version: '0.003000'
     -
       class: Dist::Zilla::Plugin::BumpVersionAfterRelease
       name: '@Author::KENTNL/BumpVersionAfterRelease'
@@ -548,7 +548,7 @@ x_Dist_Zilla:
         Dist::Zilla::Plugin::Git::Tag:
           branch: releases
           signed: '0'
-          tag: '2.001001'
+          tag: '2.001002'
           tag_format: '%v'
           tag_message: v%v
           time_zone: local
