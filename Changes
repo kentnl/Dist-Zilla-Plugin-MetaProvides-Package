@@ -3,6 +3,7 @@ Revision history for {{$dist->name}}
 {{$NEXT}}
  [00 Trivial]
  - Metadata
+ - No code changes.
 
  [Dependencies::Stats]
  - Dependencies changed since 2.001001, see misc/*.deps* for details

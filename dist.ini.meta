@@ -9,8 +9,7 @@ main_module = lib/Dist/Zilla/Plugin/MetaProvides/Package.pm
 fallback  = 0
 
 [@Author::KENTNL]
-:version = 2.0126000
-git_versions = 1
+:version = 2.020
 twitter_hash_tags = #perl #cpan
 normal_form = numify
 mantissa = 6
