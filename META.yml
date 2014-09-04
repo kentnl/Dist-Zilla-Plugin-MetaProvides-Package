@@ -27,7 +27,7 @@ no_index:
 provides:
   Dist::Zilla::Plugin::MetaProvides::Package:
     file: lib/Dist/Zilla/Plugin/MetaProvides/Package.pm
-    version: '2.001002'
+    version: '2.001003'
 requires:
   Data::Dump: '1.16'
   Dist::Zilla: '5.000'
@@ -50,7 +50,7 @@ resources:
   bugtracker: https://github.com/kentnl/Dist-Zilla-Plugin-MetaProvides-Package/issues
   homepage: https://github.com/kentnl/Dist-Zilla-Plugin-MetaProvides-Package
   repository: https://github.com/kentnl/Dist-Zilla-Plugin-MetaProvides-Package.git
-version: '2.001002'
+version: '2.001003'
 x_BuiltWith:
   modules:
     CPAN::Meta: '2.142060'
@@ -84,7 +84,7 @@ x_BuiltWith:
     Dist::Zilla::Plugin::MetaJSON: '5.020'
     Dist::Zilla::Plugin::MetaNoIndex: '5.020'
     Dist::Zilla::Plugin::MetaProvides: '2.001001'
-    Dist::Zilla::Plugin::MetaProvides::Package: '2.001002'
+    Dist::Zilla::Plugin::MetaProvides::Package: '2.001003'
     Dist::Zilla::Plugin::MetaTests: '5.020'
     Dist::Zilla::Plugin::MetaYAML: '5.020'
     Dist::Zilla::Plugin::MinimumPerl: '1.003'
@@ -182,7 +182,7 @@ x_Dist_Zilla:
           inherit_version: '1'
           meta_noindex: '1'
       name: '@Author::KENTNL/MetaProvides::Package'
-      version: '2.001002'
+      version: '2.001003'
     -
       class: Dist::Zilla::Plugin::MetaData::BuiltWith
       config:
@@ -494,7 +494,7 @@ x_Dist_Zilla:
         Dist::Zilla::Plugin::Git::Tag:
           branch: ~
           signed: '0'
-          tag: 2.001002-source
+          tag: 2.001003-source
           tag_format: '%v-source'
           tag_message: v%v
           time_zone: local
@@ -548,7 +548,7 @@ x_Dist_Zilla:
         Dist::Zilla::Plugin::Git::Tag:
           branch: releases
           signed: '0'
-          tag: '2.001002'
+          tag: '2.001003'
           tag_format: '%v'
           tag_message: v%v
           time_zone: local
