@@ -5,7 +5,11 @@ Revision history for Dist-Zilla-Plugin-MetaProvides-Package
  - Dependencies changed since 2.001002, see misc/*.deps* for details
  - configure: +1 (recommends: ↑1)
  - develop: +5 ↑1 -2 (recommends: +1, suggests: ↑2)
+ - runtime: +1 -1
  - test: +1 (recommends: ↑2)
+
+ [Moderate Internal Changes]
+ - Moose::Autobox nuked, and this is a trial release to make sure I didn't add any bugs.
 
 2.001002 2014-09-04T19:04:06Z
  [00 Trivial]

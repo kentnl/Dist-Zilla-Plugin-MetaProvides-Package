@@ -94,6 +94,7 @@ sub _packages_for {
 
   if ( not $meta ) {
     $self->log_fatal("Can't extract metadata from $filename");
+    return ();
   }
 
   $self->log_debug(
