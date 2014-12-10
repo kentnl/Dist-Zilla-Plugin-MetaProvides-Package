@@ -1,6 +1,23 @@
 This file contains changes in REQUIRED dependencies for standard CPAN phases (configure/build/runtime/test)
 
-2.001002
+2.001003
+ [Added / configure requires]
+ - perl 5.008
+
+ [Added / runtime requires]
+ - Safe::Isa
+
+ [Added / test requires]
+ - perl 5.008
+
+ [Changed / runtime requires]
+ - perl 5.010 → 5.008
+
+ [Removed / runtime requires]
+ - Moose::Autobox
+ - utf8
+
+2.001002 2014-09-04T19:04:06Z
 
 2.001001 2014-08-29T12:00:46Z
  [Changed / test requires]
