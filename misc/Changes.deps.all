@@ -2,7 +2,7 @@ This file contains ALL changes in dependencies in both REQUIRED / OPTIONAL depen
 
 2.001003
  [Added / configure requires]
- - perl 5.010
+ - perl 5.008
 
  [Added / develop recommends]
  - Test::More 1.001009
@@ -18,7 +18,7 @@ This file contains ALL changes in dependencies in both REQUIRED / OPTIONAL depen
  - Safe::Isa
 
  [Added / test requires]
- - perl 5.010
+ - perl 5.008
 
  [Changed / configure recommends]
  - ExtUtils::MakeMaker 6.98 → 7.04
@@ -30,6 +30,9 @@ This file contains ALL changes in dependencies in both REQUIRED / OPTIONAL depen
  - Dist::Zilla::App::Command::bakeini 0.001002 → 0.002000
  - Dist::Zilla::PluginBundle::Author::KENTNL 2.020000 → 2.022001
 
+ [Changed / runtime requires]
+ - perl 5.010 → 5.008
+
  [Changed / test recommends]
  - ExtUtils::MakeMaker 6.98 → 7.04
  - Test::More 1.001006 → 1.001009
@@ -40,6 +43,7 @@ This file contains ALL changes in dependencies in both REQUIRED / OPTIONAL depen
 
  [Removed / runtime requires]
  - Moose::Autobox
+ - utf8
 
 2.001002 2014-09-04T19:04:06Z
  [Changed / test recommends]

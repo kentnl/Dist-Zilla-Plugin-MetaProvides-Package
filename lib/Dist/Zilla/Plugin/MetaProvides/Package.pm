@@ -1,7 +1,6 @@
-use 5.010;    # perldoc perl5101delta -> bugfix related to handling of /m
+use 5.008; # open scalar
 use strict;
 use warnings;
-use utf8;
 
 package Dist::Zilla::Plugin::MetaProvides::Package;
 
@@ -113,8 +112,9 @@ sub _packages_for {
   my @out;
 
   for my $namespace ( $meta->packages_inside() ) {
-    next if $namespace =~ qr/\A_/msx;
-    next if $namespace =~ qr/::_/msx;
+    ## no critic (RegularExpressions::RequireLineBoundaryMatching)
+    next if $namespace =~ qr/\A_/sx;
+    next if $namespace =~ qr/::_/sx;
     next if $self->_blacklist_contains($namespace);
 
     my $v = $meta->version($namespace);
