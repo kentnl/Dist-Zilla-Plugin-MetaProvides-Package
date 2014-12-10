@@ -4,8 +4,14 @@ This file contains changes in REQUIRED dependencies for standard CPAN phases (co
  [Added / configure requires]
  - perl 5.010
 
+ [Added / runtime requires]
+ - Safe::Isa
+
  [Added / test requires]
  - perl 5.010
+
+ [Removed / runtime requires]
+ - Moose::Autobox
 
 2.001002 2014-09-04T19:04:06Z
 
