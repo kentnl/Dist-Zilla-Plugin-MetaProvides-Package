@@ -1,4 +1,4 @@
-use 5.006;
+use 5.008; # open scalar
 use strict;
 use warnings;
 
