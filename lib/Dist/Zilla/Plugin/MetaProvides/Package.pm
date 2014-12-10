@@ -14,10 +14,10 @@ our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
 use Moose qw( with has around );
 use MooseX::LazyRequire;
 use MooseX::Types::Moose qw( HashRef Str );
-use Moose::Autobox;
 use Module::Metadata 1.000005;
 use Dist::Zilla::MetaProvides::ProvideRecord 1.14000000;
 use Data::Dump 1.16 ();
+use Safe::Isa;
 use Dist::Zilla::Util::ConfigDumper 0.003000 qw( config_dumper dump_plugin );
 
 
@@ -100,49 +100,47 @@ sub _packages_for {
     "Version metadata from $filename : " . Data::Dump::dumpf(
       $meta,
       sub {
-        if ( ref $_[1] and $_[1]->isa('version') ) {
+        if ( ref $_[1] and $_[1]->$_isa('version') ) {
           return { dump => $_[1]->stringify };
         }
         return { hide_keys => ['pod_headings'], };
       },
     ),
   );
-  my $remove_bad = sub {
-    my $item = shift;
-    return if $item =~ qr/\A_/msx;
-    return if $item =~ qr/::_/msx;
-    return not $self->_blacklist_contains($item);
-  };
-  my $to_record = sub {
 
-    my $v = $meta->version($_);
+  ## no critic (ProhibitArrayAssignARef)
+  my @out;
+
+  for my $namespace ( $meta->packages_inside() ) {
+    next if $namespace =~ qr/\A_/msx;
+    next if $namespace =~ qr/::_/msx;
+    next if $self->_blacklist_contains($namespace);
+
+    my $v = $meta->version($namespace);
+
     my (%struct) = (
-      module => $_,
+      module => $namespace,
       file   => $filename,
       ( ref $v ? ( version => $v->stringify ) : ( version => undef ) ),
       parent => $self,
     );
+
     $self->log_debug(
-      'Version metadata: ' . Data::Dump::dumpf(
+      'Version metadata for namespace ' . $namespace . ' in ' . $filename . ' : ' . Data::Dump::dumpf(
         \%struct,
         sub {
           return { hide_keys => ['parent'] };
         },
       ),
     );
-    Dist::Zilla::MetaProvides::ProvideRecord->new(%struct);
-  };
+    push @out, Dist::Zilla::MetaProvides::ProvideRecord->new(%struct);
+  }
 
-  ## no critic (ProhibitArrayAssignARef)
-  my @namespaces = [ $meta->packages_inside() ]->grep($remove_bad)->flatten;
-
-  $self->log_debug( 'Discovered namespaces: ' . Data::Dump::pp( \@namespaces ) . ' in ' . $filename );
-
-  if ( not @namespaces ) {
+  if ( not @out ) {
     $self->log( 'No namespaces detected in file ' . $filename );
     return ();
   }
-  return @namespaces->map($to_record)->flatten;
+  return @out;
 
 }
 
@@ -219,7 +217,7 @@ sub _vivify_installmodules_pm_finder {
       },
     },
   );
-  $self->zilla->plugins->push($plugin);
+  push @{ $self->zilla->plugins }, $plugin;
   return $plugin;
 }
 
