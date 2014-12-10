@@ -100,7 +100,7 @@ sub _packages_for {
     "Version metadata from $filename : " . Data::Dump::dumpf(
       $meta,
       sub {
-        if ( ref $_[1] and $_[1]->$_isa('version') ) {
+        if ( $_[1]->$_isa('version') ) {
           return { dump => $_[1]->stringify };
         }
         return { hide_keys => ['pod_headings'], };
