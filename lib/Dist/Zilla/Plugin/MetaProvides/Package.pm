@@ -112,7 +112,7 @@ sub _packages_for {
   my @out;
 
   for my $namespace ( $meta->packages_inside() ) {
-    next if $namespace =~ qr/\A_/msx;
+    next if $namespace =~ qr/\A_/sx;
     next if $namespace =~ qr/::_/msx;
     next if $self->_blacklist_contains($namespace);
 
