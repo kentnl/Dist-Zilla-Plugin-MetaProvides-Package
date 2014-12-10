@@ -45,6 +45,7 @@ $bundle->add_or_append_policy_field(
 );
 $bundle->remove_policy('Documentation::RequirePodLinksIncludeText');
 $bundle->remove_policy('Bangs::ProhibitDebuggingModules');
+$bundle->remove_policy('CodeLayout::RequireUseUTF8');
 
 my $inf = $bundle->actionlist->get_inflated;
 
