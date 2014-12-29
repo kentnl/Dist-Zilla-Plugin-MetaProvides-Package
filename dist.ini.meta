@@ -11,7 +11,7 @@ fallback  = 0
 
 [@Author::KENTNL]
 :version = 2.020
-;twitter_extra_hash_tags =
+twitter_extra_hash_tags = #distzilla
 normal_form = numify
 mantissa = 6
 toolkit = eumm
