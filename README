@@ -3,7 +3,7 @@ NAME
     from traditional packages for provides
 
 VERSION
-    version 2.001004
+    version 2.002000
 
 SYNOPSIS
     In your "dist.ini":

@@ -29,7 +29,7 @@ no_index:
 provides:
   Dist::Zilla::Plugin::MetaProvides::Package:
     file: lib/Dist/Zilla/Plugin/MetaProvides/Package.pm
-    version: '2.001004'
+    version: '2.002000'
 requires:
   Data::Dump: '1.16'
   Dist::Zilla: '5.000'
@@ -51,7 +51,7 @@ resources:
   bugtracker: https://github.com/kentnl/Dist-Zilla-Plugin-MetaProvides-Package/issues
   homepage: https://github.com/kentnl/Dist-Zilla-Plugin-MetaProvides-Package
   repository: https://github.com/kentnl/Dist-Zilla-Plugin-MetaProvides-Package.git
-version: '2.001004'
+version: '2.002000'
 x_BuiltWith:
   external_file: misc/built_with.json
 x_Dist_Zilla:
@@ -423,7 +423,7 @@ x_Dist_Zilla:
         Dist::Zilla::Plugin::Git::Tag:
           branch: ~
           signed: 0
-          tag: 2.001004-source
+          tag: 2.002000-source
           tag_format: '%v-source'
           tag_message: v%v
           time_zone: local
@@ -477,7 +477,7 @@ x_Dist_Zilla:
         Dist::Zilla::Plugin::Git::Tag:
           branch: releases
           signed: 0
-          tag: '2.001004'
+          tag: '2.002000'
           tag_format: '%v'
           tag_message: v%v
           time_zone: local
