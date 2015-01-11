@@ -1,177 +1,28 @@
-NAME
-    Dist::Zilla::Plugin::MetaProvides::Package - Extract namespaces/version
-    from traditional packages for provides
-
-VERSION
-    version 2.002001
-
-SYNOPSIS
-    In your "dist.ini":
-
-        [MetaProvides::Package]
-        inherit_version = 0    ; optional
-        inherit_missing = 0    ; optional
-        meta_noindex    = 1    ; optional
-
-QUICK REFERENCE
-      ->new(options={})
-        finder => ?attr
+Dist::Zilla::Plugin::MetaProvides::Package
 
 
-      A>finder                            # ArrayRef[Str]
 
-      ->dumpconfig                        # HashRef
-      ->has_finder                        # via finder
-      ->mvp_multivalue_args               # List
-      ->provides
+INSTALLATION
 
-      A>_finder_objects                   # ArrayRef[FileFinder]
-      A>_package_blacklist                # HashRef[Str]
+This is a Perl module distribution. It should be installed with whichever
+tool you use to manage your installation of Perl, e.g. any of
 
-      ->_blacklist_contains               # via _package_blacklist ( exists )
-      ->_build_finder_objects             # for _finder_objects
-      ->_found_files                      # ArrayRef[ File ]
-      ->_packages_for(options=[])         # List[Record]
-        0 => $filename
-        1 => $content
-        2 => $encoding
-      ->_vivify_installmodules_pm_finder  # Plugin
+  cpanm .
+  cpan  .
+  cpanp -i .
 
+Consult http://www.cpan.org/modules/INSTALL.html for further instruction.
+Should you wish to install this module manually, the procedure is
 
-      -~- Dist::Zilla::Role::MetaProvider::Provider
-      ->new(options={})
-        inherit_version => ?attr
-        inherit_missing => ?attr
-        meta_noindex    => ?attr
-
-      [>] provides
-
-      A>inherit_missing                 # Bool = 1
-      A>inherit_version                 # Bool = 1
-      A>meta_noindex                    # Bool = 1
-
-      ->dumpconfig                      # HashRef
-      ->metadata                        # { provides => ... }
-
-      ->_apply_meta_noindex(options=[]) # Modified @items
-        0..$# =>  @items
-      ->_resolve_version(options=[])    # ( 'version' , $resolved )
-        0     =>  $version              # ()
-                                        # ()
-      ->_try_regen_meta                 # HashRef
-
-
-      -~- Dist::Zilla::Role::MetaProvider
-      [>] metadata
-
-      -~- Dist::Zilla::Role::Plugin
-      ->new(options={})
-        plugin_name => ^attr
-        zilla       => ^attr
-        logger      => ?attr
-
-      A>logger                          #
-      A>plugin_name                     # Str
-      A>zilla                           # DZil
-      ->log                             # via logger
-      ->log_debug                       # via logger
-      ->log_fatal                       # via logger
-      ->mvp_multivalue_args             # ArrayRef
-      ->mvp_aliases                     # HashRef
-      ->plugin_from_config(options=[])  # Instance
-        0 =>  $name
-        1 =>  $arg
-        2 =>  $section
-      ->register_component(options=[])
-        0 =>  $name
-        1 =>  $arg
-        2 =>  $section
-
-CONSUMED ROLES
-  Dist::Zilla::Role::MetaProvider::Provider
-ROLE SATISFYING METHODS
-  "provides"
-    A conformant function to the Dist::Zilla::Role::MetaProvider::Provider
-    Role.
-
-   signature: $plugin->provides()
-   returns: Array of Dist::Zilla::MetaProvides::ProvideRecord
-ATTRIBUTES
-  "finder"
-    This attribute, if specified will
-
-    *   Override the "FileFinder" used to find files containing packages
-
-    *   Inhibit autovivification of the ".pm" file finder
-
-    This parameter may be specified multiple times to aggregate a list of
-    finders
-
-PRIVATE ATTRIBUTES
-  "_package_blacklist"
-  "_finder_objects"
-PRIVATE METHODS
-  "_packages_for"
-   signature: $plugin->_packages_for( $filename, $file_content )
-   returns: Array of Dist::Zilla::MetaProvides::ProvideRecord
-  "_vivify_installmodules_pm_finder"
-  "_build_finder_objects"
-  "_found_files"
-OPTIONS INHERITED FROM Dist::Zilla::Role::MetaProvider::Provider
-  "inherit_version"
-    How do you want existing versions ( Versions hard-coded into files
-    before running this plug-in )to be processed?
-
-    *   DEFAULT: inherit_version = 1
-
-        Ignore anything you find in a file, and just probe "DZIL->version()"
-        for a value. This is a sane default and most will want this.
-
-    *   inherit_version = 0
-
-        Use this option if you actually want to use hard-coded values in
-        your files and use the versions parsed out of them.
-
-  "inherit_missing"
-    In the event you are using the aforementioned ""inherit_version" = 0",
-    this determines how to behave when encountering a module with no version
-    defined.
-
-    *   DEFAULT: inherit_missing = 1
-
-        When a module has no version, probe "DZIL->version()" for an answer.
-        This is what you want if you want to have some files with fixed
-        versions, and others to just automatically be maintained by
-        Dist::Zilla.
-
-    *   inherit_missing = 0
-
-        When a module has no version, emit a versionless record in the final
-        metadata.
-
-  "meta_noindex"
-    This is a utility for people who are also using "MetaNoIndex", so that
-    its settings can be used to eliminate items from the 'provides' list.
-
-    *   meta_noindex = 0
-
-        By default, do nothing unusual.
-
-    *   DEFAULT: meta_noindex = 1
-
-        When a module meets the criteria provided to "MetaNoIndex",
-        eliminate it from the metadata shipped to Dist::Zilla
-
-SEE ALSO
-    *   Dist::Zilla::Plugin::MetaProvides
-
-AUTHOR
-    Kent Fredric <kentnl@cpan.org>
+  perl Makefile.PL
+  make
+  make test
+  make install
 
 COPYRIGHT AND LICENSE
-    This software is copyright (c) 2014 by Kent Fredric
-    <kentfredric@gmail.com>.
 
-    This is free software; you can redistribute it and/or modify it under
-    the same terms as the Perl 5 programming language system itself.
+This software is copyright (c) 2015 by Kent Fredric
+<kentfredric@gmail.com>.
 
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.

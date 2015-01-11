@@ -41,13 +41,13 @@ do { my $x = {
                                       'Dist::Zilla::Plugin::MetaTests' => '0',
                                       'Dist::Zilla::Plugin::MetaYAML' => '0',
                                       'Dist::Zilla::Plugin::MinimumPerl' => '0',
-                                      'Dist::Zilla::Plugin::Pod2Readme' => '0',
                                       'Dist::Zilla::Plugin::PodCoverageTests' => '0',
                                       'Dist::Zilla::Plugin::PodSyntaxTests' => '0',
                                       'Dist::Zilla::Plugin::PodWeaver' => '0',
                                       'Dist::Zilla::Plugin::Prereqs' => '0',
                                       'Dist::Zilla::Plugin::Prereqs::AuthorDeps' => '0',
                                       'Dist::Zilla::Plugin::Prereqs::Recommend::MatchInstalled' => '0',
+                                      'Dist::Zilla::Plugin::Readme::Brief' => '0',
                                       'Dist::Zilla::Plugin::ReadmeAnyFromPod' => '0',
                                       'Dist::Zilla::Plugin::RewriteVersion::Sanitized' => '0',
                                       'Dist::Zilla::Plugin::RunExtraTests' => '0',
@@ -72,7 +72,7 @@ do { my $x = {
                                     },
                       'suggests' => {
                                       'Dist::Zilla::App::Command::bakeini' => '0.002000',
-                                      'Dist::Zilla::PluginBundle::Author::KENTNL' => '2.022003'
+                                      'Dist::Zilla::PluginBundle::Author::KENTNL' => '2.022005'
                                     }
                     },
        'runtime' => {
