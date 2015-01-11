@@ -4,7 +4,7 @@ use warnings;
 
 package Dist::Zilla::Plugin::MetaProvides::Package;
 
-our $VERSION = '2.002001';
+our $VERSION = '2.003001';
 
 # ABSTRACT: Extract namespaces/version from traditional packages for provides
 
