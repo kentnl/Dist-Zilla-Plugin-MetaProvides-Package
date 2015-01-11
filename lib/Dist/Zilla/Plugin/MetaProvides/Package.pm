@@ -113,8 +113,16 @@ sub _packages_for {
   my $seen = {};
 
   for my $namespace ( $meta->packages_inside() ) {
-    if ( not $self->_can_index($namespace) ){
+    if ( $self->_blacklist_contains($namespace) ) {
+      # note: these ones don't count as namespaces
+      # at all for "did you forget a namespace" purposes
       $self->log_debug("Skipping bad namespace: $namespace in " . $file->name);
+      next;
+    }
+
+    if ( not $self->_can_index($namespace) ){
+      # These count for "You had a namespace but you hid it"
+      $self->log_debug("Skipping private namespace: $namespace in " . $file->name);
       $seen_blacklisted->{ $namespace } = 1;
       $seen->{ $namespace } = 1;
       next;
@@ -178,7 +186,6 @@ sub _module_metadata_for {
 sub _can_index {
   my ( $self, $namespace ) = @_;
   ## no critic (RegularExpressions::RequireLineBoundaryMatching)
-  return if $self->_blacklist_contains($namespace);
   return if $namespace =~ qr/\A_/sx;
   return if $namespace =~ qr/::_/sx;
   return 1;
