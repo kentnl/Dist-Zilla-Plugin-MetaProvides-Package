@@ -171,7 +171,7 @@ sub _packages_for {
 sub _module_metadata_for {
   my ( $self, $file ) = @_;
 
-  my $content  = $file->encoded_content;
+  my $content = $file->encoded_content;
 
   ## no critic (InputOutput::RequireBriefOpen, Variables::ProhibitPunctuationVars)
   open my $fh, '<', \$content or $self->log_fatal( [ 'Cant open scalar filehandle for read. %s', $!, ] );
@@ -197,6 +197,7 @@ sub _all_packages_for {
   my ( $self, $file ) = @_;
   my $document = $self->ppi_document_for_file($file);
   my $packages = $document->find('PPI::Statement::Package');
+  return [] unless ref $packages;
   return [ map { $_->namespace } @{$packages} ];
 }
 

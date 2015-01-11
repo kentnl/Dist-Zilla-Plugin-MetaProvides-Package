@@ -74,7 +74,7 @@
       "Test::Fatal" : "0.014",
       "Test::Kwalitee" : "1.22",
       "Test::Moose" : "2.1403",
-      "Test::More" : "1.001014",
+      "Test::More" : "1.301001_097",
       "Test::Pod" : "1.48",
       "Test::Pod::Coverage" : "1.10",
       "namespace::autoclean" : "0.23",

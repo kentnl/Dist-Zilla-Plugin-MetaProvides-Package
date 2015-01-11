@@ -31,7 +31,7 @@
       },
       "develop" : {
          "recommends" : {
-            "Test::More" : "1.001014"
+            "Test::More" : "1.301001_097"
          },
          "requires" : {
             "Dist::Zilla" : "5",
@@ -124,7 +124,7 @@
          "recommends" : {
             "CPAN::Meta" : "2.120900",
             "ExtUtils::MakeMaker" : "7.04",
-            "Test::More" : "1.001014"
+            "Test::More" : "1.301001_097"
          },
          "requires" : {
             "Dist::Zilla::Util::Test::KENTNL" : "1.003001",
