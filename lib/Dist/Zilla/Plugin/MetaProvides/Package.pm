@@ -1,4 +1,4 @@
-use 5.008; # open scalar
+use 5.008;    # open scalar
 use strict;
 use warnings;
 
@@ -299,7 +299,7 @@ property of C<META.json> and C<META.yml> by absorbing it from your shipped modul
 in a manner similar to how C<PAUSE> itself does it.
 
 This allows you to easily create an authoritative index of what module provides what
-version in advance of C<PAUSE> indexing it.
+version in advance of C<PAUSE> indexing it, which C<PAUSE> in turn will take verbatim.
 
 =head1 QUICK REFERENCE
 

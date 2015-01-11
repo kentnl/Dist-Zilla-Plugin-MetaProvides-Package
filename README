@@ -5,7 +5,8 @@ This is a "Dist::Zilla" Plugin that populates the "provides" property of
 a manner similar to how "PAUSE" itself does it.
 
 This allows you to easily create an authoritative index of what module
-provides what version in advance of "PAUSE" indexing it.
+provides what version in advance of "PAUSE" indexing it, which "PAUSE"
+in turn will take verbatim.
 
 INSTALLATION
 
