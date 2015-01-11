@@ -86,8 +86,8 @@ has '_package_blacklist' => (
 sub _packages_for {
   my ( $self, $file ) = @_;
 
-  if ( not $file->$_does("Dist::Zilla::Role::File") ) {
-    $self->log_fatal("API Usage Invalid: _packages_for() takes only a file object");
+  if ( not $file->$_does('Dist::Zilla::Role::File') ) {
+    $self->log_fatal('API Usage Invalid: _packages_for() takes only a file object');
     return;
   }
 
@@ -171,7 +171,6 @@ sub _packages_for {
 sub _module_metadata_for {
   my ( $self, $file ) = @_;
 
-  my $filename = $file->name;
   my $content  = $file->encoded_content;
 
   ## no critic (InputOutput::RequireBriefOpen, Variables::ProhibitPunctuationVars)
@@ -187,7 +186,7 @@ sub _module_metadata_for {
 }
 
 sub _can_index {
-  my ( $self, $namespace ) = @_;
+  my ( undef, $namespace ) = @_;
   ## no critic (RegularExpressions::RequireLineBoundaryMatching)
   return if $namespace =~ qr/\A_/sx;
   return if $namespace =~ qr/::_/sx;
