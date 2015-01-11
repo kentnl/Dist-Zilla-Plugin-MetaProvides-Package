@@ -10,7 +10,7 @@ do { my $x = {
                       },
        'develop' => {
                       'recommends' => {
-                                        'Test::More' => '1.001014'
+                                        'Test::More' => '1.301001_097'
                                       },
                       'requires' => {
                                       'Dist::Zilla' => '5',
@@ -41,13 +41,13 @@ do { my $x = {
                                       'Dist::Zilla::Plugin::MetaTests' => '0',
                                       'Dist::Zilla::Plugin::MetaYAML' => '0',
                                       'Dist::Zilla::Plugin::MinimumPerl' => '0',
-                                      'Dist::Zilla::Plugin::Pod2Readme' => '0',
                                       'Dist::Zilla::Plugin::PodCoverageTests' => '0',
                                       'Dist::Zilla::Plugin::PodSyntaxTests' => '0',
                                       'Dist::Zilla::Plugin::PodWeaver' => '0',
                                       'Dist::Zilla::Plugin::Prereqs' => '0',
                                       'Dist::Zilla::Plugin::Prereqs::AuthorDeps' => '0',
                                       'Dist::Zilla::Plugin::Prereqs::Recommend::MatchInstalled' => '0',
+                                      'Dist::Zilla::Plugin::Readme::Brief' => '0',
                                       'Dist::Zilla::Plugin::ReadmeAnyFromPod' => '0',
                                       'Dist::Zilla::Plugin::RewriteVersion::Sanitized' => '0',
                                       'Dist::Zilla::Plugin::RunExtraTests' => '0',
@@ -72,7 +72,7 @@ do { my $x = {
                                     },
                       'suggests' => {
                                       'Dist::Zilla::App::Command::bakeini' => '0.002000',
-                                      'Dist::Zilla::PluginBundle::Author::KENTNL' => '2.022003'
+                                      'Dist::Zilla::PluginBundle::Author::KENTNL' => '2.022005'
                                     }
                     },
        'runtime' => {
@@ -83,6 +83,7 @@ do { my $x = {
                                       'Dist::Zilla::Plugin::FinderCode' => '0',
                                       'Dist::Zilla::Plugin::MetaProvides' => '1.15000000',
                                       'Dist::Zilla::Role::MetaProvider::Provider' => '0',
+                                      'Dist::Zilla::Role::PPI' => '0',
                                       'Dist::Zilla::Util::ConfigDumper' => '0.003000',
                                       'Module::Metadata' => '1.000022',
                                       'Moose' => '0',
@@ -102,7 +103,7 @@ do { my $x = {
                    'recommends' => {
                                      'CPAN::Meta' => '2.120900',
                                      'ExtUtils::MakeMaker' => '7.04',
-                                     'Test::More' => '1.001014'
+                                     'Test::More' => '1.301001_097'
                                    },
                    'requires' => {
                                    'Dist::Zilla::Util::Test::KENTNL' => '1.003001',

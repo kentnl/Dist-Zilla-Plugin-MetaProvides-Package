@@ -1,6 +1,25 @@
 This file contains ALL changes in dependencies in both REQUIRED / OPTIONAL dependencies for all phases (configure/build/runtime/test/develop)
 
-2.002000
+2.003000
+ [Added / develop requires]
+ - Dist::Zilla::Plugin::Readme::Brief
+
+ [Added / runtime requires]
+ - Dist::Zilla::Role::PPI
+
+ [Changed / develop recommends]
+ - Test::More 1.001014 → 1.301001_097
+
+ [Changed / develop suggests]
+ - Dist::Zilla::PluginBundle::Author::KENTNL 2.022003 → 2.022005
+
+ [Changed / test recommends]
+ - Test::More 1.001014 → 1.301001_097
+
+ [Removed / develop requires]
+ - Dist::Zilla::Plugin::Pod2Readme
+
+2.002000 2014-12-29T17:46:59Z
  [Added / develop requires]
  - Dist::Zilla::Plugin::Pod2Readme
 
