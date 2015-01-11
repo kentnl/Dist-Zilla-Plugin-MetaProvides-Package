@@ -15,6 +15,15 @@ In your `dist.ini`:
     inherit_missing = 0    ; optional
     meta_noindex    = 1    ; optional
 
+# DESCRIPTION
+
+This is a [`Dist::Zilla`](https://metacpan.org/pod/Dist::Zilla) Plugin that populates the `provides`
+property of `META.json` and `META.yml` by absorbing it from your shipped modules,
+in a manner similar to how `PAUSE` itself does it.
+
+This allows you to easily create an authoritative index of what module provides what
+version in advance of `PAUSE` indexing it, which `PAUSE` in turn will take verbatim.
+
 # QUICK REFERENCE
 
     ->new(options={})
