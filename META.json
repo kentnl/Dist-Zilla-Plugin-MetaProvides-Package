@@ -436,12 +436,12 @@
                      },
                      {
                         "class" : "Pod::Weaver::Section::Generic",
-                        "name" : "QUICK REFERENCE",
+                        "name" : "DESCRIPTION",
                         "version" : "4.010"
                      },
                      {
                         "class" : "Pod::Weaver::Section::Generic",
-                        "name" : "DESCRIPTION",
+                        "name" : "QUICK REFERENCE",
                         "version" : "4.010"
                      },
                      {

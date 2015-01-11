@@ -292,6 +292,15 @@ In your C<dist.ini>:
     inherit_missing = 0    ; optional
     meta_noindex    = 1    ; optional
 
+=head1 DESCRIPTION
+
+This is a L<< C<Dist::Zilla>|Dist::Zilla >> Plugin that populates the C<provides>
+property of C<META.json> and C<META.yml> by absorbing it from your shipped modules,
+in a manner similar to how C<PAUSE> itself does it.
+
+This allows you to easily create an authoritative index of what module provides what
+version in advance of C<PAUSE> indexing it.
+
 =head1 QUICK REFERENCE
 
   ->new(options={})
@@ -366,15 +375,6 @@ In your C<dist.ini>:
     0 =>  $name
     1 =>  $arg
     2 =>  $section
-
-=head1 DESCRIPTION
-
-This is a L<< C<Dist::Zilla>|Dist::Zilla >> Plugin that populates the C<provides>
-property of C<META.json> and C<META.yml> by absorbing it from your shipped modules,
-in a manner similar to how C<PAUSE> itself does it.
-
-This allows you to easily create an authoritative index of what module provides what
-version in advance of C<PAUSE> indexing it.
 
 =head1 CONSUMED ROLES
 
