@@ -56,7 +56,7 @@ sub provides {
   my $self = shift;
   my (@records);
   for my $file ( @{ $self->_found_files() } ) {
-    push @records, $self->_packages_for($file);    #->name, $file->encoded_content, $file->encoding );
+    push @records, $self->_packages_for($file);
   }
   return $self->_apply_meta_noindex(@records);
 }
@@ -91,9 +91,9 @@ sub _packages_for {
     return;
   }
 
-  my $meta = $self->_module_metadata_for( $file );
+  my $meta = $self->_module_metadata_for($file);
   return unless $meta;
-  
+
   $self->log_debug(
     'Version metadata from ' . $file->name . ' : ' . Data::Dump::dumpf(
       $meta,
@@ -110,21 +110,23 @@ sub _packages_for {
   my @out;
 
   my $seen_blacklisted = {};
-  my $seen = {};
+  my $seen             = {};
 
   for my $namespace ( $meta->packages_inside() ) {
     if ( $self->_blacklist_contains($namespace) ) {
+
       # note: these ones don't count as namespaces
       # at all for "did you forget a namespace" purposes
-      $self->log_debug("Skipping bad namespace: $namespace in " . $file->name);
+      $self->log_debug( "Skipping bad namespace: $namespace in " . $file->name );
       next;
     }
 
-    if ( not $self->_can_index($namespace) ){
+    if ( not $self->_can_index($namespace) ) {
+
       # These count for "You had a namespace but you hid it"
-      $self->log_debug("Skipping private namespace: $namespace in " . $file->name);
-      $seen_blacklisted->{ $namespace } = 1;
-      $seen->{ $namespace } = 1;
+      $self->log_debug( "Skipping private namespace: $namespace in " . $file->name );
+      $seen_blacklisted->{$namespace} = 1;
+      $seen->{$namespace}             = 1;
       next;
     }
 
@@ -145,20 +147,21 @@ sub _packages_for {
         },
       ),
     );
-    $seen->{ $namespace } = 1;
+    $seen->{$namespace} = 1;
     push @out, Dist::Zilla::MetaProvides::ProvideRecord->new(%struct);
   }
-  for my $namespace ( @{ $self->_all_packages_for( $file )} ) {
-    next if $seen->{ $namespace };
+  for my $namespace ( @{ $self->_all_packages_for($file) } ) {
+    next if $seen->{$namespace};
     $self->log_debug("Found hidden namespace: $namespace");
-    $seen_blacklisted->{ $namespace } = 1;
+    $seen_blacklisted->{$namespace} = 1;
   }
 
   if ( not @out ) {
     if ( not keys %{$seen_blacklisted} ) {
       $self->log( 'No namespaces detected in file ' . $file->name );
-    } else {
-      $self->log_debug('Only hidden namespaces detected in file ' . $file->name );
+    }
+    else {
+      $self->log_debug( 'Only hidden namespaces detected in file ' . $file->name );
     }
     return ();
   }
@@ -167,7 +170,7 @@ sub _packages_for {
 
 sub _module_metadata_for {
   my ( $self, $file ) = @_;
-  
+
   my $filename = $file->name;
   my $content  = $file->encoded_content;
 
@@ -178,7 +181,7 @@ sub _module_metadata_for {
   my $meta = Module::Metadata->new_from_handle( $fh, $file->name, collect_pod => 0 );
 
   return $meta if $meta;
-  
+
   $self->log_fatal( 'Can\'t extract metadata from ' . $file->name );
   return ();
 }
@@ -370,10 +373,16 @@ version in advance of C<PAUSE> indexing it, which C<PAUSE> in turn will take ver
   A>_finder_objects                   # ArrayRef[FileFinder]
   A>_package_blacklist                # HashRef[Str]
 
+  ->_all_packages_for(options=[])     # ArrayRef[Str]
+    0   =>   $file
   ->_blacklist_contains               # via _package_blacklist ( exists )
   ->_build_finder_objects             # for _finder_objects
+  ->_can_index(options=[])            # Boolean
+    0   =>   $namespace
   ->_found_files                      # ArrayRef[ File ]
-  ->_packages_for($file)              # List[Record]
+  ->_module_metadata_for(options=[])  # Module::Metadata
+    0   =>   $file
+  ->_packages_for(options=[])         # List[Record]
     0   =>   $file                    # Dist::Zilla::Role::File
   ->_vivify_installmodules_pm_finder  # Plugin
 
@@ -400,6 +409,15 @@ version in advance of C<PAUSE> indexing it, which C<PAUSE> in turn will take ver
                                     # ()
   ->_try_regen_meta                 # HashRef
 
+  -~- Dist::Zilla::Role::PPI
+  ->document_assigns_to_variable(options=[])  # Bool
+    0   =>  $document                         # PPI::Document
+    1   =>  $variable_name                    # Varible name (w/sigil)
+  ->ppi_document_for_file(options=[])         # PPI::Document
+    0   =>  $file                             # Dist::Zilla::Role::File
+  ->save_ppi_document_to_file(options=[])     # PPI::Document
+    0   =>  $document                         # PPI::Document
+    1   =>  $file                             # Dist::Zilla::Role::File
 
   -~- Dist::Zilla::Role::MetaProvider
   [>] metadata
