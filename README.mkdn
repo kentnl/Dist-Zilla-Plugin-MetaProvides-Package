@@ -4,7 +4,7 @@ Dist::Zilla::Plugin::MetaProvides::Package - Extract namespaces/version from tra
 
 # VERSION
 
-version 2.002001
+version 2.003000
 
 # SYNOPSIS
 
@@ -40,13 +40,17 @@ version in advance of `PAUSE` indexing it, which `PAUSE` in turn will take verba
     A>_finder_objects                   # ArrayRef[FileFinder]
     A>_package_blacklist                # HashRef[Str]
 
+    ->_all_packages_for(options=[])     # ArrayRef[Str]
+      0   =>   $file
     ->_blacklist_contains               # via _package_blacklist ( exists )
     ->_build_finder_objects             # for _finder_objects
+    ->_can_index(options=[])            # Boolean
+      0   =>   $namespace
     ->_found_files                      # ArrayRef[ File ]
+    ->_module_metadata_for(options=[])  # Module::Metadata
+      0   =>   $file
     ->_packages_for(options=[])         # List[Record]
-      0 => $filename
-      1 => $content
-      2 => $encoding
+      0   =>   $file                    # Dist::Zilla::Role::File
     ->_vivify_installmodules_pm_finder  # Plugin
 
 
@@ -72,6 +76,15 @@ version in advance of `PAUSE` indexing it, which `PAUSE` in turn will take verba
                                       # ()
     ->_try_regen_meta                 # HashRef
 
+    -~- Dist::Zilla::Role::PPI
+    ->document_assigns_to_variable(options=[])  # Bool
+      0   =>  $document                         # PPI::Document
+      1   =>  $variable_name                    # Varible name (w/sigil)
+    ->ppi_document_for_file(options=[])         # PPI::Document
+      0   =>  $file                             # Dist::Zilla::Role::File
+    ->save_ppi_document_to_file(options=[])     # PPI::Document
+      0   =>  $document                         # PPI::Document
+      1   =>  $file                             # Dist::Zilla::Role::File
 
     -~- Dist::Zilla::Role::MetaProvider
     [>] metadata
@@ -134,7 +147,7 @@ This parameter may be specified multiple times to aggregate a list of finders
 
 ## `_packages_for`
 
-### signature: $plugin->\_packages\_for( $filename, $file\_content )
+### signature: $plugin->\_packages\_for( $file )
 
 ### returns: Array of [Dist::Zilla::MetaProvides::ProvideRecord](https://metacpan.org/pod/Dist::Zilla::MetaProvides::ProvideRecord)
 
