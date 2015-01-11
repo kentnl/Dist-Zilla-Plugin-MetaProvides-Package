@@ -38,6 +38,7 @@ use Dist::Zilla::Util::ConfigDumper 0.003000 qw( config_dumper dump_plugin );
 
 use namespace::autoclean;
 with 'Dist::Zilla::Role::MetaProvider::Provider';
+with 'Dist::Zilla::Role::PPI';
 
 has '+meta_noindex' => ( default => sub { 1 } );
 
@@ -55,7 +56,7 @@ sub provides {
   my $self = shift;
   my (@records);
   for my $file ( @{ $self->_found_files() } ) {
-    push @records, $self->_packages_for( $file->name, $file->encoded_content, $file->encoding );
+    push @records, $self->_packages_for($file);    #->name, $file->encoded_content, $file->encoding );
   }
   return $self->_apply_meta_noindex(@records);
 }
@@ -83,21 +84,18 @@ has '_package_blacklist' => (
 
 
 sub _packages_for {
-  my ( $self, $filename, $content, $encoding ) = @_;
+  my ( $self, $file ) = @_;
 
-  ## no critic (InputOutput::RequireBriefOpen, Variables::ProhibitPunctuationVars)
-  open my $fh, '<', \$content or $self->log_fatal( [ 'Cant open scalar filehandle for read. %s', $!, ] );
-  binmode $fh, sprintf ':encoding(%s)', $encoding;
-
-  my $meta = Module::Metadata->new_from_handle( $fh, $filename, collect_pod => 0 );
-
-  if ( not $meta ) {
-    $self->log_fatal("Can't extract metadata from $filename");
-    return ();
+  if ( not $file->$_does("Dist::Zilla::Role::File") ) {
+    $self->log_fatal("API Usage Invalid: _packages_for() takes only a file object");
+    return;
   }
 
+  my $meta = $self->_module_metadata_for( $file );
+  return unless $meta;
+  
   $self->log_debug(
-    "Version metadata from $filename : " . Data::Dump::dumpf(
+    'Version metadata from ' . $file->name . ' : ' . Data::Dump::dumpf(
       $meta,
       sub {
         if ( $_[1]->$_isa('version') ) {
@@ -111,38 +109,86 @@ sub _packages_for {
   ## no critic (ProhibitArrayAssignARef)
   my @out;
 
+  my $seen_blacklisted = {};
+  my $seen = {};
+
   for my $namespace ( $meta->packages_inside() ) {
-    ## no critic (RegularExpressions::RequireLineBoundaryMatching)
-    next if $namespace =~ qr/\A_/sx;
-    next if $namespace =~ qr/::_/sx;
-    next if $self->_blacklist_contains($namespace);
+    if ( not $self->_can_index($namespace) ){
+      $self->log_debug("Skipping bad namespace: $namespace");
+      $seen_blacklisted->{ $namespace } = 1;
+      $seen->{ $namespace } = 1;
+      next;
+    }
 
     my $v = $meta->version($namespace);
 
     my (%struct) = (
       module => $namespace,
-      file   => $filename,
+      file   => $file->name,
       ( ref $v ? ( version => $v->stringify ) : ( version => undef ) ),
       parent => $self,
     );
 
     $self->log_debug(
-      'Version metadata for namespace ' . $namespace . ' in ' . $filename . ' : ' . Data::Dump::dumpf(
+      'Version metadata for namespace ' . $namespace . ' in ' . $file->name . ' : ' . Data::Dump::dumpf(
         \%struct,
         sub {
           return { hide_keys => ['parent'] };
         },
       ),
     );
+    $seen->{ $namespace } = 1;
     push @out, Dist::Zilla::MetaProvides::ProvideRecord->new(%struct);
+  }
+  for my $namespace ( @{ $self->_all_packages_for( $file )} ) {
+    next if $seen->{ $namespace };
+    $self->log_debug("Found hidden namespace: $namespace");
+    $seen_blacklisted->{ $namespace } = 1;
   }
 
   if ( not @out ) {
-    $self->log( 'No namespaces detected in file ' . $filename );
+    if ( not keys %{$seen_blacklisted} ) {
+      $self->log( 'No namespaces detected in file ' . $file->name );
+    } else {
+      $self->log_debug('Only hidden namespaces detected in file ' . $file->name );
+    }
     return ();
   }
   return @out;
+}
 
+sub _module_metadata_for {
+  my ( $self, $file ) = @_;
+  
+  my $filename = $file->name;
+  my $content  = $file->encoded_content;
+
+  ## no critic (InputOutput::RequireBriefOpen, Variables::ProhibitPunctuationVars)
+  open my $fh, '<', \$content or $self->log_fatal( [ 'Cant open scalar filehandle for read. %s', $!, ] );
+  binmode $fh, sprintf ':encoding(%s)', $file->encoding;
+
+  my $meta = Module::Metadata->new_from_handle( $fh, $file->name, collect_pod => 0 );
+
+  return $meta if $meta;
+  
+  $self->log_fatal( 'Can\'t extract metadata from ' . $file->name );
+  return ();
+}
+
+sub _can_index {
+  my ( $self, $namespace ) = @_;
+  ## no critic (RegularExpressions::RequireLineBoundaryMatching)
+  return if $self->_blacklist_contains($namespace);
+  return if $namespace =~ qr/\A_/sx;
+  return if $namespace =~ qr/::_/sx;
+  return 1;
+}
+
+sub _all_packages_for {
+  my ( $self, $file ) = @_;
+  my $document = $self->ppi_document_for_file($file);
+  my $packages = $document->find('PPI::Statement::Package');
+  return [ map { $_->namespace } @{$packages} ];
 }
 
 around dump_config => config_dumper( __PACKAGE__,
@@ -320,10 +366,8 @@ version in advance of C<PAUSE> indexing it, which C<PAUSE> in turn will take ver
   ->_blacklist_contains               # via _package_blacklist ( exists )
   ->_build_finder_objects             # for _finder_objects
   ->_found_files                      # ArrayRef[ File ]
-  ->_packages_for(options=[])         # List[Record]
-    0 => $filename
-    1 => $content
-    2 => $encoding
+  ->_packages_for($file)              # List[Record]
+    0   =>   $file                    # Dist::Zilla::Role::File
   ->_vivify_installmodules_pm_finder  # Plugin
 
 
@@ -416,7 +460,7 @@ This parameter may be specified multiple times to aggregate a list of finders
 
 =head2 C<_packages_for>
 
-=head3 signature: $plugin->_packages_for( $filename, $file_content )
+=head3 signature: $plugin->_packages_for( $file )
 
 =head3 returns: Array of L<Dist::Zilla::MetaProvides::ProvideRecord>
 
