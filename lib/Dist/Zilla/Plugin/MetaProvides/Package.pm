@@ -114,7 +114,7 @@ sub _packages_for {
 
   for my $namespace ( $meta->packages_inside() ) {
     if ( not $self->_can_index($namespace) ){
-      $self->log_debug("Skipping bad namespace: $namespace");
+      $self->log_debug("Skipping bad namespace: $namespace in " . $file->name);
       $seen_blacklisted->{ $namespace } = 1;
       $seen->{ $namespace } = 1;
       next;
