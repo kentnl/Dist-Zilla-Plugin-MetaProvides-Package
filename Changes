@@ -1,6 +1,9 @@
 Revision history for Dist-Zilla-Plugin-MetaProvides-Package
 
-2.002001 2014-12-29T17:51:49Z e2404bc
+2.002001 2015-01-11T02:23:50Z e73a335
+ [Dependencies::Stats]
+ - Dependencies changed since 2.002000, see misc/*.deps* for details
+ - develop: +1 -1 (suggests: ↑1)
 
 2.002000 2014-12-29T17:46:59Z ac1a07c
  [Dependencies::Stats]

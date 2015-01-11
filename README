@@ -1,6 +1,11 @@
 Dist::Zilla::Plugin::MetaProvides::Package
 
+This is a "Dist::Zilla" Plugin that populates the "provides" property of
+"META.json" and "META.yml" by absorbing it from your shipped modules, in
+a manner similar to how "PAUSE" itself does it.
 
+This allows you to easily create an authoritative index of what module
+provides what version in advance of "PAUSE" indexing it.
 
 INSTALLATION
 

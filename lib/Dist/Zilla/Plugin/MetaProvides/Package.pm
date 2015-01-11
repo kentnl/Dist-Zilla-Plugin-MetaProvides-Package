@@ -367,6 +367,15 @@ In your C<dist.ini>:
     1 =>  $arg
     2 =>  $section
 
+=head1 DESCRIPTION
+
+This is a L<< C<Dist::Zilla>|Dist::Zilla >> Plugin that populates the C<provides>
+property of C<META.json> and C<META.yml> by absorbing it from your shipped modules,
+in a manner similar to how C<PAUSE> itself does it.
+
+This allows you to easily create an authoritative index of what module provides what
+version in advance of C<PAUSE> indexing it.
+
 =head1 CONSUMED ROLES
 
 =head2 L<Dist::Zilla::Role::MetaProvider::Provider>
