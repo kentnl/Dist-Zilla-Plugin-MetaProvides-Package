@@ -1,6 +1,6 @@
 Revision history for Dist-Zilla-Plugin-MetaProvides-Package
 
-2.002001 2015-01-11T02:30:25Z 2b830ad
+2.003000 2015-01-11T04:42:44Z 2bd5f95
  [Dependencies::Stats]
  - Dependencies changed since 2.002000, see misc/*.deps* for details
  - develop: +1 -1 (recommends: ↑1, suggests: ↑1)
@@ -9,6 +9,11 @@ Revision history for Dist-Zilla-Plugin-MetaProvides-Package
 
  [Documentation]
  - Add a DESCRIPTION section for Readme purposes.
+ - README is now ::Brief
+
+ [Features]
+ - Attempts to detect intentionally hidden packages and allow their presense to disable the "no packages found"
+   warning. ( Closes #3 )
 
 2.002000 2014-12-29T17:46:59Z ac1a07c
  [Dependencies::Stats]

@@ -1,6 +1,6 @@
 This file contains changes to DEVELOPMENT dependencies only ( both REQUIRED and OPTIONAL )
 
-2.002001
+2.003000
  [Added / develop requires]
  - Dist::Zilla::Plugin::Readme::Brief
 

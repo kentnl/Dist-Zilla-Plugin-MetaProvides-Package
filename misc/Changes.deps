@@ -1,6 +1,6 @@
 This file contains changes in REQUIRED dependencies for standard CPAN phases (configure/build/runtime/test)
 
-2.002001
+2.003000
  [Added / runtime requires]
  - Dist::Zilla::Role::PPI
 
