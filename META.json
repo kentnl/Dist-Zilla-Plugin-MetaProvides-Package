@@ -22,7 +22,7 @@
    "prereqs" : {
       "configure" : {
          "recommends" : {
-            "ExtUtils::MakeMaker" : "7.04"
+            "ExtUtils::MakeMaker" : "7.05_07"
          },
          "requires" : {
             "ExtUtils::MakeMaker" : "0",
@@ -93,7 +93,7 @@
          },
          "suggests" : {
             "Dist::Zilla::App::Command::bakeini" : "0.002000",
-            "Dist::Zilla::PluginBundle::Author::KENTNL" : "2.022005"
+            "Dist::Zilla::PluginBundle::Author::KENTNL" : "2.023002"
          }
       },
       "runtime" : {
@@ -123,7 +123,7 @@
       "test" : {
          "recommends" : {
             "CPAN::Meta" : "2.120900",
-            "ExtUtils::MakeMaker" : "7.04",
+            "ExtUtils::MakeMaker" : "7.05_07",
             "Test::More" : "1.301001_097"
          },
          "requires" : {
