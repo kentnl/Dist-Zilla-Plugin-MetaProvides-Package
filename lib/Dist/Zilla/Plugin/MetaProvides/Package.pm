@@ -552,12 +552,14 @@ so that its settings can be used to eliminate items from the 'provides' list.
 
 =item * meta_noindex = 0
 
-By default, do nothing unusual.
+With this set, any C<MetaNoIndex> plugins are ignored.
 
 =item * DEFAULT: meta_noindex = 1
 
 When a module meets the criteria provided to L<< C<MetaNoIndex>|Dist::Zilla::Plugin::MetaNoIndex >>,
-eliminate it from the metadata shipped to L<Dist::Zilla>
+eliminate it from the metadata shipped to L<Dist::Zilla>.
+
+This is the default option.
 
 =back
 
