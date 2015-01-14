@@ -8,6 +8,9 @@ Revision history for Dist-Zilla-Plugin-MetaProvides-Package
  - runtime: (recommends: +1)
  - test: (recommends: ↓2)
 
+ [Documentation]
+ - Fix false documentation about defaults (dolmen++, #5)
+
 2.003000 2015-01-11T04:57:16Z e6ee0ca
  [Dependencies::Stats]
  - Dependencies changed since 2.002000, see misc/*.deps* for details
