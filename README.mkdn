@@ -192,12 +192,12 @@ so that its settings can be used to eliminate items from the 'provides' list.
 
 - meta\_noindex = 0
 
-    By default, do nothing unusual.
+    With this set, any `MetaNoIndex` plugins are ignored.
 
 - DEFAULT: meta\_noindex = 1
 
     When a module meets the criteria provided to [`MetaNoIndex`](https://metacpan.org/pod/Dist::Zilla::Plugin::MetaNoIndex),
-    eliminate it from the metadata shipped to [Dist::Zilla](https://metacpan.org/pod/Dist::Zilla)
+    eliminate it from the metadata shipped to [Dist::Zilla](https://metacpan.org/pod/Dist::Zilla).
 
 # SEE ALSO
 
