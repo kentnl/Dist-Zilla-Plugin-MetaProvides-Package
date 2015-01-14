@@ -26,57 +26,38 @@ version in advance of `PAUSE` indexing it, which `PAUSE` in turn will take verba
 
 # QUICK REFERENCE
 
+    Constructors:
     ->new(options={})
-      finder => ?attr
+      finder => Attribute:finder
 
+    Attributes:
+    ->finder                            # ArrayRef[Str]
 
-    A>finder                            # ArrayRef[Str]
-
+    Methods:
     ->dumpconfig                        # HashRef
     ->has_finder                        # via finder
     ->mvp_multivalue_args               # List
     ->provides
 
-    A>_finder_objects                   # ArrayRef[FileFinder]
-    A>_package_blacklist                # HashRef[Str]
-
-    ->_all_packages_for(options=[])     # ArrayRef[Str]
-      0   =>   $file
-    ->_blacklist_contains               # via _package_blacklist ( exists )
-    ->_build_finder_objects             # for _finder_objects
-    ->_can_index(options=[])            # Boolean
-      0   =>   $namespace
-    ->_found_files                      # ArrayRef[ File ]
-    ->_module_metadata_for(options=[])  # Module::Metadata
-      0   =>   $file
-    ->_packages_for(options=[])         # List[Record]
-      0   =>   $file                    # Dist::Zilla::Role::File
-    ->_vivify_installmodules_pm_finder  # Plugin
-
-
-    -~- Dist::Zilla::Role::MetaProvider::Provider
+    -~- Inherited From: Dist::Zilla::Role::MetaProvider::Provider
+    Constructors:
     ->new(options={})
-      inherit_version => ?attr
-      inherit_missing => ?attr
-      meta_noindex    => ?attr
+      inherit_version => Attribute:inherit_missing
+      inherit_missing => Attribute:inherit_version
+      meta_noindex    => Attribute:meta_noindex
 
-    [>] provides
 
-    A>inherit_missing                 # Bool = 1
-    A>inherit_version                 # Bool = 1
-    A>meta_noindex                    # Bool = 1
+    Attributes:
+    ->inherit_missing                 # Bool = 1
+    ->inherit_version                 # Bool = 1
+    ->meta_noindex                    # Bool = 1
 
+    Methods:
     ->dumpconfig                      # HashRef
     ->metadata                        # { provides => ... }
 
-    ->_apply_meta_noindex(options=[]) # Modified @items
-      0..$# =>  @items
-    ->_resolve_version(options=[])    # ( 'version' , $resolved )
-      0     =>  $version              # ()
-                                      # ()
-    ->_try_regen_meta                 # HashRef
-
-    -~- Dist::Zilla::Role::PPI
+    -~- Inherited From: Dist::Zilla::Role::PPI
+    Methods:
     ->document_assigns_to_variable(options=[])  # Bool
       0   =>  $document                         # PPI::Document
       1   =>  $variable_name                    # Varible name (w/sigil)
@@ -86,18 +67,21 @@ version in advance of `PAUSE` indexing it, which `PAUSE` in turn will take verba
       0   =>  $document                         # PPI::Document
       1   =>  $file                             # Dist::Zilla::Role::File
 
-    -~- Dist::Zilla::Role::MetaProvider
-    [>] metadata
+    -~- Inherited From: Dist::Zilla::Role::MetaProvider
 
-    -~- Dist::Zilla::Role::Plugin
+    -~- Inherited From: Dist::Zilla::Role::Plugin
+    Constructors:
     ->new(options={})
-      plugin_name => ^attr
-      zilla       => ^attr
-      logger      => ?attr
+      plugin_name => Attribute:plugin_name
+      zilla       => Attribute:zilla
+      logger      => Attribute:logger
 
-    A>logger                          #
-    A>plugin_name                     # Str
-    A>zilla                           # DZil
+    Attributes:
+    ->logger                          #
+    ->plugin_name                     # Str
+    ->zilla                           # DZil
+
+    Methods:
     ->log                             # via logger
     ->log_debug                       # via logger
     ->log_fatal                       # via logger
