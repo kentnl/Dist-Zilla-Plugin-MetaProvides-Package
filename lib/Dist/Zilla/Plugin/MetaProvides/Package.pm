@@ -559,8 +559,6 @@ With this set, any C<MetaNoIndex> plugins are ignored.
 When a module meets the criteria provided to L<< C<MetaNoIndex>|Dist::Zilla::Plugin::MetaNoIndex >>,
 eliminate it from the metadata shipped to L<Dist::Zilla>.
 
-This is the default option.
-
 =back
 
 =head1 SEE ALSO
