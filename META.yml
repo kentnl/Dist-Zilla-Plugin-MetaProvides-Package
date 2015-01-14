@@ -30,6 +30,8 @@ provides:
   Dist::Zilla::Plugin::MetaProvides::Package:
     file: lib/Dist/Zilla/Plugin/MetaProvides/Package.pm
     version: '2.003001'
+recommends:
+  Moose: '2.000'
 requires:
   Data::Dump: '1.16'
   Dist::Zilla: '5.000'
@@ -159,6 +161,10 @@ x_Dist_Zilla:
       name: '@Author::KENTNL/Manifest'
       version: '5.031'
     -
+      class: Dist::Zilla::Plugin::Author::KENTNL::TravisCI
+      name: '@Author::KENTNL/Author::KENTNL::TravisCI'
+      version: '0.001000'
+    -
       class: Dist::Zilla::Plugin::CopyFilesFromBuild
       name: '@Author::KENTNL/CopyXBuild'
       version: '0.103510'
@@ -229,7 +235,7 @@ x_Dist_Zilla:
           mantissa: '6'
           normal_form: numify
       name: '@Author::KENTNL/RewriteVersion::Sanitized'
-      version: '0.001004'
+      version: '0.001005'
     -
       class: Dist::Zilla::Plugin::PodWeaver
       config:
@@ -495,28 +501,21 @@ x_Dist_Zilla:
       name: '@Author::KENTNL/Twitter'
       version: '0.026'
     -
-      class: Dist::Zilla::Plugin::Prereqs::Recommend::MatchInstalled
+      class: Dist::Zilla::Plugin::Prereqs::Upgrade
       config:
-        Dist::Zilla::Plugin::Prereqs::Recommend::MatchInstalled:
-          applyto_map:
-            - 'build.requires = build.recommends'
-            - 'test.requires = test.recommends'
-            - 'runtime.requires = runtime.recommends'
-            - 'configure.requires = configure.recommends'
-            - 'develop.requires = develop.recommends'
-          applyto_phase:
-            - build
-            - test
-            - runtime
-            - configure
-            - develop
+        Dist::Zilla::Plugin::Prereqs::Upgrade:
           modules:
-            - ExtUtils::MakeMaker
-            - Test::More
-          source_relation: requires
-          target_relation: recommends
-      name: '@Author::KENTNL/Prereqs::Recommend::MatchInstalled'
-      version: '0.003001'
+            Dist::Zila::Plugin::MetaProvides::Package: '2.000000'
+            Dist::Zilla: '5'
+            ExtUtils::MakeMaker: '7.00'
+            File::ShareDir::Install: '0.10'
+            Moo: '1.000008'
+            Moose: '2.000'
+            Path::Tiny: '0.058'
+            Test::File::ShareDir: '1.000000'
+            Test::More: '0.99'
+      name: '@Author::KENTNL/Prereqs::Upgrade'
+      version: '0.001000'
     -
       class: Dist::Zilla::Plugin::Prereqs::Recommend::MatchInstalled
       config:
