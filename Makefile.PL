@@ -33,6 +33,7 @@ my %WriteMakefileArgs = (
     "Moose" => 0,
     "MooseX::LazyRequire" => 0,
     "MooseX::Types::Moose" => 0,
+    "PPI::Document" => 0,
     "Safe::Isa" => 0,
     "namespace::autoclean" => 0,
     "strict" => 0,
@@ -48,7 +49,7 @@ my %WriteMakefileArgs = (
     "Test::Moose" => 0,
     "Test::More" => "0.96"
   },
-  "VERSION" => "2.003000",
+  "VERSION" => "2.003001",
   "test" => {
     "TESTS" => "t/*.t t/00-compile/*.t"
   }
@@ -71,6 +72,7 @@ my %FallbackPrereqs = (
   "Moose" => 0,
   "MooseX::LazyRequire" => 0,
   "MooseX::Types::Moose" => 0,
+  "PPI::Document" => 0,
   "Safe::Isa" => 0,
   "Test::DZil" => 0,
   "Test::Fatal" => 0,

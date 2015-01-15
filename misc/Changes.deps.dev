@@ -1,6 +1,17 @@
 This file contains changes to DEVELOPMENT dependencies only ( both REQUIRED and OPTIONAL )
 
-2.003000
+2.003001
+ [Added / develop requires]
+ - Dist::Zilla::Plugin::Author::KENTNL::TravisCI
+ - Dist::Zilla::Plugin::Prereqs::Upgrade
+
+ [Changed / develop recommends]
+ - Test::More 1.301001_097 → 0.99
+
+ [Changed / develop suggests]
+ - Dist::Zilla::PluginBundle::Author::KENTNL 2.022005 → 2.023002
+
+2.003000 2015-01-11T04:57:16Z
  [Added / develop requires]
  - Dist::Zilla::Plugin::Readme::Brief
 

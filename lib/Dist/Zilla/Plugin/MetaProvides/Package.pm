@@ -4,7 +4,7 @@ use warnings;
 
 package Dist::Zilla::Plugin::MetaProvides::Package;
 
-our $VERSION = '2.003000';
+our $VERSION = '2.003001';
 
 # ABSTRACT: Extract namespaces/version from traditional packages for provides
 
@@ -195,6 +195,7 @@ sub _can_index {
 
 sub _all_packages_for {
   my ( $self, $file ) = @_;
+  require PPI::Document;
   my $document = $self->ppi_document_for_file($file);
   my $packages = $document->find('PPI::Statement::Package');
   return [] unless ref $packages;
@@ -337,7 +338,7 @@ Dist::Zilla::Plugin::MetaProvides::Package - Extract namespaces/version from tra
 
 =head1 VERSION
 
-version 2.003000
+version 2.003001
 
 =head1 SYNOPSIS
 
@@ -359,57 +360,38 @@ version in advance of C<PAUSE> indexing it, which C<PAUSE> in turn will take ver
 
 =head1 QUICK REFERENCE
 
+  Constructors:
   ->new(options={})
-    finder => ?attr
+    finder => Attribute:finder
 
+  Attributes:
+  ->finder                            # ArrayRef[Str]
 
-  A>finder                            # ArrayRef[Str]
-
+  Methods:
   ->dumpconfig                        # HashRef
   ->has_finder                        # via finder
   ->mvp_multivalue_args               # List
   ->provides
 
-  A>_finder_objects                   # ArrayRef[FileFinder]
-  A>_package_blacklist                # HashRef[Str]
-
-  ->_all_packages_for(options=[])     # ArrayRef[Str]
-    0   =>   $file
-  ->_blacklist_contains               # via _package_blacklist ( exists )
-  ->_build_finder_objects             # for _finder_objects
-  ->_can_index(options=[])            # Boolean
-    0   =>   $namespace
-  ->_found_files                      # ArrayRef[ File ]
-  ->_module_metadata_for(options=[])  # Module::Metadata
-    0   =>   $file
-  ->_packages_for(options=[])         # List[Record]
-    0   =>   $file                    # Dist::Zilla::Role::File
-  ->_vivify_installmodules_pm_finder  # Plugin
-
-
-  -~- Dist::Zilla::Role::MetaProvider::Provider
+  -~- Inherited From: Dist::Zilla::Role::MetaProvider::Provider
+  Constructors:
   ->new(options={})
-    inherit_version => ?attr
-    inherit_missing => ?attr
-    meta_noindex    => ?attr
+    inherit_version => Attribute:inherit_missing
+    inherit_missing => Attribute:inherit_version
+    meta_noindex    => Attribute:meta_noindex
 
-  [>] provides
 
-  A>inherit_missing                 # Bool = 1
-  A>inherit_version                 # Bool = 1
-  A>meta_noindex                    # Bool = 1
+  Attributes:
+  ->inherit_missing                 # Bool = 1
+  ->inherit_version                 # Bool = 1
+  ->meta_noindex                    # Bool = 1
 
+  Methods:
   ->dumpconfig                      # HashRef
   ->metadata                        # { provides => ... }
 
-  ->_apply_meta_noindex(options=[]) # Modified @items
-    0..$# =>  @items
-  ->_resolve_version(options=[])    # ( 'version' , $resolved )
-    0     =>  $version              # ()
-                                    # ()
-  ->_try_regen_meta                 # HashRef
-
-  -~- Dist::Zilla::Role::PPI
+  -~- Inherited From: Dist::Zilla::Role::PPI
+  Methods:
   ->document_assigns_to_variable(options=[])  # Bool
     0   =>  $document                         # PPI::Document
     1   =>  $variable_name                    # Varible name (w/sigil)
@@ -419,18 +401,21 @@ version in advance of C<PAUSE> indexing it, which C<PAUSE> in turn will take ver
     0   =>  $document                         # PPI::Document
     1   =>  $file                             # Dist::Zilla::Role::File
 
-  -~- Dist::Zilla::Role::MetaProvider
-  [>] metadata
+  -~- Inherited From: Dist::Zilla::Role::MetaProvider
 
-  -~- Dist::Zilla::Role::Plugin
+  -~- Inherited From: Dist::Zilla::Role::Plugin
+  Constructors:
   ->new(options={})
-    plugin_name => ^attr
-    zilla       => ^attr
-    logger      => ?attr
+    plugin_name => Attribute:plugin_name
+    zilla       => Attribute:zilla
+    logger      => Attribute:logger
 
-  A>logger                          #
-  A>plugin_name                     # Str
-  A>zilla                           # DZil
+  Attributes:
+  ->logger                          #
+  ->plugin_name                     # Str
+  ->zilla                           # DZil
+
+  Methods:
   ->log                             # via logger
   ->log_debug                       # via logger
   ->log_fatal                       # via logger
@@ -552,12 +537,12 @@ so that its settings can be used to eliminate items from the 'provides' list.
 
 =item * meta_noindex = 0
 
-By default, do nothing unusual.
+With this set, any C<MetaNoIndex> plugins are ignored.
 
 =item * DEFAULT: meta_noindex = 1
 
 When a module meets the criteria provided to L<< C<MetaNoIndex>|Dist::Zilla::Plugin::MetaNoIndex >>,
-eliminate it from the metadata shipped to L<Dist::Zilla>
+eliminate it from the metadata shipped to L<Dist::Zilla>.
 
 =back
 
