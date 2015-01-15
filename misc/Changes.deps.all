@@ -1,6 +1,8 @@
 This file contains ALL changes in dependencies in both REQUIRED / OPTIONAL dependencies for all phases (configure/build/runtime/test/develop)
 
-2.003001
+2.003002
+
+2.003001 2015-01-15T18:39:26Z
  [Added / develop requires]
  - Dist::Zilla::Plugin::Author::KENTNL::TravisCI
  - Dist::Zilla::Plugin::Prereqs::Upgrade
