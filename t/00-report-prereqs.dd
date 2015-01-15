@@ -94,6 +94,7 @@ do { my $x = {
                                       'Moose' => '0',
                                       'MooseX::LazyRequire' => '0',
                                       'MooseX::Types::Moose' => '0',
+                                      'PPI::Document' => '0',
                                       'Safe::Isa' => '0',
                                       'namespace::autoclean' => '0',
                                       'perl' => '5.008',
