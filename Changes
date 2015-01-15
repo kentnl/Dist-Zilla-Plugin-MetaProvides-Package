@@ -1,5 +1,7 @@
 Revision history for Dist-Zilla-Plugin-MetaProvides-Package
 
+2.003002 2015-01-15T18:39:57Z 0f5bace
+
 2.003001 2015-01-15T18:39:26Z d96ad72
  [Bugfix]
  - Avoid bug in Dzil <5.009 where Role::PPI doesn't load PPI::Document
