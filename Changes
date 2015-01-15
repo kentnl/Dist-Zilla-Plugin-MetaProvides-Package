@@ -1,11 +1,14 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+ [Bugfix]
+ - Avoid bug in Dzil <5.009 where Role::PPI doesn't load PPI::Document
+
  [Dependencies::Stats]
  - Dependencies changed since 2.003000, see misc/*.deps* for details
  - configure: (recommends: ↓1)
  - develop: +2 (recommends: ↓1, suggests: ↑1)
- - runtime: (recommends: +1)
+ - runtime: +1 (recommends: +1)
  - test: (recommends: ↓2)
 
  [Documentation]

@@ -195,6 +195,7 @@ sub _can_index {
 
 sub _all_packages_for {
   my ( $self, $file ) = @_;
+  require PPI::Document;
   my $document = $self->ppi_document_for_file($file);
   my $packages = $document->find('PPI::Statement::Package');
   return [] unless ref $packages;
