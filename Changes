@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+ - Remove QuickReference section as per #4
+
  [Dependencies::Stats]
  - Dependencies changed since 2.003001, see misc/*.deps* for details
  - develop: +5 ↑3 -1 (suggests: ↑2)
