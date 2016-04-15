@@ -1,5 +1,14 @@
 Revision history for Dist-Zilla-Plugin-MetaProvides-Package
 
+2.003002 2016-04-15T06:21:44Z 6ac5567
+ - Remove QuickReference section as per #4
+ - Enhance Synopsis documentation.
+ - Remove unhelpful private documentation
+
+ [Dependencies::Stats]
+ - Dependencies changed since 2.003001, see misc/*.deps* for details
+ - develop: +5 ↑3 -1 (suggests: ↑2)
+
 2.003001 2015-01-15T18:39:26Z d96ad72
  [Bugfix]
  - Avoid bug in Dzil <5.009 where Role::PPI doesn't load PPI::Document
@@ -478,4 +487,3 @@ Revision history for Dist-Zilla-Plugin-MetaProvides-Package
 
 1.0920012 2009-07-19T12:24:43Z
  - First version.
-

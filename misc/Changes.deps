@@ -1,6 +1,8 @@
 This file contains changes in REQUIRED dependencies for standard CPAN phases (configure/build/runtime/test)
 
-2.003001
+2.003002
+
+2.003001 2015-01-15T18:39:26Z
  [Added / runtime requires]
  - PPI::Document
 
@@ -261,4 +263,3 @@ This file contains changes in REQUIRED dependencies for standard CPAN phases (co
 1.11034304 2010-07-25T16:18:01Z
  [Removed / runtime requires]
  - aliased
-

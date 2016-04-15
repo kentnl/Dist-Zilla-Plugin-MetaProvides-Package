@@ -4,7 +4,7 @@ use warnings;
 
 package Dist::Zilla::Plugin::MetaProvides::Package;
 
-our $VERSION = '2.003001';
+our $VERSION = '2.003002';
 
 # ABSTRACT: Extract namespaces/version from traditional packages for provides
 
@@ -61,10 +61,6 @@ sub provides {
   return $self->_apply_meta_noindex(@records);
 }
 
-
-
-
-
 has '_package_blacklist' => (
   isa => HashRef [Str],
   traits  => [ 'Hash', ],
@@ -75,14 +71,7 @@ has '_package_blacklist' => (
   handles => { _blacklist_contains => 'exists', },
 );
 
-
-
-
-
-
-
-
-
+# ->_packages_for( file ) => List[Dist::Zilla::MetaProvides::ProvideRecord]
 sub _packages_for {
   my ( $self, $file ) = @_;
 
@@ -236,10 +225,6 @@ has finder => (
   predicate     => has_finder =>,
 );
 
-
-
-
-
 has _finder_objects => (
   isa      => 'ArrayRef',
   is       => ro =>,
@@ -247,10 +232,6 @@ has _finder_objects => (
   init_arg => undef,
   builder  => _build_finder_objects =>,
 );
-
-
-
-
 
 sub _vivify_installmodules_pm_finder {
   my ($self) = @_;
@@ -279,10 +260,6 @@ sub _vivify_installmodules_pm_finder {
   return $plugin;
 }
 
-
-
-
-
 sub _build_finder_objects {
   my ($self) = @_;
   if ( $self->has_finder ) {
@@ -301,10 +278,6 @@ sub _build_finder_objects {
   }
   return [ $self->_vivify_installmodules_pm_finder ];
 }
-
-
-
-
 
 sub _found_files {
   my ($self) = @_;
@@ -338,16 +311,32 @@ Dist::Zilla::Plugin::MetaProvides::Package - Extract namespaces/version from tra
 
 =head1 VERSION
 
-version 2.003001
+version 2.003002
 
 =head1 SYNOPSIS
 
 In your C<dist.ini>:
 
     [MetaProvides::Package]
-    inherit_version = 0    ; optional
-    inherit_missing = 0    ; optional
-    meta_noindex    = 1    ; optional
+
+    ; This is the (optional) default: This forces any package versions
+    ; added in the "provides" metadata to use the 'version'
+    ; specified by dzil.
+    ;
+    ; Set it to 0 to force packages own versions to be respected. ( You probably don't want this )
+    inherit_version = 1
+
+    ; This is also the (optional) default: This forces any package without
+    ; a version declaration to use the 'version' specified by default.
+    ;
+    ; Set it to 0 to allow packages to have no versions
+    inherit_missing = 1
+
+    ; This is the (optional) default: This being true discovers any [MetaNoIndex]
+    ; plugins to also further exclude packages from the provides map.
+    ;
+    ; Set it to 0 if for some weird reason you don't want this.
+    meta_noindex    = 1
 
 =head1 DESCRIPTION
 
@@ -357,78 +346,6 @@ in a manner similar to how C<PAUSE> itself does it.
 
 This allows you to easily create an authoritative index of what module provides what
 version in advance of C<PAUSE> indexing it, which C<PAUSE> in turn will take verbatim.
-
-=head1 QUICK REFERENCE
-
-  Constructors:
-  ->new(options={})
-    finder => Attribute:finder
-
-  Attributes:
-  ->finder                            # ArrayRef[Str]
-
-  Methods:
-  ->dumpconfig                        # HashRef
-  ->has_finder                        # via finder
-  ->mvp_multivalue_args               # List
-  ->provides
-
-  -~- Inherited From: Dist::Zilla::Role::MetaProvider::Provider
-  Constructors:
-  ->new(options={})
-    inherit_version => Attribute:inherit_missing
-    inherit_missing => Attribute:inherit_version
-    meta_noindex    => Attribute:meta_noindex
-
-
-  Attributes:
-  ->inherit_missing                 # Bool = 1
-  ->inherit_version                 # Bool = 1
-  ->meta_noindex                    # Bool = 1
-
-  Methods:
-  ->dumpconfig                      # HashRef
-  ->metadata                        # { provides => ... }
-
-  -~- Inherited From: Dist::Zilla::Role::PPI
-  Methods:
-  ->document_assigns_to_variable(options=[])  # Bool
-    0   =>  $document                         # PPI::Document
-    1   =>  $variable_name                    # Varible name (w/sigil)
-  ->ppi_document_for_file(options=[])         # PPI::Document
-    0   =>  $file                             # Dist::Zilla::Role::File
-  ->save_ppi_document_to_file(options=[])     # PPI::Document
-    0   =>  $document                         # PPI::Document
-    1   =>  $file                             # Dist::Zilla::Role::File
-
-  -~- Inherited From: Dist::Zilla::Role::MetaProvider
-
-  -~- Inherited From: Dist::Zilla::Role::Plugin
-  Constructors:
-  ->new(options={})
-    plugin_name => Attribute:plugin_name
-    zilla       => Attribute:zilla
-    logger      => Attribute:logger
-
-  Attributes:
-  ->logger                          #
-  ->plugin_name                     # Str
-  ->zilla                           # DZil
-
-  Methods:
-  ->log                             # via logger
-  ->log_debug                       # via logger
-  ->log_fatal                       # via logger
-  ->mvp_multivalue_args             # ArrayRef
-  ->mvp_aliases                     # HashRef
-  ->plugin_from_config(options=[])  # Instance
-    0 =>  $name
-    1 =>  $arg
-    2 =>  $section
-  ->register_component(options=[])
-    0 =>  $name
-    1 =>  $arg
-    2 =>  $section
 
 =head1 CONSUMED ROLES
 
@@ -459,26 +376,6 @@ This attribute, if specified will
 =back
 
 This parameter may be specified multiple times to aggregate a list of finders
-
-=head1 PRIVATE ATTRIBUTES
-
-=head2 C<_package_blacklist>
-
-=head2 C<_finder_objects>
-
-=head1 PRIVATE METHODS
-
-=head2 C<_packages_for>
-
-=head3 signature: $plugin->_packages_for( $file )
-
-=head3 returns: Array of L<Dist::Zilla::MetaProvides::ProvideRecord>
-
-=head2 C<_vivify_installmodules_pm_finder>
-
-=head2 C<_build_finder_objects>
-
-=head2 C<_found_files>
 
 =begin MetaPOD::JSON v1.1.0
 
@@ -560,7 +457,7 @@ Kent Fredric <kentnl@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2015 by Kent Fredric <kentfredric@gmail.com>.
+This software is copyright (c) 2016 by Kent Fredric <kentfredric@gmail.com>.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
