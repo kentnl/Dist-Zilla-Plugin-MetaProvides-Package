@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+2.003002 2016-04-15T06:21:44Z 6ac5567
  - Remove QuickReference section as per #4
  - Enhance Synopsis documentation.
  - Remove unhelpful private documentation
