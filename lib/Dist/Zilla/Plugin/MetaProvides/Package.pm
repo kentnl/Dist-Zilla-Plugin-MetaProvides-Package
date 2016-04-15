@@ -331,9 +331,25 @@ no Moose;
 In your C<dist.ini>:
 
     [MetaProvides::Package]
-    inherit_version = 0    ; optional
-    inherit_missing = 0    ; optional
-    meta_noindex    = 1    ; optional
+
+    ; This is the (optional) default: This forces any package versions
+    ; added in the "provides" metadata to use the 'version'
+    ; specified by dzil.
+    ;
+    ; Set it to 0 to force packages own versions to be respected. ( You probably don't want this )
+    inherit_version = 1
+
+    ; This is also the (optional) default: This forces any package without
+    ; a version declaration to use the 'version' specified by default.
+    ;
+    ; Set it to 0 to allow packages to have no versions
+    inherit_missing = 1
+
+    ; This is the (optional) default: This being true discovers any [MetaNoIndex]
+    ; plugins to also further exclude packages from the provides map.
+    ;
+    ; Set it to 0 if for some weird reason you don't want this.
+    meta_noindex    = 1
 
 =head1 DESCRIPTION
 
