@@ -1,5 +1,7 @@
 Revision history for Dist-Zilla-Plugin-MetaProvides-Package
 
+2.003003 2016-04-15T06:51:57Z b2d6d8c
+
 2.003002 2016-04-15T06:21:44Z 6ac5567
  - Remove QuickReference section as per #4
  - Enhance Synopsis documentation.
