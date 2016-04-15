@@ -65,26 +65,6 @@ This attribute, if specified will
 
 This parameter may be specified multiple times to aggregate a list of finders
 
-# PRIVATE ATTRIBUTES
-
-## `_package_blacklist`
-
-## `_finder_objects`
-
-# PRIVATE METHODS
-
-## `_packages_for`
-
-### signature: $plugin->\_packages\_for( $file )
-
-### returns: Array of [Dist::Zilla::MetaProvides::ProvideRecord](https://metacpan.org/pod/Dist::Zilla::MetaProvides::ProvideRecord)
-
-## `_vivify_installmodules_pm_finder`
-
-## `_build_finder_objects`
-
-## `_found_files`
-
 # OPTIONS INHERITED FROM [Dist::Zilla::Role::MetaProvider::Provider](https://metacpan.org/pod/Dist::Zilla::Role::MetaProvider::Provider)
 
 ## [`inherit_version`](https://metacpan.org/pod/Dist::Zilla::Role::MetaProvider::Provider#inherit_version)

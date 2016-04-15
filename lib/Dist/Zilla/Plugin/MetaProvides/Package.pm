@@ -61,10 +61,6 @@ sub provides {
   return $self->_apply_meta_noindex(@records);
 }
 
-=p_attr C<_package_blacklist>
-
-=cut
-
 has '_package_blacklist' => (
   isa => HashRef [Str],
   traits  => [ 'Hash', ],
@@ -75,14 +71,7 @@ has '_package_blacklist' => (
   handles => { _blacklist_contains => 'exists', },
 );
 
-=p_method C<_packages_for>
-
-=head3 signature: $plugin->_packages_for( $file )
-
-=head3 returns: Array of L<Dist::Zilla::MetaProvides::ProvideRecord>
-
-=cut
-
+# ->_packages_for( file ) => List[Dist::Zilla::MetaProvides::ProvideRecord]
 sub _packages_for {
   my ( $self, $file ) = @_;
 
@@ -236,10 +225,6 @@ has finder => (
   predicate     => has_finder =>,
 );
 
-=p_attr C<_finder_objects>
-
-=cut
-
 has _finder_objects => (
   isa      => 'ArrayRef',
   is       => ro =>,
@@ -247,10 +232,6 @@ has _finder_objects => (
   init_arg => undef,
   builder  => _build_finder_objects =>,
 );
-
-=p_method C<_vivify_installmodules_pm_finder>
-
-=cut
 
 sub _vivify_installmodules_pm_finder {
   my ($self) = @_;
@@ -279,10 +260,6 @@ sub _vivify_installmodules_pm_finder {
   return $plugin;
 }
 
-=p_method C<_build_finder_objects>
-
-=cut
-
 sub _build_finder_objects {
   my ($self) = @_;
   if ( $self->has_finder ) {
@@ -301,10 +278,6 @@ sub _build_finder_objects {
   }
   return [ $self->_vivify_installmodules_pm_finder ];
 }
-
-=p_method C<_found_files>
-
-=cut
 
 sub _found_files {
   my ($self) = @_;
