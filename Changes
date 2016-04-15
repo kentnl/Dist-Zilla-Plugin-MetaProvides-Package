@@ -1,6 +1,8 @@
 Revision history for Dist-Zilla-Plugin-MetaProvides-Package
 
-2.003002 2016-04-15T06:02:49Z fd9aaba
+2.003002 2016-04-15T06:06:23Z a0ffd22
+ - Remove QuickReference section as per #4
+
  [Dependencies::Stats]
  - Dependencies changed since 2.003001, see misc/*.deps* for details
  - develop: +5 ↑3 -1 (suggests: ↑2)
