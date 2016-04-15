@@ -61,10 +61,6 @@ sub provides {
   return $self->_apply_meta_noindex(@records);
 }
 
-
-
-
-
 has '_package_blacklist' => (
   isa => HashRef [Str],
   traits  => [ 'Hash', ],
@@ -75,14 +71,7 @@ has '_package_blacklist' => (
   handles => { _blacklist_contains => 'exists', },
 );
 
-
-
-
-
-
-
-
-
+# ->_packages_for( file ) => List[Dist::Zilla::MetaProvides::ProvideRecord]
 sub _packages_for {
   my ( $self, $file ) = @_;
 
@@ -236,10 +225,6 @@ has finder => (
   predicate     => has_finder =>,
 );
 
-
-
-
-
 has _finder_objects => (
   isa      => 'ArrayRef',
   is       => ro =>,
@@ -247,10 +232,6 @@ has _finder_objects => (
   init_arg => undef,
   builder  => _build_finder_objects =>,
 );
-
-
-
-
 
 sub _vivify_installmodules_pm_finder {
   my ($self) = @_;
@@ -279,10 +260,6 @@ sub _vivify_installmodules_pm_finder {
   return $plugin;
 }
 
-
-
-
-
 sub _build_finder_objects {
   my ($self) = @_;
   if ( $self->has_finder ) {
@@ -301,10 +278,6 @@ sub _build_finder_objects {
   }
   return [ $self->_vivify_installmodules_pm_finder ];
 }
-
-
-
-
 
 sub _found_files {
   my ($self) = @_;
@@ -403,26 +376,6 @@ This attribute, if specified will
 =back
 
 This parameter may be specified multiple times to aggregate a list of finders
-
-=head1 PRIVATE ATTRIBUTES
-
-=head2 C<_package_blacklist>
-
-=head2 C<_finder_objects>
-
-=head1 PRIVATE METHODS
-
-=head2 C<_packages_for>
-
-=head3 signature: $plugin->_packages_for( $file )
-
-=head3 returns: Array of L<Dist::Zilla::MetaProvides::ProvideRecord>
-
-=head2 C<_vivify_installmodules_pm_finder>
-
-=head2 C<_build_finder_objects>
-
-=head2 C<_found_files>
 
 =begin MetaPOD::JSON v1.1.0
 
