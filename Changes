@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+2.004000 2016-04-27T02:37:23Z 50a9c97
  - Now using Role::ModuleMetadata to delegate actual metadata extraction from ::File objects. This should be
    effectively no change, but it could be.
 
