@@ -23,9 +23,9 @@ my %WriteMakefileArgs = (
     "Dist::Zilla::Plugin::FinderCode" => 0,
     "Dist::Zilla::Plugin::MetaProvides" => "1.15000000",
     "Dist::Zilla::Role::MetaProvider::Provider" => 0,
+    "Dist::Zilla::Role::ModuleMetadata" => 0,
     "Dist::Zilla::Role::PPI" => 0,
     "Dist::Zilla::Util::ConfigDumper" => "0.003000",
-    "Module::Metadata" => "1.000022",
     "Moose" => 0,
     "MooseX::LazyRequire" => 0,
     "MooseX::Types::Moose" => 0,
@@ -45,7 +45,7 @@ my %WriteMakefileArgs = (
     "Test::Moose" => 0,
     "Test::More" => "0.96"
   },
-  "VERSION" => "2.003003",
+  "VERSION" => "2.004000",
   "test" => {
     "TESTS" => "t/*.t t/00-compile/*.t"
   }
@@ -59,6 +59,7 @@ my %FallbackPrereqs = (
   "Dist::Zilla::Plugin::FinderCode" => 0,
   "Dist::Zilla::Plugin::MetaProvides" => "1.15000000",
   "Dist::Zilla::Role::MetaProvider::Provider" => 0,
+  "Dist::Zilla::Role::ModuleMetadata" => 0,
   "Dist::Zilla::Role::PPI" => 0,
   "Dist::Zilla::Util::ConfigDumper" => "0.003000",
   "Dist::Zilla::Util::Test::KENTNL" => "1.003001",

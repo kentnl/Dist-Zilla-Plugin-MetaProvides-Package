@@ -13,7 +13,6 @@ our $VERSION = '2.003003';
 use Moose qw( with has around );
 use MooseX::LazyRequire;
 use MooseX::Types::Moose qw( HashRef Str );
-use Module::Metadata 1.000005;
 use Dist::Zilla::MetaProvides::ProvideRecord 1.14000000;
 use Data::Dump 1.16 ();
 use Safe::Isa;
@@ -39,6 +38,7 @@ use Dist::Zilla::Util::ConfigDumper 0.003000 qw( config_dumper dump_plugin );
 use namespace::autoclean;
 with 'Dist::Zilla::Role::MetaProvider::Provider';
 with 'Dist::Zilla::Role::PPI';
+with 'Dist::Zilla::Role::ModuleMetadata';
 
 has '+meta_noindex' => ( default => sub { 1 } );
 
@@ -80,7 +80,7 @@ sub _packages_for {
     return;
   }
 
-  my $meta = $self->_module_metadata_for($file);
+  my $meta = $self->module_metadata_for_file($file);
   return unless $meta;
 
   $self->log_debug(
@@ -155,23 +155,6 @@ sub _packages_for {
     return ();
   }
   return @out;
-}
-
-sub _module_metadata_for {
-  my ( $self, $file ) = @_;
-
-  my $content = $file->encoded_content;
-
-  ## no critic (InputOutput::RequireBriefOpen, Variables::ProhibitPunctuationVars)
-  open my $fh, '<', \$content or $self->log_fatal( [ 'Cant open scalar filehandle for read. %s', $!, ] );
-  binmode $fh, sprintf ':encoding(%s)', $file->encoding;
-
-  my $meta = Module::Metadata->new_from_handle( $fh, $file->name, collect_pod => 0 );
-
-  return $meta if $meta;
-
-  $self->log_fatal( 'Can\'t extract metadata from ' . $file->name );
-  return ();
 }
 
 sub _can_index {

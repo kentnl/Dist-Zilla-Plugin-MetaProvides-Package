@@ -4,7 +4,7 @@ Dist::Zilla::Plugin::MetaProvides::Package - Extract namespaces/version from tra
 
 # VERSION
 
-version 2.003003
+version 2.004000
 
 # SYNOPSIS
 
