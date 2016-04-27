@@ -1,5 +1,14 @@
 Revision history for Dist-Zilla-Plugin-MetaProvides-Package
 
+2.004000 2016-04-27T02:37:23Z 50a9c97
+ - Now using Role::ModuleMetadata to delegate actual metadata extraction from ::File objects. This should be
+   effectively no change, but it could be.
+
+ [Dependencies::Stats]
+ - Dependencies changed since 2.003002, see misc/*.deps* for details
+ - develop: +1
+ - runtime: +1 -1
+
 2.003002 2016-04-15T06:21:44Z 6ac5567
  - Remove QuickReference section as per #4
  - Enhance Synopsis documentation.

@@ -1,6 +1,16 @@
 This file contains ALL changes in dependencies in both REQUIRED / OPTIONAL dependencies for all phases (configure/build/runtime/test/develop)
 
-2.003002
+2.004000
+ [Added / develop requires]
+ - Dist::Zilla::Role::ModuleMetadata
+
+ [Added / runtime requires]
+ - Dist::Zilla::Role::ModuleMetadata
+
+ [Removed / runtime requires]
+ - Module::Metadata 1.000022
+
+2.003002 2016-04-15T06:21:44Z
  [Added / develop requires]
  - Dist::Zilla::Plugin::Author::KENTNL::CONTRIBUTING 0.001003
  - Dist::Zilla::Plugin::MetaYAML::Minimal
