@@ -170,7 +170,7 @@ stop_words = versionless metadata conformant autovivification
 
 [ErrorHandling::RequireCheckingReturnValueOfEval]
 
-[ErrorHandling::RequireUseOfExceptions]
+[-ErrorHandling::RequireUseOfExceptions]
 
 [InputOutput::ProhibitBacktickOperators]
 
