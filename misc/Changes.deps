@@ -5,6 +5,7 @@ This file contains changes in REQUIRED dependencies for standard CPAN phases (co
  - Carp
 
  [Added / test requires]
+ - Dist::Zilla::Role::FileFinder
  - Path::Tiny
 
  [Removed / runtime requires]

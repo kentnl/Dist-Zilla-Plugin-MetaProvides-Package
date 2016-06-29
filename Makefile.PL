@@ -36,6 +36,7 @@ my %WriteMakefileArgs = (
     "warnings" => 0
   },
   "TEST_REQUIRES" => {
+    "Dist::Zilla::Role::FileFinder" => 0,
     "ExtUtils::MakeMaker" => 0,
     "File::Spec" => 0,
     "Module::Metadata" => "1.000022",
@@ -59,6 +60,7 @@ my %FallbackPrereqs = (
   "Dist::Zilla::MetaProvides::ProvideRecord" => "1.14000000",
   "Dist::Zilla::Plugin::FinderCode" => 0,
   "Dist::Zilla::Plugin::MetaProvides" => "1.15000000",
+  "Dist::Zilla::Role::FileFinder" => 0,
   "Dist::Zilla::Role::MetaProvider::Provider" => 0,
   "Dist::Zilla::Role::ModuleMetadata" => 0,
   "Dist::Zilla::Role::PPI" => 0,
