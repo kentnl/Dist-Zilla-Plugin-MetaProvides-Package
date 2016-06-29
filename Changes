@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+ - New feature: include_underscores. This is a way to reverse the change in e6106140 that removed packages with "_"
+   prefixing that was requested by xdg.
  - No longer uses ConfigDumper Util.
  - No longer uses Test::KENTNL
 

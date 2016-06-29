@@ -31,6 +31,10 @@ In your `dist.ini`:
     ; Set it to 0 if for some weird reason you don't want this.
     meta_noindex    = 1
 
+    ; This is the (optional) default: Setting this to true will enable indexing
+    ; of packages like _Foo::Bar or Foo::_Bar
+    include_underscores = 1
+
 # DESCRIPTION
 
 This is a [`Dist::Zilla`](https://metacpan.org/pod/Dist::Zilla) Plugin that populates the `provides`
@@ -55,6 +59,18 @@ A conformant function to the [Dist::Zilla::Role::MetaProvider::Provider](https:/
 ### returns: Array of [Dist::Zilla::MetaProvides::ProvideRecord](https://metacpan.org/pod/Dist::Zilla::MetaProvides::ProvideRecord)
 
 # ATTRIBUTES
+
+## `include_underscores`
+
+This attribute controls automatic skipping of packages.
+
+By default, packages matching the following regular expression are skipped:
+
+    qr/(\A|::)_/
+
+And this skips all packages with a leading `_` at any token.
+
+This feature was added in `2.004001-TRIAL`
 
 ## `finder`
 
