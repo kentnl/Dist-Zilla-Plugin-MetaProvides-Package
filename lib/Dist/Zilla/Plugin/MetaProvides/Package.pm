@@ -16,7 +16,6 @@ use MooseX::Types::Moose qw( HashRef Str );
 use Dist::Zilla::MetaProvides::ProvideRecord 1.14000000;
 use Data::Dump 1.16 ();
 use Safe::Isa;
-use Dist::Zilla::Util::ConfigDumper 0.003000 qw( config_dumper dump_plugin );
 
 =with L<Dist::Zilla::Role::MetaProvider::Provider>
 
@@ -174,16 +173,28 @@ sub _all_packages_for {
   return [ map { $_->namespace } @{$packages} ];
 }
 
-around dump_config => config_dumper( __PACKAGE__,
-  { attrs => [qw( finder )] },
-  sub {
-    my ( $self, $payload, ) = @_;
-    for my $finder_object ( @{ $self->_finder_objects } ) {
-      push @{ $payload->{finder_objects} ||= [] }, dump_plugin($finder_object);
+around dump_config => sub {
+  my ( $orig, $self, @args ) = @_;
+  my $config = $orig->( $self, @args );
+  my $payload = $config->{ +__PACKAGE__ } = {};
+
+  $payload->{finder} = $self->finder if $self->has_finder;
+  for my $plugin ( @{ $self->_finder_objects } ) {
+    my $object_config = {};
+    $object_config->{class}   = $plugin->meta->name  if $plugin->can('meta') and $plugin->meta->can('name');
+    $object_config->{name}    = $plugin->plugin_name if $plugin->can('plugin_name');
+    $object_config->{version} = $plugin->VERSION     if $plugin->can('VERSION');
+    if ( $plugin->can('dump_config') ) {
+      my $finder_config = $plugin->dump_config;
+      $object_config->{config} = $finder_config if keys %{$finder_config};
     }
-    return;
-  },
-);
+    push @{ $payload->{finder_objects} }, $object_config;
+  }
+
+  # Inject only when inherited.
+  $payload->{ q[$] . __PACKAGE__ . '::VERSION' } = $VERSION unless __PACKAGE__ eq ref $self;
+  return $config;
+};
 
 =attr C<finder>
 

@@ -1,6 +1,8 @@
 This file contains ALL changes in dependencies in both REQUIRED / OPTIONAL dependencies for all phases (configure/build/runtime/test/develop)
 
 2.004001
+ [Removed / runtime requires]
+ - Dist::Zilla::Util::ConfigDumper 0.003000
 
 2.004000 2016-04-27T02:37:23Z
  [Added / develop requires]

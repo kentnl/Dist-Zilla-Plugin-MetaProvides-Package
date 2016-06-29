@@ -1,6 +1,11 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+ - No longer uses ConfigDumper Util.
+
+ [Dependencies::Stats]
+ - Dependencies changed since 2.004000, see misc/*.deps* for details
+ - runtime: -1
 
 2.004000 2016-04-27T02:37:23Z 50a9c97
  - Now using Role::ModuleMetadata to delegate actual metadata extraction from ::File objects. This should be
