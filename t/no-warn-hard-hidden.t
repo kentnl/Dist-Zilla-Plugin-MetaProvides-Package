@@ -4,22 +4,19 @@ use warnings;
 use Test::More 0.96;
 use Test::Fatal;
 use Test::Moose;
-use Test::DZil qw( simple_ini );
-use Dist::Zilla::Util::Test::KENTNL 1.002 qw( dztest );
+use Path::Tiny qw( path );
+use Test::DZil qw( simple_ini Builder );
 
-my $config = dztest();
-$config->add_file(
-  'dist.ini' => simple_ini(
-    ['GatherDir'],    #
+my $test_config = [
+   ['GatherDir'],    #
     [
       'MetaProvides::Package' => {
         inherit_version => 0,    #
         inherit_missing => 1
       }
     ]
-  )
-);
-$config->add_file( 'lib/DZ2.pm', <<'EOF');
+];
+my $test_document = <<'EOF';
 use strict;
 use warnings;
 package # Hidden
@@ -51,14 +48,25 @@ DZ2
 
 =cut
 EOF
-$config->build_ok;
-my $zilla = $config->builder;
+
+my $tzil = Builder->from_config(
+  { dist_root => 'invalid' },
+  {
+    add_files => {
+      path('source/lib/DZ2.pm') => $test_document,
+      path('source/dist.ini')   => simple_ini( @{$test_config} ),
+    },
+  },
+);
+
+$tzil->chrome->logger->set_debug(1);
+$tzil->build;
 
 my $plugin;
 
 is(
   exception {
-    $plugin = $zilla->plugin_named('MetaProvides::Package');
+    $plugin = $tzil->plugin_named('MetaProvides::Package');
   },
   undef,
   'Found MetaProvides::Package'
@@ -90,5 +98,5 @@ cmp_ok( scalar $plugin->provides, '==', 0, "nothing was provided" );
 
 note explain $plugin->metadata->{provides};
 
-note explain $config->builder->log_messages;
+note explain $tzil->log_messages;
 done_testing;
