@@ -31,9 +31,9 @@ In your `dist.ini`:
     ; Set it to 0 if for some weird reason you don't want this.
     meta_noindex    = 1
 
-    ; This is the (optional) default: Setting this to true will enable indexing
-    ; of packages like _Foo::Bar or Foo::_Bar
-    include_underscores = 1
+    ; This is the (optional) default: Packages named _Foo::Bar or Foo::_Bar are not indexed.
+    ; Set this to 1 to enable indexing of similarly named packages.
+    include_underscores = 0
 
 # DESCRIPTION
 
