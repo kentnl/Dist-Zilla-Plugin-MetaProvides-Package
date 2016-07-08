@@ -62,7 +62,6 @@
       "Dist::Zilla::Role::MetaProvider::Provider" : "2.002002",
       "Dist::Zilla::Role::ModuleMetadata" : "0.003",
       "Dist::Zilla::Role::PPI" : "5.047",
-      "Dist::Zilla::Util::ConfigDumper" : "0.003007",
       "Dist::Zilla::Util::Test::KENTNL" : "1.005013",
       "English" : "1.09",
       "ExtUtils::MakeMaker" : "7.18",

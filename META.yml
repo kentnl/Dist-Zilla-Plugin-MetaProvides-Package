@@ -41,7 +41,6 @@ requires:
   Dist::Zilla::Role::MetaProvider::Provider: '0'
   Dist::Zilla::Role::ModuleMetadata: '0'
   Dist::Zilla::Role::PPI: '0'
-  Dist::Zilla::Util::ConfigDumper: '0.003000'
   Moose: '0'
   MooseX::LazyRequire: '0'
   MooseX::Types::Moose: '0'
