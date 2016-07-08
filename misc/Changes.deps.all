@@ -8,6 +8,7 @@ This file contains ALL changes in dependencies in both REQUIRED / OPTIONAL depen
  - Path::Tiny 0.058
 
  [Added / test requires]
+ - Dist::Zilla::Role::FileFinder
  - Path::Tiny
 
  [Removed / runtime requires]

@@ -60,6 +60,7 @@
       "Dist::Zilla::Plugin::Twitter" : "0.026",
       "Dist::Zilla::Plugin::UploadToCPAN" : "5.047",
       "Dist::Zilla::PluginBundle::Author::KENTNL" : "2.025010",
+      "Dist::Zilla::Role::FileFinder" : "5.047",
       "Dist::Zilla::Role::MetaProvider::Provider" : "2.002002",
       "Dist::Zilla::Role::ModuleMetadata" : "0.003",
       "Dist::Zilla::Role::PPI" : "5.047",
