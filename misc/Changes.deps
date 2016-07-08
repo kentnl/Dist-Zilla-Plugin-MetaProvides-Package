@@ -1,6 +1,9 @@
 This file contains changes in REQUIRED dependencies for standard CPAN phases (configure/build/runtime/test)
 
 2.004001
+ [Added / runtime requires]
+ - Carp
+
  [Added / test requires]
  - Path::Tiny
 

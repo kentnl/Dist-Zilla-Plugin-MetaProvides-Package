@@ -1,6 +1,7 @@
 {
    "modules" : {
       "CPAN::Meta" : "2.150005",
+      "Carp" : "1.38",
       "Data::Dump" : "1.23",
       "Dist::Zilla" : "5.047",
       "Dist::Zilla::App::Command::bakeini" : "0.002005",

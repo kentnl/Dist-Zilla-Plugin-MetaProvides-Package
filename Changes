@@ -1,12 +1,12 @@
 Revision history for Dist-Zilla-Plugin-MetaProvides-Package
 
-2.004001 2016-07-08T03:21:46Z 41c45a0
+2.004001 2016-07-08T03:21:48Z c2f4f55
  - No longer uses ConfigDumper Util.
  - No longer uses Test::KENTNL
 
  [Dependencies::Stats]
  - Dependencies changed since 2.004000, see misc/*.deps* for details
- - runtime: -1
+ - runtime: +1 -1
  - test: +1 -1 (recommends: +1)
 
 2.004000 2016-04-27T02:37:23Z 50a9c97

@@ -17,6 +17,7 @@ my %WriteMakefileArgs = (
   "MIN_PERL_VERSION" => "5.008",
   "NAME" => "Dist::Zilla::Plugin::MetaProvides::Package",
   "PREREQ_PM" => {
+    "Carp" => 0,
     "Data::Dump" => "1.16",
     "Dist::Zilla" => "5.000",
     "Dist::Zilla::MetaProvides::ProvideRecord" => "1.14000000",
@@ -52,6 +53,7 @@ my %WriteMakefileArgs = (
 
 
 my %FallbackPrereqs = (
+  "Carp" => 0,
   "Data::Dump" => "1.16",
   "Dist::Zilla" => "5.000",
   "Dist::Zilla::MetaProvides::ProvideRecord" => "1.14000000",

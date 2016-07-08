@@ -10,6 +10,7 @@ our $VERSION = '2.004001'; # TRIAL
 
 our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
 
+use Carp qw( croak );
 use Moose qw( with has around );
 use MooseX::LazyRequire;
 use MooseX::Types::Moose qw( HashRef Str );
@@ -76,7 +77,7 @@ sub _packages_for {
 
   if ( not $file->$_does('Dist::Zilla::Role::File') ) {
     $self->log_fatal('API Usage Invalid: _packages_for() takes only a file object');
-    return;
+    croak('packages_for() takes only a file object');
   }
 
   my $meta = $self->module_metadata_for_file($file);
@@ -262,9 +263,11 @@ sub _build_finder_objects {
       my $plugin = $self->zilla->plugin_named($finder);
       if ( not $plugin ) {
         $self->log_fatal("no plugin named $finder found");
+        croak("no plugin named $finder found");
       }
       if ( not $plugin->does('Dist::Zilla::Role::FileFinder') ) {
         $self->log_fatal("plugin $finder is not a FileFinder");
+        croak("plugin $finder is not a FileFinder");
       }
       push @out, $plugin;
     }

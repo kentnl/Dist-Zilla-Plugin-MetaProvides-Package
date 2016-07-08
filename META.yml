@@ -33,6 +33,7 @@ provides:
 recommends:
   Moose: '2.000'
 requires:
+  Carp: '0'
   Data::Dump: '1.16'
   Dist::Zilla: '5.000'
   Dist::Zilla::MetaProvides::ProvideRecord: '1.14000000'
