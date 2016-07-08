@@ -1,6 +1,23 @@
 This file contains ALL changes in dependencies in both REQUIRED / OPTIONAL dependencies for all phases (configure/build/runtime/test/develop)
 
-2.004000
+2.004001
+ [Added / runtime requires]
+ - Carp
+
+ [Added / test recommends]
+ - Path::Tiny 0.058
+
+ [Added / test requires]
+ - Dist::Zilla::Role::FileFinder
+ - Path::Tiny
+
+ [Removed / runtime requires]
+ - Dist::Zilla::Util::ConfigDumper 0.003000
+
+ [Removed / test requires]
+ - Dist::Zilla::Util::Test::KENTNL 1.003001
+
+2.004000 2016-04-27T02:37:23Z
  [Added / develop requires]
  - Dist::Zilla::Role::ModuleMetadata
 

@@ -3,7 +3,6 @@ use warnings;
 
 use Test::More 0.96;
 use Test::Fatal;
-use Test::Moose;
 use Path::Tiny qw( path );
 use Test::DZil qw( simple_ini Builder );
 
@@ -11,8 +10,9 @@ my $test_config = [
   ['GatherDir'],    #
   [
     'MetaProvides::Package' => {
-      inherit_version => 0,    #
-      inherit_missing => 1,
+      inherit_version     => 0,    #
+      inherit_missing     => 1,    #
+      include_underscores => 1,
     },
   ]
 ];
@@ -54,7 +54,7 @@ my $tzil = Builder->from_config(
   {
     add_files => {
       path('source/lib/DZ2.pm') => $test_document,
-      path('source/dist.ini')   => simple_ini(@{$test_config}),
+      path('source/dist.ini')   => simple_ini( @{$test_config} ),
     },
   },
 );
@@ -72,23 +72,13 @@ is(
   'Found MetaProvides::Package'
 );
 
-isa_ok( $plugin, 'Dist::Zilla::Plugin::MetaProvides::Package' );
-meta_ok( $plugin, 'Plugin is mooseified' );
-does_ok( $plugin, 'Dist::Zilla::Role::MetaProvider::Provider', 'does the Provider Role' );
-does_ok( $plugin, 'Dist::Zilla::Role::Plugin', 'does the Plugin Role' );
-has_attribute_ok( $plugin, 'inherit_version' );
-has_attribute_ok( $plugin, 'inherit_missing' );
-has_attribute_ok( $plugin, 'meta_noindex' );
-is( $plugin->meta_noindex, '1', "meta_noindex default is 1" );
-
 # This crap is needed because 'ok' is mysteriously not working.
-( not exists $plugin->metadata->{provides}->{'A::_Local::Package'} )
-  ? pass('Packages leading with _ are hidden')
-  : fail('Packages leading with _ are hidden');
+( exists $plugin->metadata->{provides}->{'A::_Local::Package'} )
+  ? pass('Packages leading with _ are not hidden')
+  : do { fail('Packages leading with _ are not hidden'); diag explain $plugin->metadata; };
 
 ( not exists $plugin->metadata->{provides}->{'A::Hidden::Package'} )
   ? pass('Packages with \n are hidden')
   : fail('Packages with \n are hidden');
 
-isa_ok( [ $plugin->provides ]->[0], 'Dist::Zilla::MetaProvides::ProvideRecord' );
 done_testing;

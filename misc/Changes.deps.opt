@@ -1,6 +1,10 @@
 This file contains changes in OPTIONAL dependencies for standard CPAN phases (configure/build/runtime/test)
 
-2.004000
+2.004001
+ [Added / test recommends]
+ - Path::Tiny 0.058
+
+2.004000 2016-04-27T02:37:23Z
 
 2.003002 2016-04-15T06:21:44Z
 

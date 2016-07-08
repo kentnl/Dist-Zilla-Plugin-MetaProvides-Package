@@ -3,10 +3,11 @@ abstract: 'Extract namespaces/version from traditional packages for provides'
 author:
   - 'Kent Fredric <kentnl@cpan.org>'
 build_requires:
-  Dist::Zilla::Util::Test::KENTNL: '1.003001'
+  Dist::Zilla::Role::FileFinder: '0'
   ExtUtils::MakeMaker: '0'
   File::Spec: '0'
   Module::Metadata: '1.000022'
+  Path::Tiny: '0'
   Test::DZil: '0'
   Test::Fatal: '0'
   Test::Moose: '0'
@@ -16,7 +17,7 @@ configure_requires:
   ExtUtils::MakeMaker: '0'
   perl: '5.008'
 dynamic_config: 0
-generated_by: 'Dist::Zilla version 5.043, CPAN::Meta::Converter version 2.150001'
+generated_by: 'Dist::Zilla version 5.047, CPAN::Meta::Converter version 2.150005'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -29,10 +30,11 @@ no_index:
 provides:
   Dist::Zilla::Plugin::MetaProvides::Package:
     file: lib/Dist/Zilla/Plugin/MetaProvides/Package.pm
-    version: '2.004000'
+    version: '2.004001'
 recommends:
   Moose: '2.000'
 requires:
+  Carp: '0'
   Data::Dump: '1.16'
   Dist::Zilla: '5.000'
   Dist::Zilla::MetaProvides::ProvideRecord: '1.14000000'
@@ -41,7 +43,6 @@ requires:
   Dist::Zilla::Role::MetaProvider::Provider: '0'
   Dist::Zilla::Role::ModuleMetadata: '0'
   Dist::Zilla::Role::PPI: '0'
-  Dist::Zilla::Util::ConfigDumper: '0.003000'
   Moose: '0'
   MooseX::LazyRequire: '0'
   MooseX::Types::Moose: '0'
@@ -55,4 +56,4 @@ resources:
   bugtracker: https://github.com/kentnl/Dist-Zilla-Plugin-MetaProvides-Package/issues
   homepage: https://github.com/kentnl/Dist-Zilla-Plugin-MetaProvides-Package
   repository: https://github.com/kentnl/Dist-Zilla-Plugin-MetaProvides-Package.git
-version: '2.004000'
+version: '2.004001'

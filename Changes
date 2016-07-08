@@ -1,5 +1,16 @@
 Revision history for Dist-Zilla-Plugin-MetaProvides-Package
 
+2.004001 2016-07-08T03:22:43Z 3cfc89c
+ - New feature: include_underscores. This is a way to reverse the change in e6106140 that removed packages with "_"
+   prefixing that was requested by xdg.
+ - No longer uses ConfigDumper Util.
+ - No longer uses Test::KENTNL
+
+ [Dependencies::Stats]
+ - Dependencies changed since 2.004000, see misc/*.deps* for details
+ - runtime: +1 -1
+ - test: +2 -1 (recommends: +1)
+
 2.004000 2016-04-27T02:37:23Z 50a9c97
  - Now using Role::ModuleMetadata to delegate actual metadata extraction from ::File objects. This should be
    effectively no change, but it could be.

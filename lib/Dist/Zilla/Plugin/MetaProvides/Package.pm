@@ -4,19 +4,19 @@ use warnings;
 
 package Dist::Zilla::Plugin::MetaProvides::Package;
 
-our $VERSION = '2.004000'; # TRIAL
+our $VERSION = '2.004001'; # TRIAL
 
 # ABSTRACT: Extract namespaces/version from traditional packages for provides
 
 our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
 
+use Carp qw( croak );
 use Moose qw( with has around );
 use MooseX::LazyRequire;
 use MooseX::Types::Moose qw( HashRef Str );
 use Dist::Zilla::MetaProvides::ProvideRecord 1.14000000;
 use Data::Dump 1.16 ();
 use Safe::Isa;
-use Dist::Zilla::Util::ConfigDumper 0.003000 qw( config_dumper dump_plugin );
 
 
 
@@ -77,7 +77,7 @@ sub _packages_for {
 
   if ( not $file->$_does('Dist::Zilla::Role::File') ) {
     $self->log_fatal('API Usage Invalid: _packages_for() takes only a file object');
-    return;
+    croak('packages_for() takes only a file object');
   }
 
   my $meta = $self->module_metadata_for_file($file);
@@ -113,7 +113,7 @@ sub _packages_for {
     if ( not $self->_can_index($namespace) ) {
 
       # These count for "You had a namespace but you hid it"
-      $self->log_debug( "Skipping private namespace: $namespace in " . $file->name );
+      $self->log_debug( "Skipping private(underscore) namespace: $namespace in " . $file->name );
       $seen_blacklisted->{$namespace} = 1;
       $seen->{$namespace}             = 1;
       next;
@@ -157,8 +157,25 @@ sub _packages_for {
   return @out;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+has 'include_underscores' => ( is => 'ro', lazy => 1, default => sub { 0 } );
+
 sub _can_index {
-  my ( undef, $namespace ) = @_;
+  my ( $self, $namespace ) = @_;
+  return 1 if $self->include_underscores;
   ## no critic (RegularExpressions::RequireLineBoundaryMatching)
   return if $namespace =~ qr/\A_/sx;
   return if $namespace =~ qr/::_/sx;
@@ -174,16 +191,30 @@ sub _all_packages_for {
   return [ map { $_->namespace } @{$packages} ];
 }
 
-around dump_config => config_dumper( __PACKAGE__,
-  { attrs => [qw( finder )] },
-  sub {
-    my ( $self, $payload, ) = @_;
-    for my $finder_object ( @{ $self->_finder_objects } ) {
-      push @{ $payload->{finder_objects} ||= [] }, dump_plugin($finder_object);
+around dump_config => sub {
+  my ( $orig, $self, @args ) = @_;
+  my $config = $orig->( $self, @args );
+  my $payload = $config->{ +__PACKAGE__ } = {};
+
+  $payload->{finder} = $self->finder if $self->has_finder;
+  $payload->{include_underscores} = $self->include_underscores;
+
+  for my $plugin ( @{ $self->_finder_objects } ) {
+    my $object_config = {};
+    $object_config->{class}   = $plugin->meta->name  if $plugin->can('meta') and $plugin->meta->can('name');
+    $object_config->{name}    = $plugin->plugin_name if $plugin->can('plugin_name');
+    $object_config->{version} = $plugin->VERSION     if $plugin->can('VERSION');
+    if ( $plugin->can('dump_config') ) {
+      my $finder_config = $plugin->dump_config;
+      $object_config->{config} = $finder_config if keys %{$finder_config};
     }
-    return;
-  },
-);
+    push @{ $payload->{finder_objects} }, $object_config;
+  }
+
+  # Inject only when inherited.
+  $payload->{ q[$] . __PACKAGE__ . '::VERSION' } = $VERSION unless __PACKAGE__ eq ref $self;
+  return $config;
+};
 
 
 
@@ -251,9 +282,11 @@ sub _build_finder_objects {
       my $plugin = $self->zilla->plugin_named($finder);
       if ( not $plugin ) {
         $self->log_fatal("no plugin named $finder found");
+        croak("no plugin named $finder found");
       }
       if ( not $plugin->does('Dist::Zilla::Role::FileFinder') ) {
         $self->log_fatal("plugin $finder is not a FileFinder");
+        croak("plugin $finder is not a FileFinder");
       }
       push @out, $plugin;
     }
@@ -294,7 +327,7 @@ Dist::Zilla::Plugin::MetaProvides::Package - Extract namespaces/version from tra
 
 =head1 VERSION
 
-version 2.004000
+version 2.004001
 
 =head1 SYNOPSIS
 
@@ -321,6 +354,10 @@ In your C<dist.ini>:
     ; Set it to 0 if for some weird reason you don't want this.
     meta_noindex    = 1
 
+    ; This is the (optional) default: Setting this to true will enable indexing
+    ; of packages like _Foo::Bar or Foo::_Bar
+    include_underscores = 1
+
 =head1 DESCRIPTION
 
 This is a L<< C<Dist::Zilla>|Dist::Zilla >> Plugin that populates the C<provides>
@@ -345,6 +382,18 @@ A conformant function to the L<Dist::Zilla::Role::MetaProvider::Provider> Role.
 =head3 returns: Array of L<Dist::Zilla::MetaProvides::ProvideRecord>
 
 =head1 ATTRIBUTES
+
+=head2 C<include_underscores>
+
+This attribute controls automatic skipping of packages.
+
+By default, packages matching the following regular expression are skipped:
+
+  qr/(\A|::)_/
+
+And this skips all packages with a leading C<_> at any token.
+
+This feature was added in C<2.004001-TRIAL>
 
 =head2 C<finder>
 
