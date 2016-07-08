@@ -15,6 +15,7 @@ my @files = (
     't/dz2-provides.t',
     't/errors.t',
     't/finder-installmodules.t',
+    't/include-underscore.t',
     't/no-warn-hard-hidden.t',
     't/perl-5-14-package.t',
     't/warn-missing-pkg.t'

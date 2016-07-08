@@ -113,7 +113,7 @@ sub _packages_for {
     if ( not $self->_can_index($namespace) ) {
 
       # These count for "You had a namespace but you hid it"
-      $self->log_debug( "Skipping private namespace: $namespace in " . $file->name );
+      $self->log_debug( "Skipping private(underscore) namespace: $namespace in " . $file->name );
       $seen_blacklisted->{$namespace} = 1;
       $seen->{$namespace}             = 1;
       next;
@@ -157,8 +157,25 @@ sub _packages_for {
   return @out;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+has 'include_underscores' => ( is => 'ro', lazy => 1, default => sub { 0 } );
+
 sub _can_index {
-  my ( undef, $namespace ) = @_;
+  my ( $self, $namespace ) = @_;
+  return 1 if $self->include_underscores;
   ## no critic (RegularExpressions::RequireLineBoundaryMatching)
   return if $namespace =~ qr/\A_/sx;
   return if $namespace =~ qr/::_/sx;
@@ -180,6 +197,8 @@ around dump_config => sub {
   my $payload = $config->{ +__PACKAGE__ } = {};
 
   $payload->{finder} = $self->finder if $self->has_finder;
+  $payload->{include_underscores} = $self->include_underscores;
+
   for my $plugin ( @{ $self->_finder_objects } ) {
     my $object_config = {};
     $object_config->{class}   = $plugin->meta->name  if $plugin->can('meta') and $plugin->meta->can('name');
@@ -335,6 +354,10 @@ In your C<dist.ini>:
     ; Set it to 0 if for some weird reason you don't want this.
     meta_noindex    = 1
 
+    ; This is the (optional) default: Setting this to true will enable indexing
+    ; of packages like _Foo::Bar or Foo::_Bar
+    include_underscores = 1
+
 =head1 DESCRIPTION
 
 This is a L<< C<Dist::Zilla>|Dist::Zilla >> Plugin that populates the C<provides>
@@ -359,6 +382,18 @@ A conformant function to the L<Dist::Zilla::Role::MetaProvider::Provider> Role.
 =head3 returns: Array of L<Dist::Zilla::MetaProvides::ProvideRecord>
 
 =head1 ATTRIBUTES
+
+=head2 C<include_underscores>
+
+This attribute controls automatic skipping of packages.
+
+By default, packages matching the following regular expression are skipped:
+
+  qr/(\A|::)_/
+
+And this skips all packages with a leading C<_> at any token.
+
+This feature was added in C<2.004001-TRIAL>
 
 =head2 C<finder>
 
