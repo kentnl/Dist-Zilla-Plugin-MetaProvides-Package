@@ -1,11 +1,13 @@
 Revision history for Dist-Zilla-Plugin-MetaProvides-Package
 
-2.004001 2016-07-08T03:21:08Z 301b03a
+2.004001 2016-07-08T03:21:46Z 41c45a0
  - No longer uses ConfigDumper Util.
+ - No longer uses Test::KENTNL
 
  [Dependencies::Stats]
  - Dependencies changed since 2.004000, see misc/*.deps* for details
  - runtime: -1
+ - test: +1 -1 (recommends: +1)
 
 2.004000 2016-04-27T02:37:23Z 50a9c97
  - Now using Role::ModuleMetadata to delegate actual metadata extraction from ::File objects. This should be

@@ -4,8 +4,8 @@ use warnings;
 use Test::More 0.96;
 use Test::Fatal;
 use Test::Moose;
-use Test::DZil qw( simple_ini );
-use Dist::Zilla::Util::Test::KENTNL 1.002000 qw( dztest );
+use Path::Tiny qw( path );
+use Test::DZil qw( simple_ini Builder );
 
 use Module::Metadata 1.000022;
 
@@ -14,19 +14,16 @@ sub nofail(&) {
   return is( exception { $code->() }, undef, "Contained Code should not fail" );
 }
 
-my $test = dztest();
-$test->add_file(
-  'dist.ini' => simple_ini(
+my $test_config = [
     'GatherDir',    #
     [
       'MetaProvides::Package' => {    #
         inherit_version => 0,
         inherit_missing => 1
       }
-    ]
-  )
-);
-$test->add_file( 'lib/DZ2.pm', <<'EOF');
+    ],
+];
+my $test_document = <<'EOF';
 use strict;
 use warnings;
 
@@ -50,15 +47,24 @@ DZ2
 =cut
 EOF
 
-$test->build_ok;
+my $tzil = Builder->from_config(
+  { dist_root => 'invalid' },
+  {
+    add_files => {
+      path('source/lib/DZ2.pm') => $test_document,
+      path('source/dist.ini')   => simple_ini( @{$test_config} ),
+    },
+  },
+);
 
-my $zilla = $test->builder;
+$tzil->chrome->logger->set_debug(1);
+$tzil->build;
 
 my $plugin;
 
 is(
   exception {
-    $plugin = $zilla->plugin_named('MetaProvides::Package');
+    $plugin = $tzil->plugin_named('MetaProvides::Package');
   },
   undef,
   'Found MetaProvides::Package'
