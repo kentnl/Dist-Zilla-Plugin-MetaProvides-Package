@@ -1,6 +1,9 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+ [Dependencies::Stats]
+ - Dependencies changed since 2.004001, see misc/*.deps* for details
+ - develop: (suggests: ↑1)
 
 2.004001 2016-07-08T03:22:43Z 3cfc89c
  - New feature: include_underscores. This is a way to reverse the change in e6106140 that removed packages with "_"
