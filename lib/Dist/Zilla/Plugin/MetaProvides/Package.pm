@@ -4,7 +4,7 @@ use warnings;
 
 package Dist::Zilla::Plugin::MetaProvides::Package;
 
-our $VERSION = '2.004001'; # TRIAL
+our $VERSION = '2.004002';
 
 # ABSTRACT: Extract namespaces/version from traditional packages for provides
 
@@ -327,7 +327,7 @@ Dist::Zilla::Plugin::MetaProvides::Package - Extract namespaces/version from tra
 
 =head1 VERSION
 
-version 2.004001
+version 2.004002
 
 =head1 SYNOPSIS
 
@@ -354,9 +354,9 @@ In your C<dist.ini>:
     ; Set it to 0 if for some weird reason you don't want this.
     meta_noindex    = 1
 
-    ; This is the (optional) default: Setting this to true will enable indexing
-    ; of packages like _Foo::Bar or Foo::_Bar
-    include_underscores = 1
+    ; This is the (optional) default: Packages named _Foo::Bar or Foo::_Bar are not indexed.
+    ; Set this to 1 to enable indexing of similarly named packages.
+    include_underscores = 0
 
 =head1 DESCRIPTION
 
@@ -387,11 +387,11 @@ A conformant function to the L<Dist::Zilla::Role::MetaProvider::Provider> Role.
 
 This attribute controls automatic skipping of packages.
 
-By default, packages matching the following regular expression are skipped:
+By default, C<MetaProvides::Package> skips packages matching the following regular expression:
 
   qr/(\A|::)_/
 
-And this skips all packages with a leading C<_> at any token.
+Setting this attribute to a C<true> value will avoid skipping these packages.
 
 This feature was added in C<2.004001-TRIAL>
 
