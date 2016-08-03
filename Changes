@@ -4,7 +4,7 @@ Revision history for {{$dist->name}}
 
 2.004002 2016-08-03T16:41:52Z 37520fe
  - STABLE: This release includes changes from 2.004000 to 2.004001 and some doc fixes.
- - SHORTLIST: use Role::ModuleMetadata, include underscores by default, include_underscore option
+ - SHORTLIST: use Role::ModuleMetadata, include_underscore option
 
  [Dependencies::Stats]
  - Dependencies changed since 2.004001, see misc/*.deps* for details
