@@ -387,11 +387,11 @@ A conformant function to the L<Dist::Zilla::Role::MetaProvider::Provider> Role.
 
 This attribute controls automatic skipping of packages.
 
-By default, packages matching the following regular expression are skipped:
+By default, C<MetaProvides::Package> skips packages matching the following regular expression:
 
   qr/(\A|::)_/
 
-And this skips all packages with a leading C<_> at any token.
+Setting this attribute to a C<true> value will avoid skipping these packages.
 
 This feature was added in C<2.004001-TRIAL>
 
