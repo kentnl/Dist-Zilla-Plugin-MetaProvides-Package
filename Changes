@@ -1,9 +1,12 @@
 Revision history for Dist-Zilla-Plugin-MetaProvides-Package
 
-2.004002 2016-07-30T00:04:05Z 484116d
+2.004002 2016-08-03T16:25:25Z 052ba28
  [Dependencies::Stats]
  - Dependencies changed since 2.004001, see misc/*.deps* for details
  - develop: (suggests: ↑1)
+
+ [Documentation]
+ - Mistakes in synopsis about defaults clarified re: include_underscores
 
 2.004001 2016-07-08T03:22:43Z 3cfc89c
  - New feature: include_underscores. This is a way to reverse the change in e6106140 that removed packages with "_"
