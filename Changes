@@ -1,5 +1,7 @@
 Revision history for Dist-Zilla-Plugin-MetaProvides-Package
 
+2.004004 2017-03-01T12:53:21Z 8fa7547
+
 2.004003 2017-03-01T12:48:27Z 9169231
  [Bugfix]
  - Update to regenerate compile test which failed on perls without . in @INC

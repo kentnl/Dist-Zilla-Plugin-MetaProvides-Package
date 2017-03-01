@@ -30,7 +30,7 @@ no_index:
 provides:
   Dist::Zilla::Plugin::MetaProvides::Package:
     file: lib/Dist/Zilla/Plugin/MetaProvides/Package.pm
-    version: '2.004003'
+    version: '2.004004'
 recommends:
   Moose: '2.000'
 requires:
@@ -56,4 +56,4 @@ resources:
   bugtracker: https://github.com/kentnl/Dist-Zilla-Plugin-MetaProvides-Package/issues
   homepage: https://github.com/kentnl/Dist-Zilla-Plugin-MetaProvides-Package
   repository: https://github.com/kentnl/Dist-Zilla-Plugin-MetaProvides-Package.git
-version: '2.004003'
+version: '2.004004'

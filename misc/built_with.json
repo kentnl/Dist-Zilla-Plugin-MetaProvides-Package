@@ -33,7 +33,7 @@
       "Dist::Zilla::Plugin::MetaJSON" : "6.008",
       "Dist::Zilla::Plugin::MetaNoIndex" : "6.008",
       "Dist::Zilla::Plugin::MetaProvides" : "2.002004",
-      "Dist::Zilla::Plugin::MetaProvides::Package" : "2.004003",
+      "Dist::Zilla::Plugin::MetaProvides::Package" : "2.004004",
       "Dist::Zilla::Plugin::MetaTests" : "6.008",
       "Dist::Zilla::Plugin::MetaYAML::Minimal" : "0.001000",
       "Dist::Zilla::Plugin::MinimumPerl" : "1.006",

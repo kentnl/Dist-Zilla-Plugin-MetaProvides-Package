@@ -1,6 +1,8 @@
 This file contains changes to DEVELOPMENT dependencies only ( both REQUIRED and OPTIONAL )
 
-2.004003
+2.004004
+
+2.004003 2017-03-01T12:48:27Z
  [Added / develop requires]
  - Test::MinimumVersion
 
