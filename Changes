@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+2.004003 2017-03-01T12:48:27Z 9169231
  [Bugfix]
  - Update to regenerate compile test which failed on perls without . in @INC
  - Closes https://github.com/kentnl/Dist-Zilla-Plugin-MetaProvides-Package/issues/9
